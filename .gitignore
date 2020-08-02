@@ -24,3 +24,4 @@ hs_err_pid*
 
 # Input files
 Phase01/main/resources/input/*
+!**/.gitkeep
