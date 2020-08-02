@@ -1,10 +1,10 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.io.*;
+
 
 public class FileHandler {
 
-    private static String loadFile(String fileName) {
+    public static String loadFile(String fileName) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File(fileName)));
             StringBuilder contentBuilder = new StringBuilder();
@@ -21,7 +21,7 @@ public class FileHandler {
         }
     }
 
-    private static ArrayList<String> loadFileNamesFromFolder(String folderName) {
+    private static ArrayList<String> getFileNamesFromFolder(String folderName) {
         final File folder = new File(folderName);
         ArrayList<String> output = new ArrayList<>();
         for (File fileEntry : folder.listFiles()) {
@@ -32,11 +32,11 @@ public class FileHandler {
     }
 
     public static ArrayList<Document> loadFolder(String folderName) {
-        ArrayList<String> fileNames = loadFileNamesFromFolder(folderName);
+        ArrayList<String> fileNames = getFileNamesFromFolder(folderName);
         ArrayList<Document> documents = new ArrayList<>();
         for (String fileName : fileNames) {
             String path = folderName + '/' + fileName;
-            documents.add(new Document(fileName, path, loadFile(path)));
+            documents.add(new Document(fileName, path));
         }
         return documents;
     }

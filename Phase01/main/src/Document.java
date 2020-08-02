@@ -3,36 +3,30 @@ public class Document {
 
     private String id;
     private String path;
-    private String content;
 
-    public Document(String id, String path, String content) {
+    public Document(String id, String path) {
         this.id = id;
         this.path = path;
-        this.content = content;
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String newId) {
-        id = newId;
+        this.id = newId;
     }
 
     public String getPath() {
-        return path;
+        return this.path;
     }
 
     public void setPath(String newPath) {
-        path = newPath;
+        this.path = newPath;
     }
 
     public String getContent() {
-        return content;
-    }
-
-    public void setContent(String newContent) {
-        content = newContent;
+        return FileHandler.loadFile(this.path);
     }
 
     @Override
