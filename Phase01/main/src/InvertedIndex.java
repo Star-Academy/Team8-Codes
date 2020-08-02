@@ -3,7 +3,7 @@ import java.util.*;
 public class InvertedIndex {
 
     private ArrayList<Document> documents;
-    private HashMap<Token, ArrayList<Document>> index;
+    private HashMap<Token, HashSet<Document>> index;
 
     public InvertedIndex(String folderName) {
         this.documents = FileHandler.loadFolder(folderName);
@@ -25,15 +25,16 @@ public class InvertedIndex {
                 if (this.index.containsKey(token))
                     this.index.get(token).add(doc);
                 else
-                    this.index.put(token, new ArrayList<Document>() {
+                    this.index.put(token, new HashSet<Document>() {
                         {
                             add(doc);
                         }
                     });
     }
 
-    public HashMap<Token, ArrayList<Document>> getIndex() {
-        return this.index;
+    public HashSet<Document> getDocumentsOfToken(Token token) {
+        HashSet<Document> result = this.index.get(token);
+        return result == null ? new HashSet<Document>() : result;
     }
 
 }

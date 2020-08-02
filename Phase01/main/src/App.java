@@ -1,23 +1,26 @@
 import java.util.*;
+import java.lang.IllegalArgumentException;
 
 public class App {
 
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        // String command, query;
-        // InvertedIndex indexer = new InvertedIndex("../resources/input");
-        // do {
-        //     command = scanner.nextLine();
-        //     if (command.equals("search")) {
-        //         System.out.println("Enter search query:");
-        //         query = scanner.nextLine();
-        //         ArrayList<Document> results = indexer.getIndex().get(new Token(query));
-        //         System.out.println(results);
-        //     }
-        // } while (!command.equals("exit"));
-        String query = "+salam -khodafez a +hello bc def +aa +bb ++cc";
-        Query q = new Query(query);
-        System.out.println(q);
+        String command;
+        InvertedIndex index = new InvertedIndex("../resources/input");
+        do {
+            command = scanner.nextLine();
+            if (command.equals("search")) {
+                System.out.print("Enter search query:");
+                command = scanner.nextLine();
+                try {
+                    HashSet<Document> results = Engine.runQuery(new Query(command), index);
+                    System.out.println(results);
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+                command = "";
+            }
+        } while (!command.equals("exit"));
     }
 }
