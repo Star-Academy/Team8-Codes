@@ -1,4 +1,11 @@
+package main.src.core.engine;
+
+import main.src.core.structures.Document;
+import main.src.core.structures.Token;
+import main.src.utils.FileHandler;
+
 import java.util.*;
+
 
 public class InvertedIndex {
 

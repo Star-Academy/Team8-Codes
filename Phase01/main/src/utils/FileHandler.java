@@ -1,3 +1,7 @@
+package main.src.utils;
+
+import main.src.core.structures.Document;
+
 import java.util.ArrayList;
 import java.io.*;
 

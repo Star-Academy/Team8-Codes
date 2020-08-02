@@ -1,3 +1,5 @@
+package main.src.core.structures;
+
 public class Token implements Comparable<Token> {
 
     private String key;

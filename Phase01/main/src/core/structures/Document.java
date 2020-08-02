@@ -1,3 +1,6 @@
+package main.src.core.structures;
+
+import main.src.utils.FileHandler;
 
 public class Document {
 

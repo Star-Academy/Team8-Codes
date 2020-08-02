@@ -1,18 +1,25 @@
+package main.src.core.engine;
+
+import main.src.core.structures.Document;
+import main.src.core.structures.Token;
+import main.src.utils.FileHandler;
+
 import java.util.*;
 import java.io.IOException;
 import java.lang.IllegalArgumentException;
 
 public class SearchEngineApp {
 
-    public static Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
+    private String resourcesDirectory;
+    private InvertedIndex index;
 
-    public static void main(String[] args) {
-        InvertedIndex index = new InvertedIndex("../resources/input");
-
-        handleCommands();
+    public SearchEngineApp(String resourcesDirectory){
+        this.resourcesDirectory = resourcesDirectory;
+        this.index = new InvertedIndex(this.resourcesDirectory);
     }
 
-    private static void handleCommands() {
+    public void handleCommands() {
         String input, command, arguments;
         int firstSpaceIndex;
 
@@ -35,7 +42,7 @@ public class SearchEngineApp {
         }
     }
 
-    private static void search(String arguments) {
+    private void search(String arguments) {
         try {
             HashSet<Document> results = Engine.runQuery(new Query(arguments), index);
             System.out.println(results);
@@ -44,15 +51,11 @@ public class SearchEngineApp {
         }
     }
 
-    private static void view(String arguments) {
-        try {
-            System.out.println(FileHandler.loadFile("../resources/input/" + arguments));
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+    private void view(String arguments) {
+        System.out.println(FileHandler.loadFile(this.resourcesDirectory + arguments));
     }
 
-    private static void help() {
+    private void help() {
         System.out.println("search <terms>\nterm  : AND feature\n+term : OR  feature\n-term : EXC feature");
         System.out.println("help\ndisplay commands");
         System.out.println("view <docId>");
