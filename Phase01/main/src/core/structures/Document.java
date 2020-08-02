@@ -2,7 +2,7 @@ package main.src.core.structures;
 
 import main.src.utils.FileHandler;
 
-public class Document {
+public class Document extends Object{
 
     private String id;
     private String path;

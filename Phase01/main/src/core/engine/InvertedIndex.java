@@ -9,13 +9,11 @@ import java.util.*;
 
 public class InvertedIndex {
 
-    private ArrayList<Document> documents;
     private HashMap<Token, HashSet<Document>> index;
 
     public InvertedIndex(String folderName) {
-        this.documents = FileHandler.loadFolder(folderName);
         this.index = new HashMap<>();
-        this.invert();
+        this.invert(folderName);
     }
 
     private HashSet<Token> tokenized(Document doc) {
@@ -26,8 +24,9 @@ public class InvertedIndex {
         return output;
     }
 
-    private void invert() {
-        for (Document doc : this.documents)
+    private void invert(String folderName) {
+        ArrayList<Document> documents = FileHandler.loadFolder(folderName);
+        for (Document doc : documents)
             for (Token token : this.tokenized(doc))
                 if (this.index.containsKey(token))
                     this.index.get(token).add(doc);

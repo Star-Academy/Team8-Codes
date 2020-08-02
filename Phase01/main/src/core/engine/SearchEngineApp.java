@@ -3,10 +3,12 @@ package main.src.core.engine;
 import main.src.core.structures.Document;
 import main.src.core.structures.Token;
 import main.src.utils.FileHandler;
+import main.src.utils.Prettifier;
 
 import java.util.*;
 import java.io.IOException;
 import java.lang.IllegalArgumentException;
+
 
 public class SearchEngineApp {
 
@@ -24,6 +26,7 @@ public class SearchEngineApp {
         int firstSpaceIndex;
 
         while (true) {
+            System.out.print("google> ");
             input = scanner.nextLine();
             firstSpaceIndex = input.indexOf(' ');
             command = input.substring(0, firstSpaceIndex);
@@ -45,14 +48,14 @@ public class SearchEngineApp {
     private void search(String arguments) {
         try {
             HashSet<Document> results = Engine.runQuery(new Query(arguments), index);
-            System.out.println(results);
+            System.out.println(Prettifier.prettify(results));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
 
     private void view(String arguments) {
-        System.out.println(FileHandler.loadFile(this.resourcesDirectory + arguments));
+        System.out.println(FileHandler.loadFile(this.resourcesDirectory + "/" + arguments));
     }
 
     private void help() {
