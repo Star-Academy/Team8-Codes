@@ -27,14 +27,18 @@ public class InvertedIndex {
         return tokens;
     }
 
+    private void addToIndex(Document doc){
+        for (Token token : this.getTokens(doc))
+            if (this.index.containsKey(token))
+                this.index.get(token).add(doc);
+            else
+                this.index.put(token, new HashSet<Document>(){{add(doc);}});
+    }
+
     private void invert(String folderName) {
         ArrayList<Document> documents = FileHandler.loadFolder(folderName);
         for (Document doc : documents)
-            for (Token token : this.getTokens(doc))
-                if (this.index.containsKey(token))
-                    this.index.get(token).add(doc);
-                else
-                    this.index.put(token, new HashSet<Document>(){{add(doc);}});
+            this.addToIndex(doc);
     }
 
     public HashSet<Document> getDocumentsOfToken(Token token) {
