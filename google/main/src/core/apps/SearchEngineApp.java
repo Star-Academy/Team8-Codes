@@ -22,14 +22,14 @@ public class SearchEngineApp extends ConsoleApp{
     private InvertedIndex index;
 
     public void intro(){
-        System.out.println("Welcome to " + APP_NAME + "! Copyright(c) " + YEAR + " " + VERSION);
+        this.sout("Welcome to " + APP_NAME + "! Copyright(c) " + YEAR + " " + VERSION);
     }
 
     public SearchEngineApp(String resourcesDirectory){
         super();
         this.resourcesDirectory = resourcesDirectory;
         this.index = new InvertedIndex(this.resourcesDirectory);
-        this.prompt = APP_NAME + ">";
+        this.prompt = APP_NAME + "> ";
     }
 
     public boolean handleCommand(String command, String arguments){
@@ -37,26 +37,37 @@ public class SearchEngineApp extends ConsoleApp{
         else if (command.equals("view")) this.view(arguments);
         else if (command.equals("help")) this.help();
         else if (command.equals("exit")) return false;
-        else System.out.println(String.format("\'%s\' is not recognized as an internal or external command."));
+        else this.sout(String.format("\'%s\' is not recognized as an internal or external command.", command));
         return true;
     }
 
     public void search(String arguments) {
+        if(arguments == ""){
+            this.sout("No keywords passed!");
+            return;
+        }
         try {
             HashSet<Document> results = Engine.getQueryResults(new Query(arguments), index);
-            System.out.println(Prettifier.prettify(results));
+            this.sout(Prettifier.prettify(results));
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            this.sout(e.getMessage());
         }
     }
 
     public void view(String arguments) {
-        System.out.println(FileHandler.loadFile(this.resourcesDirectory + "/" + arguments));
+        if(arguments == ""){
+            this.sout("No documentId passed!");
+            return;
+        }
+        this.sout(FileHandler.loadFile(this.resourcesDirectory + "/" + arguments));
     }
 
     public void help() {
-        System.out.print("\nsearch <terms>");
-        System.out.print(" -- help -- ");
-        System.out.println("view <documentId>");
+        this.sout("\nsearch <terms> -- view <documentId> -- help");
     }
+
+    private void sout(String output){
+        System.out.println("\n" + output + "\n");
+    }
+
 }

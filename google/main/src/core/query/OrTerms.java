@@ -11,11 +11,10 @@ import main.src.core.structures.Document;
 public class OrTerms extends Terms{
 
     private static Pattern pattern = Pattern.compile("\\+(\\w+)");
-    private static int regexGroupIndex = 1;
 
     public OrTerms(String expression){
         super();
-        this.collect(expression, pattern, regexGroupIndex);
+        this.collect(expression, pattern, 1);
     }
 
     public HashSet<Document> getResults(InvertedIndex index){

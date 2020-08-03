@@ -34,8 +34,8 @@ public abstract class ConsoleApp {
             this.arguments = "";
         }
         else{
-            this.command = input.substring(0, this.firstSpaceIndex);
-            this.arguments = input.substring(this.firstSpaceIndex + 1);
+            this.command = input.substring(0, this.firstSpaceIndex).trim();
+            this.arguments = input.substring(this.firstSpaceIndex + 1).trim();
         }
     }
 
@@ -43,7 +43,7 @@ public abstract class ConsoleApp {
         String input;
         do {
             System.out.print(this.prompt);
-            input = scanner.nextLine();
+            input = scanner.nextLine().trim();
             this.decomposeInput(input);
         } while(handleCommand(this.command, this.arguments));
     }

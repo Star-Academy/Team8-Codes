@@ -10,11 +10,10 @@ import main.src.core.structures.Document;
 public class AndTerms extends Terms{
 
     private static Pattern pattern = Pattern.compile("( *[^\\+\\-\\w]|^)(\\w+)");
-    private static int regexGroupIndex = 2;
 
     public AndTerms(String expression){
         super();
-        this.collect(expression, pattern, regexGroupIndex);
+        this.collect(expression, pattern, 2);
     }
 
     public HashSet<Document> getResults(InvertedIndex index){
