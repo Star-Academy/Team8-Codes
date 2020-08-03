@@ -30,3 +30,6 @@ google/main/resources/input/*
 
 # IDE
 .vscode/*
+
+# Bin Folder
+google/bin/*
