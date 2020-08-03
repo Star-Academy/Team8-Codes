@@ -41,14 +41,20 @@ public class SearchEngineApp extends ConsoleApp{
         return true;
     }
 
+    private String getSearchResults(String arguments){
+        HashSet<Document> results = Engine.getQueryResults(new Query(arguments), this.index);
+        if(results.isEmpty())
+            return "No results found!";
+        return Prettifier.prettify(results);
+    }
+
     public void search(String arguments) {
         if(arguments == ""){
             this.sout("No keywords passed!");
             return;
         }
         try {
-            HashSet<Document> results = Engine.getQueryResults(new Query(arguments), index);
-            this.sout(Prettifier.prettify(results));
+            this.sout(this.getSearchResults(arguments));
         } catch (IllegalArgumentException e) {
             this.sout(e.getMessage());
         }
@@ -63,7 +69,7 @@ public class SearchEngineApp extends ConsoleApp{
     }
 
     public void help() {
-        this.sout("\nsearch <terms> -- view <documentId> -- help");
+        this.sout("search <terms> -- view <documentId> -- help");
     }
 
     private void sout(String output){

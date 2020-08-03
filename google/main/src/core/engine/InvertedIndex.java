@@ -21,7 +21,7 @@ public class InvertedIndex {
 
     private HashSet<Token> getTokens(Document doc) {
         HashSet<Token> tokens = new HashSet<>();
-        Matcher matcher = Pattern.compile("[a-zA-Z]+").matcher(doc.getContent());
+        Matcher matcher = Pattern.compile("[a-zA-Z0-9]+").matcher(doc.getContent());
         while (matcher.find())
             tokens.add(new Token(matcher.group()));
         return tokens;
