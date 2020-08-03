@@ -28,11 +28,11 @@ public class InvertedIndex {
     }
 
     private void indexDocument(Document doc){
-        for (Token token : this.getTokens(doc))
-            if (this.index.containsKey(token))
-                this.index.get(token).add(doc);
-            else
-                this.index.put(token, new HashSet<Document>(){{add(doc);}});
+        for (Token token : this.getTokens(doc)){
+            if (!this.index.containsKey(token))
+                this.index.put(token, new HashSet<Document>());
+            this.index.get(token).add(doc);
+        }
     }
 
     private void indexDocuments(ArrayList<Document> documents){

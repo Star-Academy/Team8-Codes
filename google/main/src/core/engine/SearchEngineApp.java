@@ -3,6 +3,7 @@ package main.src.core.engine;
 import main.src.core.structures.Document;
 import main.src.utils.FileHandler;
 import main.src.utils.Prettifier;
+import main.src.core.query.Query;
 
 import java.util.*;
 import java.lang.IllegalArgumentException;

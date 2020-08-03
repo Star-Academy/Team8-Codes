@@ -7,8 +7,6 @@ public class Prettifier {
 
     final static int MAX_ITEMS = 10;
 
-
-
     public static String prettify(HashSet<? extends Object> inputSet) {
         ArrayList<Object> itemList = new ArrayList<>(inputSet);
         StringBuilder out = new StringBuilder();
