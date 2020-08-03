@@ -5,21 +5,17 @@ import main.src.core.structures.Document;
 import java.util.ArrayList;
 import java.io.*;
 
-
 public class FileHandler {
 
     public static String loadFile(String fileName) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(fileName)));
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File(fileName)))) {
             StringBuilder contentBuilder = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null)
                 contentBuilder.append(line + "\n");
             reader.close();
             return contentBuilder.toString();
-        }
-
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
             return null;
         }
