@@ -13,6 +13,10 @@ public abstract class Terms {
     
     protected ArrayList<Token> keys;
 
+    public Terms(){
+        this.keys = new ArrayList<>();
+    }
+
     protected void collect(String expression, Pattern pattern, int regexGroupIndex){
         Matcher matcher = pattern.matcher(expression);
         while (matcher.find())

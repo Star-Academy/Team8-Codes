@@ -1,0 +1,62 @@
+package main.src.core.apps;
+
+import main.src.core.structures.Document;
+import main.src.utils.FileHandler;
+import main.src.utils.Prettifier;
+import main.src.core.query.Query;
+import main.src.utils.ConsoleApp;
+import main.src.core.engine.InvertedIndex;
+import main.src.core.engine.Engine;
+
+import java.util.*;
+import java.lang.IllegalArgumentException;
+
+
+public class SearchEngineApp extends ConsoleApp{
+
+    private static final String APP_NAME = "google";
+    private final String YEAR = "2020";
+    private final String VERSION = "v0.0.0";
+    
+    private String resourcesDirectory;
+    private InvertedIndex index;
+
+    public void intro(){
+        System.out.println("Welcome to " + APP_NAME + "! Copyright(c) " + YEAR + " " + VERSION);
+    }
+
+    public SearchEngineApp(String resourcesDirectory){
+        super();
+        this.resourcesDirectory = resourcesDirectory;
+        this.index = new InvertedIndex(this.resourcesDirectory);
+        this.prompt = APP_NAME + ">";
+    }
+
+    public boolean handleCommand(String command, String arguments){
+        if (command.equals("search"))    this.search(arguments);
+        else if (command.equals("view")) this.view(arguments);
+        else if (command.equals("help")) this.help();
+        else if (command.equals("exit")) return false;
+        else System.out.println(String.format("\'%s\' is not recognized as an internal or external command."));
+        return true;
+    }
+
+    public void search(String arguments) {
+        try {
+            HashSet<Document> results = Engine.getQueryResults(new Query(arguments), index);
+            System.out.println(Prettifier.prettify(results));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void view(String arguments) {
+        System.out.println(FileHandler.loadFile(this.resourcesDirectory + "/" + arguments));
+    }
+
+    public void help() {
+        System.out.print("\nsearch <terms>");
+        System.out.print(" -- help -- ");
+        System.out.println("view <documentId>");
+    }
+}

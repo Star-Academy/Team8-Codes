@@ -14,7 +14,7 @@ public class ExcTerms extends Terms{
     private static int regexGroupIndex = 1;
 
     public ExcTerms(String expression){
-        this.keys = new ArrayList<>();
+        super();
         this.collect(expression, pattern, regexGroupIndex);
     }
 

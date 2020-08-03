@@ -13,7 +13,7 @@ public class AndTerms extends Terms{
     private static int regexGroupIndex = 2;
 
     public AndTerms(String expression){
-        this.keys = new ArrayList<>();
+        super();
         this.collect(expression, pattern, regexGroupIndex);
     }
 

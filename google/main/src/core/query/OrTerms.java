@@ -14,7 +14,7 @@ public class OrTerms extends Terms{
     private static int regexGroupIndex = 1;
 
     public OrTerms(String expression){
-        this.keys = new ArrayList<>();
+        super();
         this.collect(expression, pattern, regexGroupIndex);
     }
 
