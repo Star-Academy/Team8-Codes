@@ -20,7 +20,7 @@ public class Prettifier {
         return out.toString();
     }
 
-    public static String prettify(HashMap<? extends Object, ? extends HashSet> inputMap){
+    public static String prettify(HashMap<? extends Object, ? extends HashSet<? extends Object>> inputMap){
         StringBuilder out = new StringBuilder();
         for(Object key : inputMap.keySet()){
             out.append(key + "\n");
