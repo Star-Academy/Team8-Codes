@@ -8,22 +8,25 @@ import main.src.core.engine.InvertedIndex;
 import main.src.core.structures.Token;
 import main.src.core.structures.Document;
 
-
 public abstract class Terms {
-    
+
     protected ArrayList<Token> keys;
 
-    public Terms(){
+    public Terms() {
         this.keys = new ArrayList<>();
     }
 
-    protected void collect(String expression, Pattern pattern, int regexGroupIndex){
+    public ArrayList<Token> getKeys() {
+        return keys;
+    }
+
+    protected void collect(String expression, Pattern pattern, int regexGroupIndex) {
         Matcher matcher = pattern.matcher(expression);
         while (matcher.find())
             this.keys.add(new Token(matcher.group(regexGroupIndex)));
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return this.keys.isEmpty();
     }
 
