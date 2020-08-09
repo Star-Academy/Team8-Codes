@@ -29,7 +29,7 @@ public class Document extends Object{
     }
 
     public String getContent() {
-        return FileHandler.loadFile(this.path);
+        return FileHandler.getFileContent(this.path);
     }
 
     @Override

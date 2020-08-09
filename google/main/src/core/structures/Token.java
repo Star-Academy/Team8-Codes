@@ -13,7 +13,7 @@ public class Token implements Comparable<Token> {
     }
 
     public void setKey(String newKey) {
-        this.key = newKey;
+        this.key = this.normalize(key);
     }
 
     private String normalize(String key) {

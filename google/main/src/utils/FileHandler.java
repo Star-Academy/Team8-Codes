@@ -1,13 +1,44 @@
 package main.src.utils;
 
 import main.src.core.structures.Document;
+import main.src.core.structures.Token;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.io.*;
+import java.util.regex.*;
+
 
 public class FileHandler {
 
-    public static String loadFile(String fileName) {
+    private static Pattern tokenPattern = Pattern.compile("[a-zA-Z0-9]+");
+
+    public static HashSet<Token> getDocumentTokens(Document doc){
+        HashSet<Token> tokens = new HashSet<>();
+        File file = new File(doc.getPath());
+        try(Scanner scanner = new Scanner(file)){
+            while (scanner.hasNext()){
+                String next = scanner.next();
+                if(tokenPattern.matcher(next).matches())
+                    tokens.add(new Token(next));
+            }
+            scanner.close();
+            return tokens;
+        } catch(IOException error){
+            error.printStackTrace();
+            return tokens;
+        }
+    }
+
+    public static ArrayList<Document> getFolderDocuments(String folderDirectory){
+        final File folder = new File(folderDirectory);
+        ArrayList<Document> documents = new ArrayList<>();
+        for (File fileEntry : folder.listFiles())
+            if (!fileEntry.isDirectory())
+                documents.add(new Document(fileEntry.getName(), folderDirectory + '/' + fileEntry.getName()));
+        return documents;
+    }
+
+    public static String getFileContent(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(new File(fileName)))) {
             StringBuilder contentBuilder = new StringBuilder();
             String line;
@@ -20,25 +51,4 @@ public class FileHandler {
             return null;
         }
     }
-
-    private static ArrayList<String> getFileNamesFromFolder(String folderName) {
-        final File folder = new File(folderName);
-        ArrayList<String> output = new ArrayList<>();
-        for (File fileEntry : folder.listFiles()) {
-            if (!fileEntry.isDirectory())
-                output.add(fileEntry.getName());
-        }
-        return output;
-    }
-
-    public static ArrayList<Document> loadFolder(String folderName) {
-        ArrayList<String> fileNames = getFileNamesFromFolder(folderName);
-        ArrayList<Document> documents = new ArrayList<>();
-        for (String fileName : fileNames) {
-            String path = folderName + '/' + fileName;
-            documents.add(new Document(fileName, path));
-        }
-        return documents;
-    }
-
 }

@@ -16,19 +16,19 @@ public class SearchEngineApp extends ConsoleApp{
 
     private static final String APP_NAME = "google";
     private final String YEAR = "2020";
-    private final String VERSION = "v0.0.0";
+    private final String VERSION = "v0.0.1";
     
     private String resourcesDirectory;
     private InvertedIndex index;
 
     public void intro(){
-        this.sout("Welcome to " + APP_NAME + "! Copyright(c) " + YEAR + " " + VERSION);
+        this.sout("Welcome to " + APP_NAME + "! Copyright(c) Team8" + YEAR + " " + VERSION);
     }
 
     public SearchEngineApp(String resourcesDirectory){
         super();
         this.resourcesDirectory = resourcesDirectory;
-        this.index = new InvertedIndex(this.resourcesDirectory);
+        this.index = new InvertedIndex(FileHandler.getFolderDocuments(resourcesDirectory));
         this.prompt = APP_NAME + "> ";
     }
 
@@ -65,7 +65,7 @@ public class SearchEngineApp extends ConsoleApp{
             this.sout("No documentId passed!");
             return;
         }
-        this.sout(FileHandler.loadFile(this.resourcesDirectory + "/" + arguments));
+        this.sout(FileHandler.getFileContent(this.resourcesDirectory + "/" + arguments));
     }
 
     public void help() {

@@ -11,6 +11,8 @@ import org.junit.runners.Parameterized;
 
 import main.src.core.engine.InvertedIndex;
 import main.src.core.query.*;
+import main.src.utils.FileHandler;
+
 
 @RunWith(Parameterized.class)
 public class TestTerms {
@@ -26,7 +28,7 @@ public class TestTerms {
 	public TestTerms(final String EXPRESSION, final String EXPECTED_AND_RESULTS, final String EXPECTED_OR_RESULTS,
 			final String EXPECTED_EXC_RESULTS) {
 		this.RESOURCE_ABSOLUTE_FOLDER_PATH = new File(RESOURCE_RELATIVE_FOLDER_PATH).getAbsolutePath();
-		this.INDEX = new InvertedIndex(RESOURCE_ABSOLUTE_FOLDER_PATH);
+		this.INDEX = new InvertedIndex(FileHandler.getFolderDocuments(RESOURCE_ABSOLUTE_FOLDER_PATH));
 
 		this.EXPRESSION = EXPRESSION;
 		this.EXPECTED_AND_RESULTS = EXPECTED_AND_RESULTS;
