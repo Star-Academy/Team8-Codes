@@ -25,6 +25,7 @@ public class FileHandler {
             return tokens;
         } catch(IOException error){
             error.printStackTrace();
+            tokens.add(new Token(error.toString()));
             return tokens;
         }
     }
