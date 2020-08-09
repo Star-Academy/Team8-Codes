@@ -1,8 +1,7 @@
+# ---------------------- JAVA
+
 # Compiled class file
 *.class
-
-# Log file
-*.log
 
 # BlueJ files
 *.ctxt
@@ -28,8 +27,12 @@ google/main/resources/input/*
 # Keep these
 !**/.gitkeep
 
+# ------------------------- UniLanguage
 # IDE
-.vscode/*
+*/.vscode/*
+
+# Log files
+*.log
 
 # Bin Folder
-google/bin/*
+**/bin/*
