@@ -14,7 +14,7 @@ public class FileHandler {
             while ((line = reader.readLine()) != null)
                 contentBuilder.append(line + "\n");
             reader.close();
-            return contentBuilder.toString();
+            return contentBuilder.toString().substring(0, contentBuilder.length() - 1);
         } catch (IOException e) {
             System.out.println(e.getMessage());
             return null;
