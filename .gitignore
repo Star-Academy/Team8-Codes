@@ -29,7 +29,7 @@ google/main/resources/input/*
 !**/.gitkeep
 
 # IDE
-.vscode/*
+*/.vscode/*
 
 # Bin Folder
 google/bin/*
