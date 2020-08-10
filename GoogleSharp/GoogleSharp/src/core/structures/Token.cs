@@ -1,6 +1,6 @@
 using System;
 
-namespace Structures
+namespace GoogleSharp.Src.Core.Structures
 {
     public class Token : IComparable
     {

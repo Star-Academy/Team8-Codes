@@ -1,10 +1,10 @@
 using System.IO;
-using Structures;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using GoogleSharp.Src.Core.Structures;
 
-namespace Utils
+namespace GoogleSharp.Src.Utils
 {
     public class FileHandler
     {

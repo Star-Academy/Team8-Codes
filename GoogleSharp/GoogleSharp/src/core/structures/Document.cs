@@ -1,6 +1,6 @@
 using System;
 
-namespace Structures
+namespace GoogleSharp.Src.Core.Structures
 {
     public class Document
     {
@@ -18,7 +18,12 @@ namespace Structures
             if (obj == null || GetType() != obj.GetType())
                 return false;
             var other = (Document)(obj);
-            return this.Path == other.Path;
+            return this.Id == other.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode();
         }
 
         public override string ToString()

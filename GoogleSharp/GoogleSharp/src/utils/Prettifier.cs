@@ -3,11 +3,11 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Utils
+namespace GoogleSharp.Src.Utils
 {
     public class Prettifier<T>
     {
-        const int MAX_ITEMS = 10;
+        public const int MAX_ITEMS = 8;
 
         public static String Prettify(HashSet<T> inputSet)
         {
@@ -20,7 +20,7 @@ namespace Utils
             {
                 CollectItemStrings(itemList, o, 0, MAX_ITEMS / 2);
                 o.Append("\t    ...\n");
-                CollectItemStrings(itemList, o, itemList.Count - 5, itemList.Count);
+                CollectItemStrings(itemList, o, itemList.Count - MAX_ITEMS / 2, itemList.Count);
             }
 
             return o.ToString();
