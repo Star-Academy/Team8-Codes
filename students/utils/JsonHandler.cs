@@ -6,15 +6,13 @@ namespace Utils
 {
     public class JsonHandler<T>
     {
-        public static List<T> retrieveModels(string filePath)
+        public static List<T> RetrieveModels(string filePath)
         {
-            if (File.Exists(filePath))
-            {
-                string text = File.ReadAllText(filePath);
-                return JsonSerializer.Deserialize<List<T>>(text);
-            }
+            if (!File.Exists(filePath))
+                throw new IOException("File not found!");
 
-            throw new IOException("File not found!");
+            var text = File.ReadAllText(filePath);
+            return JsonSerializer.Deserialize<List<T>>(text);
         }
     }
 }
