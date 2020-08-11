@@ -3,12 +3,11 @@ package main.src.core.engine;
 import main.src.core.structures.Document;
 import main.src.core.structures.Token;
 import main.src.utils.FileHandler;
-import main.src.utils.Prettifier;
 
 import java.util.*;
 
 
-public class InvertedIndex {
+public class InvertedIndex implements IndexInterface {
 
     private HashMap<Token, HashSet<Document>> index;
 
@@ -30,13 +29,12 @@ public class InvertedIndex {
             indexDocument(doc);
     }
 
-    public HashSet<Document> getDocumentsOfToken(Token token) {
+    public HashSet<Document> getDocumentsOfToken(Token token){
         HashSet<Document> result = this.index.get(token);
         return result == null ? new HashSet<Document>() : result;
     }
-
-    @Override
-    public String toString(){
-        return "InvertedIndex\n" + Prettifier.prettify(this.index);
+    
+    public HashMap<Token, HashSet<Document>> getIndex(){
+        return this.index;
     }
 }

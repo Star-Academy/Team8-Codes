@@ -3,8 +3,9 @@ package main.src.core.query;
 import java.util.regex.Pattern;
 import java.util.*;
 
-import main.src.core.engine.InvertedIndex;
+import main.src.core.engine.IndexInterface;
 import main.src.core.structures.Document;
+
 
 public class AndTerms extends Terms {
 
@@ -15,7 +16,7 @@ public class AndTerms extends Terms {
         this.collect(expression, pattern, 2);
     }
 
-    public HashSet<Document> getResults(InvertedIndex index) {
+    public HashSet<Document> getResults(IndexInterface index) {
         HashSet<Document> results = new HashSet<>();
         if (!this.keys.isEmpty()) {
             results.addAll(index.getDocumentsOfToken(this.keys.get(0)));

@@ -22,8 +22,7 @@ public abstract class ConsoleApp {
     public ConsoleApp(){
         this.intro();
         this.help();
-        this.scanner = new Scanner(System.in);
-        this.prompt = "";
+        this.scanner = new Scanner(file);
     }
 
     private void decomposeInput(String input){

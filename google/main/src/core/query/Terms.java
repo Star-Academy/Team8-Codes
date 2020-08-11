@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.util.*;
 
-import main.src.core.engine.InvertedIndex;
+import main.src.core.engine.*;
 import main.src.core.structures.Token;
 import main.src.core.structures.Document;
 
@@ -30,5 +30,5 @@ public abstract class Terms {
         return this.keys.isEmpty();
     }
 
-    public abstract HashSet<Document> getResults(InvertedIndex index);
+    public abstract HashSet<Document> getResults(IndexInterface index);
 }
