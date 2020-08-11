@@ -1,9 +1,0 @@
-F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\GoogleSharp\GoogleSharp\bin\Debug\netstandard2.0\GoogleSharp.deps.json
-F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\GoogleSharp\GoogleSharp\bin\Debug\netstandard2.0\GoogleSharp.dll
-F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\GoogleSharp\GoogleSharp\bin\Debug\netstandard2.0\GoogleSharp.pdb
-F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\GoogleSharp\GoogleSharp\obj\Debug\netstandard2.0\GoogleSharp.csprojAssemblyReference.cache
-F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\GoogleSharp\GoogleSharp\obj\Debug\netstandard2.0\GoogleSharp.AssemblyInfoInputs.cache
-F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\GoogleSharp\GoogleSharp\obj\Debug\netstandard2.0\GoogleSharp.AssemblyInfo.cs
-F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\GoogleSharp\GoogleSharp\obj\Debug\netstandard2.0\GoogleSharp.csproj.CoreCompileInputs.cache
-F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\GoogleSharp\GoogleSharp\obj\Debug\netstandard2.0\GoogleSharp.dll
-F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\GoogleSharp\GoogleSharp\obj\Debug\netstandard2.0\GoogleSharp.pdb
