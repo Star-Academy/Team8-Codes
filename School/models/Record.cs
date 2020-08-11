@@ -1,14 +1,7 @@
 namespace Models
 {
-    public class ScoreRecord
+    public class Record
     {
-        public ScoreRecord(int studentNumber, string lesson, float score)
-        {
-            StudentNumber = studentNumber;
-            Lesson = lesson;
-            Score = score;
-        }
-
         public int StudentNumber { get; set; }
         public string Lesson { get; set; }
         public float Score { get; set; }

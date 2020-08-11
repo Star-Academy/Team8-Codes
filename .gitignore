@@ -29,7 +29,7 @@ google/main/resources/input/*
 
 # ------------------------- UniLanguage
 # IDE
-*/.vscode/*
+**/.vscode/*
 
 # Log files
 *.log
