@@ -8,7 +8,7 @@ namespace Models
 
         public override string ToString()
         {
-            return string.Format("ScoreRecord({0}: {1} {2})", Lesson, StudentNumber, Score);
+            return string.Format($"ScoreRecord({Lesson}: {StudentNumber} {Score})");
         }
     }
 }
