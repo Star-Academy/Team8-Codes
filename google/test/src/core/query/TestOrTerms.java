@@ -1,10 +1,10 @@
 package test.src.core.query;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.*;
 import java.util.*;
 
 import main.src.core.query.OrTerms;
@@ -33,7 +33,7 @@ public class TestOrTerms extends TestTermsAbstract{
 
         assertEquals(expected, actual);
     }
-
+    
     @Test
     public void testConstructorSomeOrs(){
         ArrayList<Token> expected = new ArrayList<>( Arrays.asList(
@@ -45,7 +45,7 @@ public class TestOrTerms extends TestTermsAbstract{
 
         assertEquals(expected, actual);
     }
-
+    
     @Test
     public void testGetResultsSingleTokenIndex(){
         HashSet<Document> expected = new HashSet<>(
@@ -61,6 +61,7 @@ public class TestOrTerms extends TestTermsAbstract{
         assertEquals(expected, actual);
     }
 
+    
     @Test
     public void testGetResultsMultiTokenIndex(){   
         HashSet<Document> expected = new HashSet<Document>(
@@ -75,4 +76,5 @@ public class TestOrTerms extends TestTermsAbstract{
 
         assertEquals(expected, actual);
     }
+    
 }

@@ -1,38 +1,44 @@
 package test.src.core.structures;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.After;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import main.src.core.structures.Token;
 
 
 public class TestToken {
     
-    public static Token sampleToken;
+    private static Token sampleToken;
+    private static final String sampleTokenId = "hello world";
 
     @Before
     public void makeToken(){
-        sampleToken = new Token("HelLoo WorlD");
+        sampleToken = new Token(sampleTokenId.toUpperCase());
+    }
+
+    @After
+    public void disposeToken(){
+        sampleToken = null;
     }
 
     @Test
-    public void testTokenBasicMethods(){
-        assertEquals("helloo world", sampleToken.getKey());
-        sampleToken.setKey("key");
-        String expected = "key";
-        String actual = sampleToken.getKey();
+    public void testSetter(){
+        assertEquals(sampleTokenId, sampleToken.getId());
+        sampleToken.setId("SampleIDForToken");
+        String expected = "sampleidfortoken";
+        String actual = sampleToken.getId();
         assertEquals(expected, actual);
-
+        sampleToken.setId(sampleTokenId);
     }
 
     @Test
-    public void testTokenComparability(){
-        assertEquals("Token(helloo world)", sampleToken.toString());
-        assertTrue(sampleToken.equals(new Token("helloo WORLD")));
-        assertEquals("helloo world".hashCode(), sampleToken.hashCode());
-        assertEquals(18, new Token("ZZZ").compareTo(sampleToken));
+    public void testTokenToString(){
+        var expected = "Token(" + sampleTokenId + ")";
+        var actual = sampleToken.toString();
+        assertEquals(expected, actual);
     }
+
 }

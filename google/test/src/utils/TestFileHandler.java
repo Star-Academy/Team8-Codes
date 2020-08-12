@@ -42,7 +42,6 @@ public class TestFileHandler {
     public void testGetFileContent(){
         String expected = "hello world";
         String actual = FileHandler.getFileContent(RESOURCES_ABSOLUTE_PATH + "/doc1.txt");
-
         assertEquals(expected, actual);
     }
 }

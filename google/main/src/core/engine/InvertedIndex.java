@@ -16,7 +16,7 @@ public class InvertedIndex implements IndexInterface {
         this.indexDocuments(documents);
     }
 
-    private void indexDocument(Document doc){
+    public void indexDocument(Document doc){
         for (Token token : FileHandler.getDocumentTokens(doc)){
             if (!this.index.containsKey(token))
                 this.index.put(token, new HashSet<Document>());
@@ -24,7 +24,7 @@ public class InvertedIndex implements IndexInterface {
         }
     }
 
-    private void indexDocuments(ArrayList<Document> documents){
+    public void indexDocuments(ArrayList<Document> documents){
         for (Document doc: documents)
             indexDocument(doc);
     }

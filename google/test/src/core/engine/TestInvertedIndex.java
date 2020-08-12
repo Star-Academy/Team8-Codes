@@ -33,43 +33,41 @@ public class TestInvertedIndex {
     @Test
     public void testConstructorSeed()
     {
-        var expected = new HashMap<Token, HashSet<Document>>(){
-            {
-                put(new Token("first"), new HashSet < Document > () {
-                    {
-                        add(new Document("doc2.txt", "simple/path"));
-                        add(new Document("doc3.txt", "simple/path"));
-                    }
-                });
-                put(new Token("second"), new HashSet < Document > () {
-                    {
-                        add(new Document("doc2.txt", "simple/path"));
-                        add(new Document("doc3.txt", "simple/path"));
-                    }
-                });
-                put(new Token("third"), new HashSet < Document > () {
-                    {
-                        add(new Document("doc2.txt", "simple/path"));
-                        add(new Document("doc3.txt", "simple/path"));
-                    }
-                });
-                put(new Token("hello"), new HashSet < Document > () {
-                    {
-                        add(new Document("doc1.txt", "simple/path"));
-                    }
-                });
-                put(new Token("world"), new HashSet < Document > () {
-                    {
-                        add(new Document("doc1.txt", "simple/path"));
-                    }
-                });
-                put(new Token("fourth"), new HashSet < Document > () {
-                    {
-                        add(new Document("doc3.txt", "simple/path"));
-                    }
-                });
-            }
-        };
+        var expected = new HashMap<Token, HashSet<Document>>();
+        expected.put(new Token("first"), new HashSet <Document> (
+            Arrays.asList(
+                new Document("doc2.txt", "simple/path"),
+                new Document("doc3.txt", "simple/path")
+            )
+        ));
+        expected.put(new Token("second"), new HashSet <Document> (
+            Arrays.asList(
+                new Document("doc2.txt", "simple/path"),
+                new Document("doc3.txt", "simple/path")
+            )
+        ));
+        expected.put(new Token("third"), new HashSet <Document> (
+            Arrays.asList(
+                new Document("doc2.txt", "simple/path"),
+                new Document("doc3.txt", "simple/path")
+            )
+        ));
+        expected.put(new Token("hello"), new HashSet <Document> (
+            Arrays.asList(
+                new Document("doc1.txt", "simple/path")
+            )
+        ));
+        expected.put(new Token("world"), new HashSet <Document> (
+            Arrays.asList(
+                new Document("doc1.txt", "simple/path")
+            )
+        ));
+        expected.put(new Token("fourth"), new HashSet <Document> (
+            Arrays.asList(
+                new Document("doc3.txt", "simple/path")
+            )
+        ));
+
         var actual = sampleInvertedIndex.getIndex();
 
         assertEquals(expected, actual);
@@ -79,9 +77,7 @@ public class TestInvertedIndex {
     public void testGetDocumentsOfTokenSeed() {
         var expected = new HashSet<Document>();
         expected.add(new Document("doc3.txt", "simple/path"));
-
         var actual = sampleInvertedIndex.getDocumentsOfToken(new Token("fourth"));
-
         assertEquals(expected, actual);
     }
 }

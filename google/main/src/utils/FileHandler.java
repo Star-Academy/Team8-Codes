@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.regex.*;
 
 
-public class FileHandler {
+public class FileHandler implements FileHandlerInterface{
 
     private static Pattern tokenPattern = Pattern.compile("[a-zA-Z0-9]+");
 
@@ -39,17 +39,11 @@ public class FileHandler {
         return documents;
     }
 
-    public static String getFileContent(String fileName) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(new File(fileName)))) {
-            StringBuilder contentBuilder = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null)
-                contentBuilder.append(line + "\n");
-            reader.close();
-            return contentBuilder.toString().substring(0, contentBuilder.length() - 1);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+    public static String getDocumentContent(Document doc) {
+        return FileHandlerInterface.getFileContent(doc.getPath());
+    }
+
+    public static String getFileContent(String filePath) {
+        return FileHandlerInterface.getFileContent(filePath);
     }
 }

@@ -1,9 +1,6 @@
 package test.src.core.query;
 
 import org.junit.*;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
-
 
 import static org.mockito.Mockito.*;
 import java.util.*;
@@ -12,7 +9,6 @@ import main.src.core.structures.*;
 import main.src.core.engine.*;
 
 
-@RunWith(MockitoJUnitRunner.class)
 public class TestTermsAbstract {
 
     protected IndexInterface mockedInvertedIndex;
