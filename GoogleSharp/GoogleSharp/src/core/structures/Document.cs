@@ -28,7 +28,7 @@ namespace GoogleSharp.Src.Core.Structures
 
         public override string ToString()
         {
-            return String.Format("Document({0})", this.Id);
+            return $"Document({this.Id})";
         }
     }
 }

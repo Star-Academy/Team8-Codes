@@ -11,7 +11,7 @@ namespace GoogleSharp.Src.Core.Structures
             this.Key = key;
         }
 
-        private static String Normalize(string key)
+        private static string Normalize(string key)
         {
             string normalized = key;
             normalized = normalized.ToLower();
@@ -32,10 +32,9 @@ namespace GoogleSharp.Src.Core.Structures
 
         public override bool Equals(object obj)
         {
-            if (obj == null || GetType() != obj.GetType())
-                return false;
-            var other = (Token)(obj);
-            return this.Key == other.Key;
+            if (obj is Token other)
+                return this.Key == other.Key;
+            return false;
         }
 
         public override int GetHashCode()
@@ -46,7 +45,7 @@ namespace GoogleSharp.Src.Core.Structures
 
         public override string ToString()
         {
-            return String.Format("Token({0})", this.Key);
+            return $"Token({this.key})";
         }
 
         public int CompareTo(object obj)
@@ -54,12 +53,8 @@ namespace GoogleSharp.Src.Core.Structures
             // returns -1 if "this" object is less than "that" object
             // returns 0 if they are equal
             // returns 1 if "this" object is greater than "that" object
-            if (obj == null)
-                return 1;
-
-            var that = obj as Token;
-            if (that != null)
-                return this.key.CompareTo(that.key);
+            if (obj is Token that)
+                return this.Key.CompareTo(that.Key);
             throw new ArgumentException("Object is not a token !");
         }
     }

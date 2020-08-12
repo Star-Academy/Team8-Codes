@@ -23,9 +23,9 @@ namespace GoogleSharp.Src.Core.Query
         public override string ToString()
         {
             return "Query\n" +
-                    "Ands : " + this.Ands.ToString() + "\n" +
-                    "Ors  : " + this.Ors.ToString() + "\n" +
-                    "Excs : " + this.Excs.ToString();
+                    $"Ands : {this.Ands.ToString()}\n" +
+                    $"Ors  : {this.Ors.ToString()}\n" +
+                    $"Excs : {this.Excs.ToString()}";
         }
     }
 }

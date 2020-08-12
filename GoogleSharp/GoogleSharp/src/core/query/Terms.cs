@@ -17,12 +17,8 @@ namespace GoogleSharp.Src.Core.Query
 
         protected void Collect(string expression, Regex pattern, int regexGroupIndex)
         {
-            pattern.Matches(expression).OfType<Match>().ToList().ForEach(
-                match =>
-                {
-                    this.Tokens.Add(new Token(match.Groups[regexGroupIndex].Value));
-                }
-            );
+            foreach (var match in pattern.Matches(expression).OfType<Match>())
+                this.Tokens.Add(new Token(match.Groups[regexGroupIndex].Value));
         }
 
         public bool IsEmpty()

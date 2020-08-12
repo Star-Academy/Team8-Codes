@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using GoogleSharp.Src.Core.Structures;
 using GoogleSharp.Src.Core.Engine;
 using System.Text.RegularExpressions;
@@ -8,18 +9,16 @@ namespace GoogleSharp.Src.Core.Query
 {
     public class OrTerms : Terms
     {
-        private readonly Regex PATTERN = new Regex(@"\+(\w+)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        private static readonly Regex Pattern = new Regex(@"\+(\w+)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         public OrTerms(String expression) : base()
         {
-            this.Collect(expression, PATTERN, 1);
+            this.Collect(expression, Pattern, 1);
         }
 
         public override HashSet<Document> GetResults(IInvertedIndex index)
         {
-            var results = new HashSet<Document>();
-            this.Tokens.ForEach(token => results.UnionWith(index.GetDocumentsOfToken(token)));
-            return results;
+            return this.Tokens.SelectMany(token => index.GetDocumentsOfToken(token)) as HashSet<Document>;
         }
     }
 }

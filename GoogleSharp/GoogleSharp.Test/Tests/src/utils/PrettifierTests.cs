@@ -11,7 +11,7 @@ namespace Tests.Src.Utils
         [Fact]
         public void Prettify_SmallHashSet_Success()
         {
-            Assert.True(Prettifier<string>.MAX_ITEMS > 2);
+            Assert.True(Prettifier<string>.MaxItems > 2);
 
             var inputSet = new HashSet<string>();
             inputSet.Add("hello");
@@ -25,7 +25,7 @@ namespace Tests.Src.Utils
         [Fact]
         public void Prettify_BigHashSet_Success()
         {
-            const int MAX_ITEMS = Prettifier<string>.MAX_ITEMS;
+            const int MAX_ITEMS = Prettifier<string>.MaxItems;
             Assert.True(MAX_ITEMS < 15);
 
             string expected = "\t" + String.Join("\n\t", Enumerable.Range(1, MAX_ITEMS / 2).Select(n => n + " ) testString" + n).ToArray());

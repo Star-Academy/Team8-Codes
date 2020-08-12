@@ -9,7 +9,7 @@ namespace GoogleSharp.Src.Core.Engine
     {
         private static HashSet<Document> GetSubQueriesResults(QueryBuilder query, IInvertedIndex index)
         {
-            HashSet<Document> results = new HashSet<Document>();
+            var results = new HashSet<Document>();
             results.UnionWith(query.Ands.GetResults(index));   // + AND results
             results.UnionWith(query.Ors.GetResults(index));    // + OR  results
             results.ExceptWith(query.Excs.GetResults(index));  // - EXC results

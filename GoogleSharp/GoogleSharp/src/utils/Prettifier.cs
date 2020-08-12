@@ -7,30 +7,30 @@ namespace GoogleSharp.Src.Utils
 {
     public class Prettifier<T>
     {
-        public const int MAX_ITEMS = 8;
+        public const int MaxItems = 8;
 
         public static String Prettify(HashSet<T> inputSet)
         {
-            List<T> itemList = new List<T>(inputSet);
-            StringBuilder o = new StringBuilder();
+            var itemList = inputSet.ToList();
+            var result = new StringBuilder();
 
-            if (itemList.Count <= MAX_ITEMS)
-                CollectItemStrings(itemList, o, 0, itemList.Count);
+            if (itemList.Count <= MaxItems)
+                CollectItemStrings(itemList, result, 0, itemList.Count);
             else
             {
-                CollectItemStrings(itemList, o, 0, MAX_ITEMS / 2);
-                o.Append("\t    ...\n");
-                CollectItemStrings(itemList, o, itemList.Count - MAX_ITEMS / 2, itemList.Count);
+                CollectItemStrings(itemList, result, 0, MaxItems / 2);
+                result.Append("\t    ...\n");
+                CollectItemStrings(itemList, result, itemList.Count - MaxItems / 2, itemList.Count);
             }
 
-            return o.ToString();
+            return result.ToString();
         }
 
         private static void CollectItemStrings(List<T> itemList, StringBuilder builder, int startIndex, int endIndex)
         {
-            int maxSize = ("" + itemList.Count).Length;
+            int maxSize = itemList.Count.ToString().Length;
             for (int idx = startIndex; idx < endIndex; idx++)
-                builder.Append("\t" + LeftPad("" + (idx + 1), maxSize) + ") " + itemList[idx] + "\n");
+                builder.Append($"\t{LeftPad((idx + 1).ToString(), maxSize)}) {itemList[idx]}\n");
         }
 
         private static string LeftPad(string s, int length)

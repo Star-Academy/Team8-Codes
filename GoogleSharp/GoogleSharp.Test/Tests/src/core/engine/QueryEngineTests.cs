@@ -10,12 +10,13 @@ namespace Tests.Src.Core.Engine
 {
     public class QueryEngineTests : IDisposable
     {
+        public const string ResourceFolderPath = "../../../Tests/resources/input";
         public static GoogleInvertedIndex sampleInvertedIndex;
 
         public QueryEngineTests()
         {
             sampleInvertedIndex = new GoogleInvertedIndex(
-                FileHandler.GetDocumentsFromFolder("../../../Tests/resources/input")
+                FileHandler.GetDocumentsFromFolder(ResourceFolderPath)
             );
         }
 
