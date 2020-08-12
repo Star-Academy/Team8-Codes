@@ -3,56 +3,38 @@ package main.src.core.engine;
 import main.src.core.structures.Document;
 import main.src.core.structures.Token;
 import main.src.utils.FileHandler;
-import main.src.utils.Prettifier;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
-public class InvertedIndex {
+public class InvertedIndex implements IndexInterface {
 
     private HashMap<Token, HashSet<Document>> index;
 
-    public InvertedIndex(String folderName) {
+    public InvertedIndex(ArrayList<Document> documents) {
         this.index = new HashMap<>();
-        this.invert(folderName);
+        this.indexDocuments(documents);
     }
 
-    private HashSet<Token> getTokens(Document doc) {
-        HashSet<Token> tokens = new HashSet<>();
-        Matcher matcher = Pattern.compile("[a-zA-Z0-9]+").matcher(doc.getContent());
-        while (matcher.find())
-            tokens.add(new Token(matcher.group()));
-        return tokens;
-    }
-
-    private void indexDocument(Document doc){
-        for (Token token : this.getTokens(doc)){
+    public void indexDocument(Document doc){
+        for (Token token : FileHandler.getDocumentTokens(doc)){
             if (!this.index.containsKey(token))
                 this.index.put(token, new HashSet<Document>());
             this.index.get(token).add(doc);
         }
     }
 
-    private void indexDocuments(ArrayList<Document> documents){
+    public void indexDocuments(ArrayList<Document> documents){
         for (Document doc: documents)
             indexDocument(doc);
     }
 
-    private void invert(String folderName) {
-        ArrayList<Document> documents = FileHandler.loadFolder(folderName);
-        indexDocuments(documents);
-    }
-
-    public HashSet<Document> getDocumentsOfToken(Token token) {
+    public HashSet<Document> getDocumentsOfToken(Token token){
         HashSet<Document> result = this.index.get(token);
         return result == null ? new HashSet<Document>() : result;
     }
-
-    @Override
-    public String toString(){
-        return "InvertedIndex\n" + Prettifier.prettify(this.index);
+    
+    public HashMap<Token, HashSet<Document>> getIndex(){
+        return this.index;
     }
-
 }

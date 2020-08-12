@@ -1,87 +1,155 @@
 package test.src.core.query;
 
 import static org.junit.Assert.*;
-
+import org.junit.Test;
 import java.util.*;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 import main.src.core.query.Query;
 import main.src.core.structures.Token;
 
-@RunWith(Parameterized.class)
-public class TestQuery {
-    final String QUERY_STRING;
-    final Token[] EXPECTED_AND_TERMS;
-    final Token[] EXPECTED_OR_TERMS;
-    final Token[] EXPECTED_EXC_TERMS;
 
-    public TestQuery(final String QUERY_STRING, final Token[] EXPECTED_AND_TERMS, final Token[] EXPECTED_OR_TERMS,
-            final Token[] EXPECTED_EXC_TERMS) {
-        this.QUERY_STRING = QUERY_STRING;
-        this.EXPECTED_AND_TERMS = EXPECTED_AND_TERMS;
-        this.EXPECTED_OR_TERMS = EXPECTED_OR_TERMS;
-        this.EXPECTED_EXC_TERMS = EXPECTED_EXC_TERMS;
+public class TestQuery
+{
+    @Test
+    public void testConstructorOnlyOrTerms()
+    {
+        var query = new Query("+first +second +third");
+        var expected = new ArrayList<Token>(
+            Arrays.asList(
+                new Token("first"),
+                new Token("second"),
+                new Token("third")
+            )
+        );
+        var actual = query.orTerms.getKeys();
+
+        assertEquals(expected, actual);
+
     }
 
     @Test
-    public void testCollectTerms() {
-        final Query QUERY = new Query(QUERY_STRING);
+    public void testConstructorOnlyAndTerms()
+    {
+        var query = new Query("first second third");
+        var expected = new ArrayList<Token>(
+            Arrays.asList(
+                new Token("first"),
+                new Token("second"),
+                new Token("third")
+            )
+        );
+        var actual = query.andTerms.getKeys();
 
-        assertArrayEquals(EXPECTED_AND_TERMS, QUERY.andTerms.getKeys().toArray());
-        assertArrayEquals(EXPECTED_OR_TERMS, QUERY.orTerms.getKeys().toArray());
-        assertArrayEquals(EXPECTED_EXC_TERMS, QUERY.excTerms.getKeys().toArray());
+        assertEquals(expected, actual);
     }
 
-    @Parameterized.Parameters
-    public static List<Object[]> data() {
-        final Token[] TOKENS = new Token[] { new Token(""), new Token("first"), new Token("second"),
-                new Token("third") };
+    @Test
+    public void testConstructorOnlyExcTerms()
+    {
+        var query = new Query("-first -second -third");
+        var expected = new ArrayList<Token>(
+            Arrays.asList(
+                new Token("first"),
+                new Token("second"),
+                new Token("third")
+            )
+        );
+        var actual = query.excTerms.getKeys();
 
-        final Token[] TOKENS_0 = new Token[] {};
-        final Token[] TOKENS_1 = new Token[] { TOKENS[1] };
-        final Token[] TOKENS_2 = new Token[] { TOKENS[2] };
-        final Token[] TOKENS_3 = new Token[] { TOKENS[3] };
-        final Token[] TOKENS_13 = new Token[] { TOKENS[1], TOKENS[3] };
-        final Token[] TOKENS_23 = new Token[] { TOKENS[2], TOKENS[3] };
-        final Token[] TOKENS_123 = new Token[] { TOKENS[1], TOKENS[2], TOKENS[3] };
+        assertEquals(expected, actual);
+    }
 
-        final List<Object[]> PARAMETERS_LIST = new ArrayList<>();
+    @Test
+    public void testConstructorAndOr()
+    {
+        Query queryBuilder = new Query("first +second third");
 
-        // Only AND terms
-        PARAMETERS_LIST.add(new Object[] { "first Second tHirD", TOKENS_123, TOKENS_0, TOKENS_0 });
+        var expectedAndTerms = new ArrayList<Token>(
+            Arrays.asList(
+                new Token("first"),
+                new Token("third")
+            )
+        );
+        var expectedOrTerms = new ArrayList<Token>(
+            Arrays.asList(
+                new Token("second")
+            )
+        );
 
-        // Only OR terms
-        PARAMETERS_LIST.add(new Object[] { "+first +Second +tHirD", TOKENS_0, TOKENS_123, TOKENS_0 });
+        var actualAndTerms = queryBuilder.andTerms.getKeys();
+        var actualOrTerms = queryBuilder.orTerms.getKeys();
 
-        // Only Exc terms
-        PARAMETERS_LIST.add(new Object[] { "-first -Second -tHirD", TOKENS_0, TOKENS_0, TOKENS_123 });
+        assertEquals(expectedAndTerms, actualAndTerms);
+        assertEquals(expectedOrTerms, actualOrTerms);
+    }
 
-        // And & OR terms
-        PARAMETERS_LIST.add(new Object[] { "first +Second +tHirD", TOKENS_1, TOKENS_23, TOKENS_0 });
-        PARAMETERS_LIST.add(new Object[] { "+first Second tHirD", TOKENS_23, TOKENS_1, TOKENS_0 });
-        PARAMETERS_LIST.add(new Object[] { "first +Second tHirD", TOKENS_13, TOKENS_2, TOKENS_0 });
+    @Test
+    public void testConstructorAndExc()
+    {
+        Query query = new Query("first -second third");
 
-        // And & EXC terms
-        PARAMETERS_LIST.add(new Object[] { "first -Second -tHirD", TOKENS_1, TOKENS_0, TOKENS_23 });
-        PARAMETERS_LIST.add(new Object[] { "-first Second tHirD", TOKENS_23, TOKENS_0, TOKENS_1 });
-        PARAMETERS_LIST.add(new Object[] { "first -Second tHirD", TOKENS_13, TOKENS_0, TOKENS_2 });
+        var expectedAndTerms = new ArrayList<Token>(
+            Arrays.asList(
+                new Token("first"),
+                new Token("third")
+            )
+        );
+        var expectedExcTerms = new ArrayList<Token>(
+            Arrays.asList(
+                new Token("second")
+            )
+        );
 
-        // OR & EXC terms
-        PARAMETERS_LIST.add(new Object[] { "+first -Second -tHirD", TOKENS_0, TOKENS_1, TOKENS_23 });
-        PARAMETERS_LIST.add(new Object[] { "-first +Second +tHirD", TOKENS_0, TOKENS_23, TOKENS_1 });
-        PARAMETERS_LIST.add(new Object[] { "+first -Second +tHirD", TOKENS_0, TOKENS_13, TOKENS_2 });
+        var actualAndTerms = query.andTerms.getKeys();
+        var actualExcTerms = query.excTerms.getKeys();
 
-        // AND, OR & EXC terms
-        PARAMETERS_LIST.add(new Object[] { "first +Second -tHirD", TOKENS_1, TOKENS_2, TOKENS_3 });
-        PARAMETERS_LIST.add(new Object[] { "first -Second +tHirD", TOKENS_1, TOKENS_3, TOKENS_2 });
-        PARAMETERS_LIST.add(new Object[] { "+first Second -tHirD", TOKENS_2, TOKENS_1, TOKENS_3 });
-        PARAMETERS_LIST.add(new Object[] { "+first -Second tHirD", TOKENS_3, TOKENS_1, TOKENS_2 });
-        PARAMETERS_LIST.add(new Object[] { "-first Second +tHirD", TOKENS_2, TOKENS_3, TOKENS_1 });
-        PARAMETERS_LIST.add(new Object[] { "-first +Second tHirD", TOKENS_3, TOKENS_2, TOKENS_1 });
+        assertEquals(expectedAndTerms, actualAndTerms);
+        assertEquals(expectedExcTerms, actualExcTerms);
+    }
 
-        return PARAMETERS_LIST;
+    @Test
+    public void testConstructorOrExc()
+    {
+        Query query = new Query("+first -second +third");
+
+        var expectedOrTerms = new ArrayList<Token>(
+            Arrays.asList(
+                new Token("first"),
+                new Token("third")
+            )
+        );
+        var expectedExcTerms = new ArrayList<Token>(
+            Arrays.asList(
+                new Token("second")
+            )
+        );
+
+        var actualOrTerms = query.orTerms.getKeys();
+        var actualExcTerms = query.excTerms.getKeys();
+
+        assertEquals(expectedOrTerms, actualOrTerms);
+        assertEquals(expectedExcTerms, actualExcTerms);
+    }
+
+    @Test
+    public void testConstructorAll()
+    {
+        Query query = new Query("first +second -third");
+
+        var expectedAndTerms = new ArrayList<Token>();
+        expectedAndTerms.add(new Token("first"));
+        var expectedOrTerms = new ArrayList<Token>();
+        expectedOrTerms.add(new Token("second"));
+        var expectedExcTerms = new ArrayList<Token>();
+        expectedExcTerms.add(new Token("third"));
+
+        var actualAndTerms = query.andTerms.getKeys();
+        var actualOrTerms = query.orTerms.getKeys();
+        var actualExcTerms = query.excTerms.getKeys();
+
+        assertEquals(expectedAndTerms, actualAndTerms);
+        assertEquals(expectedOrTerms, actualOrTerms);
+        assertEquals(expectedExcTerms, actualExcTerms);
     }
 }
