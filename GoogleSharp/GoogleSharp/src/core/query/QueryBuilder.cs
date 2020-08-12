@@ -1,5 +1,3 @@
-using System;
-
 namespace GoogleSharp.Src.Core.Query
 {
     public class QueryBuilder

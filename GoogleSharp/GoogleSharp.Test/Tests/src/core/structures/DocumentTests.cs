@@ -1,6 +1,12 @@
+// Standard Library
 using System;
+
+// Nuget Packages
 using Xunit;
+
+// Internal
 using GoogleSharp.Src.Core.Structures;
+
 
 namespace Tests.Src.Core.Structures
 {
@@ -20,7 +26,7 @@ namespace Tests.Src.Core.Structures
         public void ToString_Normal_Success()
         {
             var sampleDocument = new Document("doc.txt", "path/doc.txt");
-            String actual = sampleDocument.ToString();
+            var actual = sampleDocument.ToString();
             var expected = "Document(doc.txt)";
             Assert.Equal(expected, actual);
         }

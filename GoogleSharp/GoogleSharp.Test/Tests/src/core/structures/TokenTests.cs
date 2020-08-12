@@ -1,6 +1,12 @@
+// Standard Library
 using System;
+
+// Nuget Packages
 using Xunit;
+
+// Internal
 using GoogleSharp.Src.Core.Structures;
+
 
 namespace Tests.Src.Core.Structures
 {

@@ -1,9 +1,13 @@
+// Standard Library
 using System;
-using System.Linq;
-using GoogleSharp.Src.Core.Structures;
-using GoogleSharp.Src.Core.Engine;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+// Internal
+using GoogleSharp.Src.Core.Engine;
+using GoogleSharp.Src.Core.Structures;
+
 
 namespace GoogleSharp.Src.Core.Query
 {
@@ -18,7 +22,7 @@ namespace GoogleSharp.Src.Core.Query
 
         public override HashSet<Document> GetResults(IInvertedIndex index)
         {
-            return this.Tokens.SelectMany(token => index.GetDocumentsOfToken(token)) as HashSet<Document>;
+            return new HashSet<Document>(this.Tokens.SelectMany(token => index.GetDocumentsOfToken(token)));
         }
     }
 }

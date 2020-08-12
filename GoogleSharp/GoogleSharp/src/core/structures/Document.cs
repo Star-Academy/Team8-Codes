@@ -1,5 +1,3 @@
-using System;
-
 namespace GoogleSharp.Src.Core.Structures
 {
     public class Document

@@ -1,14 +1,18 @@
-using System;
-using Xunit;
-using GoogleSharp.Src.Core.Query;
+// Standard Library
 using System.Collections.Generic;
+
+// Nuget Packages
+using Xunit;
+
+// Internal
+using GoogleSharp.Src.Core.Query;
 using GoogleSharp.Src.Core.Structures;
+
 
 namespace Tests.Src.Core.Query
 {
     public class QueryBuilderTests
     {
-
         [Fact]
         public void Constructor_OnlyOrTerms_Success()
         {
@@ -43,7 +47,7 @@ namespace Tests.Src.Core.Query
         [Fact]
         public void Constructor_AndOr_Success()
         {
-            QueryBuilder queryBuilder = new QueryBuilder("first +second third");
+            var queryBuilder = new QueryBuilder("first +second third");
 
             var expectedAndTerms = new List<Token> { new Token("first"), new Token("third") };
             var expectedOrTerms = new List<Token> { new Token("second") };
@@ -58,7 +62,7 @@ namespace Tests.Src.Core.Query
         [Fact]
         public void Constructor_AndExc_Success()
         {
-            QueryBuilder queryBuilder = new QueryBuilder("first -second third");
+            var queryBuilder = new QueryBuilder("first -second third");
 
             var expectedAndTerms = new List<Token> { new Token("first"), new Token("third") };
             var expectedExcTerms = new List<Token> { new Token("second") };
@@ -73,7 +77,7 @@ namespace Tests.Src.Core.Query
         [Fact]
         public void Constructor_OrExc_Success()
         {
-            QueryBuilder queryBuilder = new QueryBuilder("+first -second +third");
+            var queryBuilder = new QueryBuilder("+first -second +third");
 
             var expectedOrTerms = new List<Token> { new Token("first"), new Token("third") };
             var expectedExcTerms = new List<Token> { new Token("second") };
@@ -88,7 +92,7 @@ namespace Tests.Src.Core.Query
         [Fact]
         public void Constructor_All_Success()
         {
-            QueryBuilder queryBuilder = new QueryBuilder("first +second -third");
+            var queryBuilder = new QueryBuilder("first +second -third");
 
             var expectedAndTerms = new List<Token> { new Token("first") };
             var expectedOrTerms = new List<Token> { new Token("second") };

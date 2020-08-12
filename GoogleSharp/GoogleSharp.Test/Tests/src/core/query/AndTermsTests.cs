@@ -1,9 +1,15 @@
+// Standard Library
+using System.Collections.Generic;
+
+// Nuget Packages
+using Moq;
+using Xunit;
+
+// Internal
 using GoogleSharp.Src.Core.Engine;
 using GoogleSharp.Src.Core.Query;
 using GoogleSharp.Src.Core.Structures;
-using Moq;
-using System.Collections.Generic;
-using Xunit;
+
 
 namespace Tests.Src.Core.Query
 {

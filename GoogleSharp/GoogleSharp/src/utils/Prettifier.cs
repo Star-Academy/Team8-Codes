@@ -1,13 +1,15 @@
+// Standard Library
 using System;
-using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+
 
 namespace GoogleSharp.Src.Utils
 {
     public class Prettifier<T>
     {
-        public const int MaxItems = 8;
+        public static readonly int MaxItems = 8;
 
         public static String Prettify(HashSet<T> inputSet)
         {

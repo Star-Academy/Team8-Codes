@@ -1,8 +1,12 @@
+// Standard Library
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+
+// Internal
 using GoogleSharp.Src.Core.Engine;
 using GoogleSharp.Src.Core.Structures;
+
 
 namespace GoogleSharp.Src.Core.Query
 {

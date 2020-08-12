@@ -1,14 +1,31 @@
+// Standard Library
 using System;
-using Xunit;
-using GoogleSharp.Src.Utils;
-using GoogleSharp.Src.Core.Structures;
 using System.Collections.Generic;
+
+// Nuget Packages
+using Xunit;
+
+// Internal
+using GoogleSharp.Src.Core.Structures;
+using GoogleSharp.Src.Utils;
+
 
 namespace Tests.Src.Utils
 {
-    public class FileHandlerTests
+    public class FileHandlerTests : IDisposable
     {
-        public const string RESOURCE_PATH = "../../../Tests/resources/input";
+        private const string ResourcePath = "../../../Tests/resources/input";
+        private FileHandler sampleHandler;
+
+        public FileHandlerTests()
+        {
+            sampleHandler = new FileHandler();
+        }
+
+        public void Dispose()
+        {
+            sampleHandler = null;
+        }
 
         [Fact]
         public void GetDocumentsFromFolder_Normal_Success()
@@ -18,7 +35,7 @@ namespace Tests.Src.Utils
             expected.Add(new Document("doc2.txt", "dummyPath/doc2.txt"));
             expected.Add(new Document("doc3.txt", "dummyPath/doc3.txt"));
 
-            var actual = FileHandler.GetDocumentsFromFolder(RESOURCE_PATH);
+            var actual = sampleHandler.GetDocumentsFromFolder(ResourcePath);
 
             Assert.Equal(expected[0].Id, actual[0].Id);
             Assert.Equal(expected[1].Id, actual[1].Id);
@@ -33,7 +50,7 @@ namespace Tests.Src.Utils
             expected.Add(new Token("second"));
             expected.Add(new Token("third"));
 
-            var actual = FileHandler.GetFileTokens(RESOURCE_PATH + "/doc1.txt");
+            var actual = sampleHandler.GetFileTokens(ResourcePath + "/doc1.txt");
 
             Assert.Equal(expected, actual);
         }
@@ -42,7 +59,7 @@ namespace Tests.Src.Utils
         public void GetFileContent_Normal_Success()
         {
             var expected = "hello world";
-            var actual = FileHandler.GetFileContent(RESOURCE_PATH + "/doc2.txt");
+            var actual = sampleHandler.GetFileContent(ResourcePath + "/doc2.txt");
             Assert.Equal(expected, actual);
         }
     }

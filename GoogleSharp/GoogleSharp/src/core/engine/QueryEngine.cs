@@ -1,7 +1,11 @@
-using System.Collections.Generic;
-using GoogleSharp.Src.Core.Structures;
-using GoogleSharp.Src.Core.Query;
+// Standard Library
 using System;
+using System.Collections.Generic;
+
+// Internal
+using GoogleSharp.Src.Core.Query;
+using GoogleSharp.Src.Core.Structures;
+
 
 namespace GoogleSharp.Src.Core.Engine
 {
