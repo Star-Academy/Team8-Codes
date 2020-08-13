@@ -7,29 +7,23 @@ using System.Text.RegularExpressions;
 using GoogleSharp.Src.Core.Engine;
 using GoogleSharp.Src.Core.Structures;
 
-
-namespace GoogleSharp.Src.Core.Query
-{
-    public abstract class Terms
-    {
+namespace GoogleSharp.Src.Core.Query {
+    public abstract class Terms {
         public List<Token> Tokens { get; set; }
 
-        public Terms()
-        {
-            this.Tokens = new List<Token>();
+        public Terms () {
+            Tokens = new List<Token> ();
         }
 
-        protected void Collect(string expression, Regex pattern, int regexGroupIndex)
-        {
-            foreach (var match in pattern.Matches(expression).OfType<Match>())
-                this.Tokens.Add(new Token(match.Groups[regexGroupIndex].Value));
+        public abstract HashSet<Document> GetResults (IInvertedIndex index);
+
+        public bool IsEmpty () {
+            return !Tokens.Any ();
         }
 
-        public bool IsEmpty()
-        {
-            return !this.Tokens.Any();
+        protected void Collect (string expression, Regex pattern, int regexGroupIndex) {
+            foreach (var match in pattern.Matches (expression).OfType<Match> ())
+                Tokens.Add (new Token (match.Groups[regexGroupIndex].Value));
         }
-
-        public abstract HashSet<Document> GetResults(IInvertedIndex index);
     }
 }

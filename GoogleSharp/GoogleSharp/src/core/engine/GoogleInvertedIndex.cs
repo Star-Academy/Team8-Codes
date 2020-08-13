@@ -5,39 +5,31 @@ using System.Collections.Generic;
 using GoogleSharp.Src.Core.Structures;
 using GoogleSharp.Src.Utils;
 
+namespace GoogleSharp.Src.Core.Engine {
+    public class GoogleInvertedIndex : IInvertedIndex {
+        public readonly Dictionary<Token, HashSet<Document>> Index;
 
-namespace GoogleSharp.Src.Core.Engine
-{
-    public class GoogleInvertedIndex : IInvertedIndex
-    {
-        public Dictionary<Token, HashSet<Document>> Index { get; set; }
-
-        public GoogleInvertedIndex(List<Document> documents, FileHandler handler)
-        {
-            this.Index = new Dictionary<Token, HashSet<Document>>();
-            this.IndexDocuments(documents, handler);
+        public GoogleInvertedIndex (List<Document> documents, FileHandler handler) {
+            Index = new Dictionary<Token, HashSet<Document>> ();
+            IndexDocuments (documents, handler);
         }
 
-        private void IndexDocument(Document doc, FileHandler handler)
-        {
-            foreach (var token in handler.GetFileTokens(doc.Path))
-            {
-                if (!this.Index.ContainsKey(token))
-                    this.Index.Add(token, new HashSet<Document>());
-                this.Index[token].Add(doc);
+        public HashSet<Document> GetDocumentsOfToken (Token token) {
+            var result = Index[token];
+            return result ?? new HashSet<Document> ();
+        }
+
+        private void IndexDocument (Document doc, FileHandler handler) {
+            foreach (var token in handler.GetFileTokens (doc.Path)) {
+                if (!Index.ContainsKey (token))
+                    Index.Add (token, new HashSet<Document> ());
+                Index[token].Add (doc);
             }
         }
 
-        private void IndexDocuments(List<Document> documents, FileHandler handler)
-        {
+        private void IndexDocuments (List<Document> documents, FileHandler handler) {
             foreach (var doc in documents)
-                IndexDocument(doc, handler);
-        }
-
-        public HashSet<Document> GetDocumentsOfToken(Token token)
-        {
-            var result = this.Index[token];
-            return result == null ? new HashSet<Document>() : result;
+                IndexDocument (doc, handler);
         }
     }
 }
