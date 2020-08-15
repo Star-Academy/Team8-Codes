@@ -20,15 +20,6 @@ public class Prettifier {
         return out.toString();
     }
 
-    public static String prettify(HashMap<? extends Object, ? extends HashSet<? extends Object>> inputMap){
-        StringBuilder out = new StringBuilder();
-        for(Object key : inputMap.keySet()){
-            out.append(key + "\n");
-            out.append(prettify(inputMap.get(key)));
-        }
-        return out.toString();
-    }
-
     private static void collectItemStrings(ArrayList<Object> itemList, StringBuilder builder, int startIndex, int endIndex) {
         int maxSize = ("" + itemList.size()).length();
         for (int idx = startIndex; idx < endIndex; idx++)
