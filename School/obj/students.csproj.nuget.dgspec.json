@@ -1,0 +1,67 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\Files\\Projects\\Work and Other Stuffs\\CodeStar\\Projects (Main)\\Team8-Codes\\School\\students.csproj": {}
+  },
+  "projects": {
+    "F:\\Files\\Projects\\Work and Other Stuffs\\CodeStar\\Projects (Main)\\Team8-Codes\\School\\students.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Files\\Projects\\Work and Other Stuffs\\CodeStar\\Projects (Main)\\Team8-Codes\\School\\students.csproj",
+        "projectName": "students",
+        "projectPath": "F:\\Files\\Projects\\Work and Other Stuffs\\CodeStar\\Projects (Main)\\Team8-Codes\\School\\students.csproj",
+        "packagesPath": "C:\\Users\\Bijan\\.nuget\\packages\\",
+        "outputPath": "F:\\Files\\Projects\\Work and Other Stuffs\\CodeStar\\Projects (Main)\\Team8-Codes\\School\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Bijan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[4.7.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "D:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

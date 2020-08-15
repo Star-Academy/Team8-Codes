@@ -1,0 +1,15 @@
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\obj\Debug\netcoreapp3.1\students.csprojAssemblyReference.cache
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\obj\Debug\netcoreapp3.1\students.AssemblyInfoInputs.cache
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\obj\Debug\netcoreapp3.1\students.AssemblyInfo.cs
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\obj\Debug\netcoreapp3.1\students.csproj.CoreCompileInputs.cache
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\bin\Debug\netcoreapp3.1\students.exe
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\bin\Debug\netcoreapp3.1\students.deps.json
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\bin\Debug\netcoreapp3.1\students.runtimeconfig.json
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\bin\Debug\netcoreapp3.1\students.runtimeconfig.dev.json
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\bin\Debug\netcoreapp3.1\students.dll
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\bin\Debug\netcoreapp3.1\students.pdb
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\obj\Debug\netcoreapp3.1\students.csproj.CopyComplete
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\obj\Debug\netcoreapp3.1\students.dll
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\obj\Debug\netcoreapp3.1\students.pdb
+F:\Files\Projects\Work and Other Stuffs\CodeStar\Projects (Main)\Team8-Codes\school\obj\Debug\netcoreapp3.1\students.genruntimeconfig.cache
