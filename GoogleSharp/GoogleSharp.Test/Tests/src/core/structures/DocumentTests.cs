@@ -15,6 +15,7 @@ namespace Tests.Src.Core.Structures {
             sampleDocument.Id = "newId.txt";
             sampleDocument.Path = "newPath/newId.txt";
             var expected = new Document("newId.txt", "newPath/newId.txt");
+
             Assert.Equal(expected, sampleDocument);
         }
 
@@ -23,11 +24,12 @@ namespace Tests.Src.Core.Structures {
             var sampleDocument = new Document("doc.txt", "path/doc.txt");
             var actual = sampleDocument.ToString();
             var expected = "Document(doc.txt)";
+
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void Equals_True_Success() {
+        public void Equals_Castable_True() {
             var sampleDocument1 = new Document("doc.txt", "path/doc.txt");
             var sampleDocument2 = new Document("doc.txt", "samplePath/doc.txt");
 
@@ -35,11 +37,19 @@ namespace Tests.Src.Core.Structures {
         }
 
         [Fact]
-        public void Equals_False_Success() {
+        public void Equals_Castable_False() {
             var sampleDocument1 = new Document("doc.txt", "path/doc.txt");
             var sampleDocument2 = new Document("doc2.txt", "path/doc.txt");
 
             Assert.False(sampleDocument1.Equals(sampleDocument2));
+        }
+
+        [Fact]
+        public void Equals_Uncastable_False() {
+            var sampleDocument = new Document("doc.txt", "path/doc.txt");
+            var sampleToken = "Hello";
+
+            Assert.False(sampleDocument.Equals(sampleToken));
         }
     }
 }

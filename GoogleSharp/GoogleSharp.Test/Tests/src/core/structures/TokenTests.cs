@@ -14,6 +14,7 @@ namespace Tests.Src.Core.Structures {
             var sampleToken = new Token("hello");
             sampleToken.Key = "world";
             var expected = new Token("world");
+
             Assert.Equal(expected, sampleToken);
         }
 
@@ -21,6 +22,7 @@ namespace Tests.Src.Core.Structures {
         public void Normalize_UpperCase_Success() {
             var sampleToken = new Token("hElLO");
             var expected = new Token("hello");
+
             Assert.Equal(expected, sampleToken);
         }
 
@@ -28,6 +30,7 @@ namespace Tests.Src.Core.Structures {
         public void GetHashCode_Normal_Success() {
             var sampleHashCode = new Token("hello").GetHashCode();
             var expected = "hello".GetHashCode();
+
             Assert.Equal(expected, sampleHashCode);
         }
 
@@ -38,6 +41,7 @@ namespace Tests.Src.Core.Structures {
         public void CompareTo_Less_Success(string stringA, string stringB) {
             var actual = new Token(stringA).CompareTo(new Token(stringB));
             var expected = -1;
+
             Assert.Equal(expected, actual);
         }
 
@@ -48,6 +52,7 @@ namespace Tests.Src.Core.Structures {
         public void CompareTo_More_Success(string stringA, string stringB) {
             var actual = new Token(stringA).CompareTo(new Token(stringB));
             var expected = 1;
+
             Assert.Equal(expected, actual);
         }
 
@@ -66,17 +71,25 @@ namespace Tests.Src.Core.Structures {
         }
 
         [Fact]
-        public void Equals_True_Success() {
-            var first = new Token("hello");
-            var second = new Token("HeLlO");
+        public void Equals_Castable_True() {
+            var sampleToken1 = new Token("hello");
+            var sampleToken2 = new Token("HeLlO");
 
-            Assert.True(first.Equals(second));
+            Assert.True(sampleToken1.Equals(sampleToken2));
         }
 
         [Fact]
-        public void Equals_False_Success() {
+        public void Equals_Castable_False() {
+            var sampleToken1 = new Token("hello");
+            var sampleToken2 = new Token("world");
+
+            Assert.False(sampleToken1.Equals(sampleToken2));
+        }
+
+        [Fact]
+        public void Equals_Uncastable_False() {
             var first = new Token("hello");
-            var second = new Token("HLlO");
+            var second = "world";
 
             Assert.False(first.Equals(second));
         }
