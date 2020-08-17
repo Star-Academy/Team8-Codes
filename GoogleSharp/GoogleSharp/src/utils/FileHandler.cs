@@ -7,20 +7,25 @@ using System.Text.RegularExpressions;
 // Internal
 using GoogleSharp.Src.Core.Structures;
 
-namespace GoogleSharp.Src.Utils {
-    public class FileHandler {
+namespace GoogleSharp.Src.Utils
+{
+    public class FileHandler
+    {
         private static readonly Regex Pattern = new Regex(@"[A-Za-z0-9]+", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-        public List<Document> GetDocumentsFromFolder(string folderPath) {
+        public List<Document> GetDocumentsFromFolder(string folderPath)
+        {
             var files = Directory.GetFiles(folderPath);
             return files.Select(f => new Document(Path.GetFileName(f), f)).ToList();
         }
 
-        public string GetFileContent(string filePath) {
+        public string GetFileContent(string filePath)
+        {
             return File.ReadAllText(filePath);
         }
 
-        public virtual HashSet<Token> GetFileTokens(string filePath) {
+        public virtual HashSet<Token> GetFileTokens(string filePath)
+        {
             var fileContent = GetFileContent(filePath);
             var tokens = new HashSet<Token>();
 

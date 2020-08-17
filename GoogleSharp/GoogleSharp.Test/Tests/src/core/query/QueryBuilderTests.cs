@@ -8,10 +8,13 @@ using Xunit;
 using GoogleSharp.Src.Core.Query;
 using GoogleSharp.Src.Core.Structures;
 
-namespace Tests.Src.Core.Query {
-    public class QueryBuilderTests {
+namespace Tests.Src.Core.Query
+{
+    public class QueryBuilderTests
+    {
         [Fact]
-        public void Constructor_OnlyOrTerms_Success() {
+        public void Constructor_OnlyOrTerms_Success()
+        {
             var queryBuilder = new QueryBuilder("+first +second +third");
             var expected = new List<Token> { new Token("first"), new Token("second"), new Token("third") };
             var actual = queryBuilder.Ors.Tokens;
@@ -20,7 +23,8 @@ namespace Tests.Src.Core.Query {
         }
 
         [Fact]
-        public void Constructor_OnlyAndTerms_Success() {
+        public void Constructor_OnlyAndTerms_Success()
+        {
             var queryBuilder = new QueryBuilder("first second third");
             var expected = new List<Token> { new Token("first"), new Token("second"), new Token("third") };
             var actual = queryBuilder.Ands.Tokens;
@@ -29,7 +33,8 @@ namespace Tests.Src.Core.Query {
         }
 
         [Fact]
-        public void Constructor_OnlyExcTerms_Success() {
+        public void Constructor_OnlyExcTerms_Success()
+        {
             var queryBuilder = new QueryBuilder("-first -second -third");
             var expected = new List<Token> { new Token("first"), new Token("second"), new Token("third") };
             var actual = queryBuilder.Excs.Tokens;
@@ -38,7 +43,8 @@ namespace Tests.Src.Core.Query {
         }
 
         [Fact]
-        public void Constructor_AndOr_Success() {
+        public void Constructor_AndOr_Success()
+        {
             var queryBuilder = new QueryBuilder("first +second third");
 
             var expectedAndTerms = new List<Token> { new Token("first"), new Token("third") };
@@ -52,7 +58,8 @@ namespace Tests.Src.Core.Query {
         }
 
         [Fact]
-        public void Constructor_AndExc_Success() {
+        public void Constructor_AndExc_Success()
+        {
             var queryBuilder = new QueryBuilder("first -second third");
 
             var expectedAndTerms = new List<Token> { new Token("first"), new Token("third") };
@@ -66,7 +73,8 @@ namespace Tests.Src.Core.Query {
         }
 
         [Fact]
-        public void Constructor_OrExc_Success() {
+        public void Constructor_OrExc_Success()
+        {
             var queryBuilder = new QueryBuilder("+first -second +third");
 
             var expectedOrTerms = new List<Token> { new Token("first"), new Token("third") };
@@ -80,7 +88,8 @@ namespace Tests.Src.Core.Query {
         }
 
         [Fact]
-        public void Constructor_All_Success() {
+        public void Constructor_All_Success()
+        {
             var queryBuilder = new QueryBuilder("first +second -third");
 
             var expectedAndTerms = new List<Token> { new Token("first") };
