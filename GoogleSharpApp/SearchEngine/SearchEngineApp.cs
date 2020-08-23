@@ -16,18 +16,18 @@ namespace SearchEngine
         private const string Version = "v1.0.1";
 
         private readonly string ResourcesDirectory;
-        private GoogleInvertedIndex index;
+        private readonly GoogleInvertedIndex Index;
 
         public override void Intro()
         {
-            WriteLine("Welcome to " + AppName + "! Copyright(c) Team8 " + Year + " " + Version);
+            WriteLine($"Welcome to {AppName}! Copyright(c) Team8 {Year} {Version}");
         }
 
         public SearchEngineApp(string resourcesDirectory) : base()
         {
             ResourcesDirectory = resourcesDirectory;
             var fileHandler = new FileHandler();
-            index = new GoogleInvertedIndex(fileHandler.GetDocumentsFromFolder(ResourcesDirectory), fileHandler);
+            Index = new GoogleInvertedIndex(fileHandler.GetDocumentsFromFolder(ResourcesDirectory), fileHandler);
             prompt = AppName + "> ";
         }
 
@@ -46,15 +46,15 @@ namespace SearchEngine
                     break;
                 case "exit":
                     return false;
-                    break;
                 default:
                     WriteLine($"'{command}' is not recognized as an internal or external command.");
+                    break;
             }
         }
 
         private string GetSearchResults(string arguments)
         {
-            HashSet<Document> results = QueryEngine.GetQueryResults(new QueryBuilder(arguments), index);
+            var results = QueryEngine.GetQueryResults(new QueryBuilder(arguments), Index);
             if (!results.Any())
                 return "No results found!";
             return Prettifier<Document>.Prettify(results);
