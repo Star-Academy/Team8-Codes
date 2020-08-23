@@ -7,10 +7,13 @@ using Xunit;
 // Internal
 using GoogleSharp.Src.Core.Structures;
 
-namespace Tests.Src.Core.Structures {
-    public class DocumentTests {
+namespace Tests.Src.Core.Structures
+{
+    public class DocumentTests
+    {
         [Fact]
-        public void Constructor_Normal_Success() {
+        public void Constructor_Normal_Success()
+        {
             var sampleDocument = new Document("doc.txt", "path/doc.txt");
             sampleDocument.Id = "newId.txt";
             sampleDocument.Path = "newPath/newId.txt";
@@ -20,7 +23,8 @@ namespace Tests.Src.Core.Structures {
         }
 
         [Fact]
-        public void ToString_Normal_Success() {
+        public void ToString_Normal_Success()
+        {
             var sampleDocument = new Document("doc.txt", "path/doc.txt");
             var actual = sampleDocument.ToString();
             var expected = "Document(doc.txt)";
@@ -29,7 +33,8 @@ namespace Tests.Src.Core.Structures {
         }
 
         [Fact]
-        public void Equals_Castable_True() {
+        public void Equals_Castable_True()
+        {
             var sampleDocument1 = new Document("doc.txt", "path/doc.txt");
             var sampleDocument2 = new Document("doc.txt", "samplePath/doc.txt");
 
@@ -37,7 +42,8 @@ namespace Tests.Src.Core.Structures {
         }
 
         [Fact]
-        public void Equals_Castable_False() {
+        public void Equals_Castable_False()
+        {
             var sampleDocument1 = new Document("doc.txt", "path/doc.txt");
             var sampleDocument2 = new Document("doc2.txt", "path/doc.txt");
 
@@ -45,7 +51,8 @@ namespace Tests.Src.Core.Structures {
         }
 
         [Fact]
-        public void Equals_Uncastable_False() {
+        public void Equals_Uncastable_False()
+        {
             var sampleDocument = new Document("doc.txt", "path/doc.txt");
             var sampleToken = "Hello";
 

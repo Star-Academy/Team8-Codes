@@ -1,6 +1,9 @@
-namespace GoogleSharp.Src.Core.Structures {
-    public class Document {
-        public Document (string id, string path) {
+namespace GoogleSharp.Src.Core.Structures
+{
+    public class Document
+    {
+        public Document(string id, string path)
+        {
             Id = id;
             Path = path;
         }
@@ -8,17 +11,20 @@ namespace GoogleSharp.Src.Core.Structures {
         public string Id { get; set; }
         public string Path { get; set; }
 
-        public override bool Equals (object obj) {
+        public override bool Equals(object obj)
+        {
             if (obj is Document other)
                 return Id == other.Id;
             return false;
         }
 
-        public override int GetHashCode () {
-            return Id.GetHashCode ();
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
         }
 
-        public override string ToString () {
+        public override string ToString()
+        {
             return $"Document({Id})";
         }
     }
