@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using BagherEngine.Elastic;
+using BagherEngine.Exceptions;
 using BagherEngine.Models;
 using BagherEngine.QuerySystem;
 using BagherEngine.Utils;
@@ -71,9 +72,9 @@ namespace BagherEngine.App
                 var results = GetSearchResults(arguments);
                 WriteLine(results);
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
-                WriteLine(e.Message);
+                WriteError(e.Message);
             }
         }
 
@@ -95,6 +96,13 @@ namespace BagherEngine.App
         private void WriteLine(string output)
         {
             Console.WriteLine("\n" + output + "\n");
+        }
+
+        private void WriteError(string error)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            WriteLine(error);
+            Console.ResetColor();
         }
     }
 }

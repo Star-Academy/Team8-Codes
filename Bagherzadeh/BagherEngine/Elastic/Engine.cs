@@ -12,7 +12,16 @@ namespace BagherEngine.Elastic
     {
         private static IElasticClient client = ElasticClientFactory.CreateElasticClient();
 
-        public static QueryContainer BuildQueryContainer(Query query)
+        public static HashSet<Document> GetQueryResults(Query query)
+        {
+            var queryContainer = BuildQueryContainer(query);
+            var response = SearchDocuments(queryContainer);
+            Validator.Validate(response);
+
+            return ExtractDocumentsFromResponse(response);
+        }
+
+        private static QueryContainer BuildQueryContainer(Query query)
         {
             return new BoolQuery
             {
@@ -22,20 +31,20 @@ namespace BagherEngine.Elastic
             };
         }
 
-        public static HashSet<Document> GetQueryResults(Query query)
+        private static ISearchResponse<Document> SearchDocuments(QueryContainer queryContainer)
         {
-            var queryContainer = BuildQueryContainer(query);
-
-            var response = client.Search<Document>(s => s
+            return client.Search<Document>(s => s
                 .Index("bagher-documents")
                 .Query(q => queryContainer)
                 .Size(100)
             );
+        }
 
+        private static HashSet<Document> ExtractDocumentsFromResponse(ISearchResponse<Document> response)
+        {
             var documents = response.Documents.ToList<Document>();
-            var ids = response.Hits.ToArray();
-            int idx = 0;
-            documents.ForEach(doc => doc.Id = ids[idx++].Id);
+            var hits = response.Hits.ToArray();
+            Enumerable.Range(0, hits.Length).ToList().ForEach(index => documents[index].Id = hits[index].Id);
             return documents.ToHashSet();
         }
     }
