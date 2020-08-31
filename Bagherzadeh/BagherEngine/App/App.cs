@@ -1,11 +1,13 @@
 namespace BagherEngine.App
 {
-    public class App
-    {
-        public static void Main(string[] args)
-        {
-            var app = new SearchEngineApp("Resources/Documents");
-            app.Run();
-        }
-    }
+	public class App
+	{
+		private const string ResourcesDirectory = "Resources/Documents";
+
+		public static void Main(string[] args)
+		{
+			var app = new SearchEngineApp(ResourcesDirectory);
+			app.Run();
+		}
+	}
 }

@@ -2,50 +2,52 @@ using System;
 
 namespace BagherEngine.App
 {
-    public abstract class ConsoleApp
-    {
-        protected string prompt;
-        protected string command;
-        protected string arguments;
-        protected int firstSpaceIndex;
+	public abstract class ConsoleApp
+	{
+		private const char Delimiter = ' ';
 
-        public abstract void Intro();
+		protected string prompt;
+		protected string command;
+		protected string arguments;
+		protected int firstSpaceIndex;
 
-        public abstract void Help();
+		public abstract void Intro();
 
-        public abstract bool HandleCommand();
+		public abstract void Help();
 
-        public ConsoleApp()
-        {
-            Intro();
-            Help();
-        }
+		public abstract bool HandleCommand();
 
-        private void DecomposeInput(string input)
-        {
-            firstSpaceIndex = input.IndexOf(' ');
-            if (firstSpaceIndex < 0)
-            {
-                firstSpaceIndex = input.Length;
-                command = input;
-                arguments = "";
-            }
-            else
-            {
-                command = input.Substring(0, firstSpaceIndex).Trim();
-                arguments = input.Substring(firstSpaceIndex + 1).Trim();
-            }
-        }
+		public ConsoleApp()
+		{
+			Intro();
+			Help();
+		}
 
-        public void Run()
-        {
-            string input;
-            do
-            {
-                Console.Write(prompt);
-                input = Console.ReadLine().Trim();
-                DecomposeInput(input);
-            } while (HandleCommand());
-        }
-    }
+		private void DecomposeInput(string input)
+		{
+			firstSpaceIndex = input.IndexOf(Delimiter);
+			if (firstSpaceIndex < 0)
+			{
+				firstSpaceIndex = input.Length;
+				command = input;
+				arguments = String.Empty;
+			}
+			else
+			{
+				command = input.Substring(0, firstSpaceIndex).Trim();
+				arguments = input.Substring(firstSpaceIndex + 1).Trim();
+			}
+		}
+
+		public void Run()
+		{
+			string input;
+			do
+			{
+				Console.Write(prompt);
+				input = Console.ReadLine().Trim();
+				DecomposeInput(input);
+			} while (HandleCommand());
+		}
+	}
 }

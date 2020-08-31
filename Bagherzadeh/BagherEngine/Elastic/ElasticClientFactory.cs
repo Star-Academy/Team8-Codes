@@ -4,20 +4,22 @@ using Nest;
 
 namespace BagherEngine.Elastic
 {
-    internal static class ElasticClientFactory
-    {
-        private static IElasticClient client = CreateInitialClient();
+	internal class ElasticClientFactory
+	{
+		private const string ElasticUri = "http://localhost:9200";
 
-        private static IElasticClient CreateInitialClient()
-        {
-            var uri = new Uri("http://localhost:9200");
-            var connectionSettings = new ConnectionSettings(uri);
-            return new ElasticClient(connectionSettings);
-        }
+		private static IElasticClient client = CreateInitialClient();
 
-        public static IElasticClient CreateElasticClient()
-        {
-            return client;
-        }
-    }
+		private static IElasticClient CreateInitialClient()
+		{
+			var uri = new Uri(ElasticUri);
+			var connectionSettings = new ConnectionSettings(uri);
+			return new ElasticClient(connectionSettings);
+		}
+
+		public static IElasticClient CreateElasticClient()
+		{
+			return client;
+		}
+	}
 }
