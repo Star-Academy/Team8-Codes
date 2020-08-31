@@ -3,14 +3,39 @@ Models
         Id
         Artists[ArtistId],
         Lyrics,
-        Cover,
+        CoverUrl,
         Title,
-        Url,
+        TrackUrl,
         ReleaseDate
     Artist
         Id
         Name
+    ResultSet<T>
+        delay
+        count
+        hits:[
+            {
+                type:"music"
+                hit:{
 
+                }
+            }
+            {
+                type:"artist"
+                hit:{
+
+                }
+            }
+            {
+                type:"music"
+                hit:{
+
+                }
+            }
+        ]
+
+
+api/search/
 api/search/{query} -> List[Music, Artist]
 api/music/{id}
 api/artist/{id}
@@ -19,3 +44,4 @@ bagher-music.com
 bagher-music.com/search?query={}
 bagher-music.com/music/{id}
 bagher-music.com/artist/{id}
+
