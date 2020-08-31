@@ -1,0 +1,21 @@
+Models
+    Music
+        Id
+        Artists[ArtistId],
+        Lyrics,
+        Cover,
+        Title,
+        Url,
+        ReleaseDate
+    Artist
+        Id
+        Name
+
+api/search/{query} -> List[Music, Artist]
+api/music/{id}
+api/artist/{id}
+
+bagher-music.com
+bagher-music.com/search?query={}
+bagher-music.com/music/{id}
+bagher-music.com/artist/{id}
