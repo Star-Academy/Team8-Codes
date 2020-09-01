@@ -1,11 +1,7 @@
-// Standard Library
-using System.Collections.Generic;
+// Standard
 using System.Text.RegularExpressions;
 
-// Internal
-using BagherMusic.Models;
-
-namespace BagherMusic.QuerySystem
+namespace BagherMusic.Core.QuerySystem
 {
 	public class ExcTerms : Terms
 	{

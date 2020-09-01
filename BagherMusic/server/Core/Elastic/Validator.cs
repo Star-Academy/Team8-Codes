@@ -1,8 +1,10 @@
+// Internal
 using BagherMusic.Exceptions;
 
+// Elastic
 using Nest;
 
-namespace BagherMusic.Elastic
+namespace BagherMusic.Core.Elastic
 {
 	public class Validator
 	{

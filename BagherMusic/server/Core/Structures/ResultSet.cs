@@ -1,7 +1,8 @@
+// Standard
 using System.Collections;
 using System.Collections.Generic;
 
-namespace BagherMusic.Structures
+namespace BagherMusic.Core.Structures
 {
 	public class ResultSet<T> : IEnumerable<T>
 	{

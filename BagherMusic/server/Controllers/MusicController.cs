@@ -1,12 +1,12 @@
+// Standard
 using System;
-using System.Collections.Generic;
-using System.Text.Json;
 
-using BagherMusic.Elastic;
-using BagherMusic.Models;
-
+// Microsoft
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+
+// Internal
+using BagherMusic.Models;
+using BagherMusic.Services;
 
 namespace BagherMusic.Controllers
 {
@@ -14,12 +14,11 @@ namespace BagherMusic.Controllers
 	[Route("api/[controller]")]
 	public class MusicController : ControllerBase
 	{
-		private static SearchEngine engine = SearchEngine.GetInstance();
-		private readonly ILogger<SearchController> _logger;
+		private readonly ISearchEngineService searchService;
 
-		public MusicController(ILogger<SearchController> logger)
+		public MusicController(ISearchEngineService searchService)
 		{
-			_logger = logger;
+			this.searchService = searchService;
 		}
 
 		/*
@@ -30,7 +29,7 @@ namespace BagherMusic.Controllers
 		{
 			try
 			{
-				return Ok(engine.GetEntity<int, Music>(id));
+				return Ok(searchService.GetEntity<int, Music>(id));
 			}
 			catch (Exception e)
 			{

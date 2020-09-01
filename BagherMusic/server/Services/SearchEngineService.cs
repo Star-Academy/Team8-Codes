@@ -1,76 +1,62 @@
+// Standard
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 
+// Internal
+using BagherMusic.Core.Elastic;
+using BagherMusic.Core.QuerySystem;
 using BagherMusic.Models;
-using BagherMusic.QuerySystem;
 
+// Microsoft
+using Microsoft.Extensions.Configuration;
+
+// Elastic
 using Nest;
 
-namespace BagherMusic.Elastic
+namespace BagherMusic.Services
 {
-	public class SearchEngine
+	public class SearchEngineService : ISearchEngineService
 	{
-		private static IElasticClient client = ElasticClientFactory.CreateElasticClient();
+		private IElasticClient client;
 
-		private const string ContentField = "content";
-		private const int ResultCountPerPage = 10;
-		private const int AcceptableFuzziness = 3;
+		private bool running = false;
+		private IConfiguration _config;
 
-		private readonly string[] MusicSearchFields = new string[] { "lyrics", "artistNames" };
+		private int ResultCountPerPage;
+		private int AcceptableFuzziness;
 
-		private readonly Dictionary<Type, string> IndexNames = new Dictionary<Type, string>
+		private Dictionary<Type, string> IndexNames = new Dictionary<Type, string>();
+		private Dictionary<Type, string[]> SearchFields = new Dictionary<Type, string[]>();
+
+		public SearchEngineService(IConfiguration config)
 		{
-			{
-				typeof(Music),
-				"bagher-musics"
-			},
-			{
-				typeof(Artist),
-				"bagher-artists"
-			}
-		};
-		private readonly Dictionary<Type, string[]> SearchFields = new Dictionary<Type, string[]>
-		{
-			{
-				typeof(Music),
-				new string[]
-				{
-					"lyrics",
-					"primaryArtistName",
-					"title"
-				}
-			},
-			{
-				typeof(Artist),
-				new string[]
-				{
-					"name"
-				}
-			}
-		};
-
-		private static SearchEngine engineInstance = CreateInitialEngine();
-
-		private SearchEngine()
-		{
-
+			_config = config;
 		}
 
-		private static SearchEngine CreateInitialEngine()
+		private void RunService()
 		{
-			return new SearchEngine();
-		}
-
-		public static SearchEngine GetInstance()
-		{
-			return engineInstance;
+			Console.WriteLine("Attempting to run service...");
+			ElasticClientFactory.CreateInitialClient(_config["SearchService:ElasticServerUri"]);
+			client = ElasticClientFactory.GetInstance();
+			ResultCountPerPage = Int32.Parse(_config["SearchService:SearchOptions:ResultCountPerPage"]);
+			AcceptableFuzziness = Int32.Parse(_config["SearchService:SearchOptions:AcceptableFuzziness"]);
+			IndexNames[typeof(Music)] = _config["SearchService:SearchOptions:IndexNames:Music"];
+			IndexNames[typeof(Artist)] = _config["SearchService:SearchOptions:IndexNames:Artist"];
+			SearchFields[typeof(Music)] = JsonSerializer.Deserialize<string[]>(_config["SearchService:SearchOptions:SearchFields:Music"]);
+			SearchFields[typeof(Artist)] = JsonSerializer.Deserialize<string[]>(_config["SearchService:SearchOptions:SearchFields:Artist"]);
+			Console.WriteLine("[SUCCESS] Run service");
+			running = true;
 		}
 
 		public G GetEntity<T, G>(T id)
 		where T : IComparable
 		where G : IEntity<T>
 		{
+			if (!running)
+				RunService();
+
 			var queryContainer = new MatchQuery
 			{
 				Field = "id",
@@ -87,6 +73,8 @@ namespace BagherMusic.Elastic
 
 		public HashSet<T> GetSearchResults<T>(Query query, int pageIndex) where T : class
 		{
+			if (!running)
+				RunService();
 			var queryContainer = BuildSearchQueryContainer(query, SearchFields[typeof(T)]);
 			var response = Search<T>(queryContainer, pageIndex);
 			Validator.Validate(response);

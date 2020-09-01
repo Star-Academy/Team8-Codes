@@ -1,16 +1,15 @@
+// Standard
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text.Json;
 
-using BagherMusic.Elastic;
-using BagherMusic.Models;
-using BagherMusic.QuerySystem;
-using BagherMusic.Structures;
-
+// Microsoft
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
+// Internal
+using BagherMusic.Core.QuerySystem;
+using BagherMusic.Core.Structures;
+using BagherMusic.Models;
+using BagherMusic.Services;
 
 namespace BagherMusic.Controllers
 {
@@ -18,24 +17,23 @@ namespace BagherMusic.Controllers
 	[Route("api/[controller]")]
 	public class SearchController : ControllerBase
 	{
-		private static SearchEngine engine = SearchEngine.GetInstance();
-		private readonly ILogger<SearchController> _logger;
+		private readonly ISearchEngineService searchService;
 
-		public SearchController(ILogger<SearchController> logger)
+		public SearchController(ISearchEngineService searchService)
 		{
-			_logger = logger;
+			this.searchService = searchService;
 		}
 
 		/*
 			api/search/music?query={query}&pageIndex={pageIndex}
 		*/
 		[HttpGet("music")]
-		public IActionResult GetMusicSearchResults(string query, int pageIndex)
+		public IActionResult GetMusicSearchResults(string query, int pageIndex = 0)
 		{
 			try
 			{
 				var watch = Stopwatch.StartNew();
-				var set = engine.GetSearchResults<Music>(new Query(query), pageIndex);
+				var set = searchService.GetSearchResults<Music>(new Query(query), pageIndex);
 				watch.Stop();
 				return Ok(new ResultSet<Music>(watch.ElapsedMilliseconds, set.Count, set));
 			}
@@ -51,12 +49,12 @@ namespace BagherMusic.Controllers
 			api/search/artist?query={query}
 		*/
 		[HttpGet("artist")]
-		public IActionResult GetArtistSearchResults(string query, int pageIndex)
+		public IActionResult GetArtistSearchResults(string query, int pageIndex = 0)
 		{
 			try
 			{
 				var watch = Stopwatch.StartNew();
-				var set = engine.GetSearchResults<Artist>(new Query(query), pageIndex);
+				var set = searchService.GetSearchResults<Artist>(new Query(query), pageIndex);
 				watch.Stop();
 				return Ok(new ResultSet<Artist>(watch.ElapsedMilliseconds, set.Count, set));
 			}

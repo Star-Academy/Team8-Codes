@@ -1,4 +1,4 @@
-// Standard Library
+// Standard
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 // Internal
 using BagherMusic.Models;
 
-namespace BagherMusic.QuerySystem
+namespace BagherMusic.Core.QuerySystem
 {
 	public abstract class Terms
 	{

@@ -1,12 +1,14 @@
+// Standard
 using System.Collections.Generic;
 
+// Elastic
 using Nest;
 
-namespace BagherMusic.Elastic
+namespace BagherMusic.Core.Elastic
 {
 	internal class Importer<T> where T : class
 	{
-		private readonly IElasticClient client = ElasticClientFactory.CreateElasticClient();
+		private readonly IElasticClient client = ElasticClientFactory.GetInstance();
 
 		public void Import(IEnumerable<T> documents, string index)
 		{

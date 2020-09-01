@@ -1,4 +1,4 @@
-namespace BagherMusic.QuerySystem
+namespace BagherMusic.Core.QuerySystem
 {
 	public class Query
 	{
