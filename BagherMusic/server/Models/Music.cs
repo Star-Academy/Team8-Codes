@@ -4,32 +4,59 @@ namespace BagherMusic.Models
 {
 	public class Music : IEntity<int>
 	{
-		public Music(int id, List<int> artistsIds, List<string> artistNames, string lyrics,
-			string coverUrl, string title, string trackUrl, string releaseDate)
-		{
-			Id = id;
-			ArtistsIds = artistsIds;
-			ArtistNames = artistNames;
-			Lyrics = lyrics;
-			CoverUrl = coverUrl;
-			Title = title;
-			TrackUrl = trackUrl;
-			ReleaseDate = releaseDate;
-		}
-
 		public Music(int id, string title)
 		{
 			Id = id;
 			Title = title;
 		}
 
+		public Music(int id, string title, string releaseDate, int primaryArtistId, string primaryArtistName, List<int> featuredArtistIds, List<string> featuredArtistNames, string coverThumbnailUrl, string coverImageUrl, string spotifyUrl, string youtubeUrl, string lyricsUrl, string lyrics)
+		{
+			// General
+			Id = id;
+			Title = title;
+			ReleaseDate = releaseDate;
+
+			// Artists
+			PrimaryArtistId = primaryArtistId;
+			PrimaryArtistName = primaryArtistName;
+			FeaturedArtistIds = featuredArtistIds;
+			FeaturedArtistNames = featuredArtistNames;
+
+			// Cover Arts
+			CoverThumbnailUrl = coverThumbnailUrl;
+			CoverImageUrl = coverImageUrl;
+
+			// External Links
+			SpotifyUrl = spotifyUrl;
+			YoutubeUrl = youtubeUrl;
+
+			// Lyrics
+			LyricsUrl = lyricsUrl;
+			Lyrics = lyrics;
+		}
+
+		// General
 		public int Id { get; set; }
-		public List<int> ArtistsIds { get; set; }
-		public List<string> ArtistNames { get; set; }
-		public string Lyrics { get; set; }
-		public string CoverUrl { get; set; }
 		public string Title { get; set; }
-		public string TrackUrl { get; set; }
 		public string ReleaseDate { get; set; }
+
+		// Artists
+		public int PrimaryArtistId { get; set; }
+		public string PrimaryArtistName { get; set; }
+		public List<int> FeaturedArtistIds { get; set; }
+		public List<string> FeaturedArtistNames { get; set; }
+
+		// Cover Arts
+		public string CoverThumbnailUrl { get; set; }
+		public string CoverImageUrl { get; set; }
+
+		// External Links
+		public string SpotifyUrl { get; set; }
+		public string YoutubeUrl { get; set; }
+
+		// Lyrics
+		public string LyricsUrl { get; set; }
+		public string Lyrics { get; set; }
 	}
 }
