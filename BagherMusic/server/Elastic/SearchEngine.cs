@@ -12,19 +12,22 @@ namespace BagherMusic.Elastic
 	public class SearchEngine
 	{
 		private static IElasticClient client = ElasticClientFactory.CreateElasticClient();
+
 		private const string ContentField = "content";
 		private const int ResultCountPerPage = 10;
+		private const int AcceptableFuzziness = 3;
+
 		private readonly string[] MusicSearchFields = new string[] { "lyrics", "artistNames" };
 
-		private readonly Dictionary<Type, string> SearchableTypes = new Dictionary<Type, string>
+		private readonly Dictionary<Type, string> IndexNames = new Dictionary<Type, string>
 		{
 			{
 				typeof(Music),
-				"musics"
+				"bagher-musics"
 			},
 			{
 				typeof(Artist),
-				"artists"
+				"bagher-artists"
 			}
 		};
 		private readonly Dictionary<Type, string[]> SearchFields = new Dictionary<Type, string[]>
@@ -34,7 +37,7 @@ namespace BagherMusic.Elastic
 				new string[]
 				{
 					"lyrics",
-					"artistNames",
+					"primaryArtistName",
 					"title"
 				}
 			},
@@ -81,21 +84,24 @@ namespace BagherMusic.Elastic
 						token => (QueryContainer) new MultiMatchQuery
 						{
 							Fields = fields,
-								Query = token.Id
+								Query = token.Id,
+								Fuzziness = Fuzziness.EditDistance(AcceptableFuzziness)
 						}
 					),
 					Should = query.Ors.Tokens.Select(
 						token => (QueryContainer) new MultiMatchQuery
 						{
 							Fields = fields,
-								Query = token.Id
+								Query = token.Id,
+								Fuzziness = Fuzziness.EditDistance(AcceptableFuzziness)
 						}
 					),
 					MustNot = query.Excs.Tokens.Select(
 						token => (QueryContainer) new MultiMatchQuery
 						{
 							Fields = fields,
-								Query = token.Id
+								Query = token.Id,
+								Fuzziness = Fuzziness.EditDistance(AcceptableFuzziness)
 						}
 					)
 			};
@@ -104,7 +110,7 @@ namespace BagherMusic.Elastic
 		private ISearchResponse<T> Search<T>(QueryContainer queryContainer, int pageIndex) where T : class
 		{
 			return client.Search<T>(s => s
-				.Index(SearchableTypes[typeof(T)])
+				.Index(IndexNames[typeof(T)])
 				.Query(q => queryContainer)
 				.Size(ResultCountPerPage)
 				.From(pageIndex * ResultCountPerPage)

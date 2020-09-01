@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 
+using BagherMusic.Elastic;
 using BagherMusic.Models;
-using BagherMusic.Structures;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,6 +14,7 @@ namespace BagherMusic.Controllers
 	[Route("api/[controller]")]
 	public class MusicController : ControllerBase
 	{
+		private static SearchEngine engine = SearchEngine.GetInstance();
 		private readonly ILogger<SearchController> _logger;
 
 		public MusicController(ILogger<SearchController> logger)

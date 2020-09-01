@@ -1,47 +1,24 @@
-Models
-    Music
-        Id
-        Artists[ArtistId],
-        Lyrics,
-        CoverUrl,
-        Title,
-        TrackUrl,
-        ReleaseDate
-    Artist
-        Id
-        Name
-    ResultSet<T>
-        delay
-        count
-        hits:[
-            {
-                type:"music"
-                hit:{
+{
+    "id": 49261,
+    "title": "On the Floor",
+    "releaseDate": "2011-02-08",
+    "primaryArtistId" : 2487,
+    "primaryArtistName" : "Jennifer Lopez",
+    "featuredArtistIds" : [628],
+    "featuredArtistNames" : ["Pitbull"],
+    "coverThumbnailUrl" : "https://images.genius.com/b68c1f9c9915a46926ccf13df27ad0f7.300x300x1.jpg",
+    "coverImageUrl" : "https://images.genius.com/b68c1f9c9915a46926ccf13df27ad0f7.1000x1000x1.jpg",
+    "spotifyUrl" : "https://open.spotify.com/track/0Oe49j06Bjrxs8PltuVeaW",
+    "youtubeUrl" : "http://www.youtube.com/watch?v:t4H_Zoh7G5A",
+    "lyricsUrl" : "https://genius.com/Jennifer-lopez-on-the-floor-lyrics",
+    "lyrics" : "Im on the floor"
+}
 
-                }
-            }
-            {
-                type:"artist"
-                hit:{
-
-                }
-            }
-            {
-                type:"music"
-                hit:{
-
-                }
-            }
-        ]
-
-
-api/search/
-api/search/{query} -> List[Music, Artist]
-api/music/{id}
-api/artist/{id}
-
-bagher-music.com
-bagher-music.com/search?query={}
-bagher-music.com/music/{id}
-bagher-music.com/artist/{id}
-
+{
+    "id" : 2487,
+    "name" : "Jennifer Lopez",
+    "thumbnailUrl" : "https://images.genius.com/29fa49c37309ca8662013a5e12514e20.1000x1000x1.jpg",
+    "imageUrl" : "https://images.genius.com/29fa49c37309ca8662013a5e12514e20.1000x1000x1.jpg",
+    "twitterName" : "Jlo",
+    "instagramName" : "Jlo"
+}
