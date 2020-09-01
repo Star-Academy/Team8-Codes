@@ -26,9 +26,18 @@ namespace BagherMusic.Controllers
 			api/music/{id}
 		*/
 		[HttpGet("{id}")]
-		public IActionResult GetSearchMusic(int id)
+		public IActionResult GetMusic(int id)
 		{
-			return Ok(new Music(id, $"music_{id}"));
+			try
+			{
+				return Ok(engine.GetEntity<int, Music>(id));
+			}
+			catch (Exception e)
+			{
+				return new ObjectResult(
+					new { message = e.Message, StatusCode = 400, currentDate = DateTime.Now }
+				);
+			}
 		}
 	}
 }

@@ -50,7 +50,6 @@ namespace BagherMusic.Elastic
 			}
 		};
 
-
 		private static SearchEngine engineInstance = CreateInitialEngine();
 
 		private SearchEngine()
@@ -66,6 +65,24 @@ namespace BagherMusic.Elastic
 		public static SearchEngine GetInstance()
 		{
 			return engineInstance;
+		}
+
+		public G GetEntity<T, G>(T id)
+		where T : IComparable
+		where G : IEntity<T>
+		{
+			var queryContainer = new MatchQuery
+			{
+				Field = "id",
+					Query = id.ToString()
+			};
+			var response = client.Search<G>(s => s
+				.Index(IndexNames[typeof(G)])
+				.Query(q => queryContainer)
+				.Size(1)
+			);
+			Validator.Validate(response);
+			return response.Documents.ToList<G>() [0];
 		}
 
 		public HashSet<T> GetSearchResults<T>(Query query, int pageIndex) where T : class

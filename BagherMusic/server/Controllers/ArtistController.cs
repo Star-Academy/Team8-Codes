@@ -29,7 +29,16 @@ namespace BagherMusic.Controllers
 		[HttpGet("{id}")]
 		public IActionResult GetArtist(int id)
 		{
-			return Ok(new Artist(id, $"artist_{id}"));
+			try
+			{
+				return Ok(engine.GetEntity<int, Artist>(id));
+			}
+			catch (Exception e)
+			{
+				return new ObjectResult(
+					new { message = e.Message, StatusCode = 400, currentDate = DateTime.Now }
+				);
+			}
 		}
 	}
 }
