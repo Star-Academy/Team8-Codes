@@ -1,0 +1,75 @@
+@import "./config";
+
+/********** REMOTE FONTS **********/
+
+// Roboto
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/********** FONTS **********/
+
+$font-roboto: "Roboto";
+$font-default: sans-serif;
+$font-all: $font-roboto,
+$font-default;
+
+/********** FONT FACES **********/
+
+/********** RESET **********/
+
+* {
+	box-sizing: border-box;
+
+	margin: 0;
+	padding: 0;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+html {
+	// background-color: $color_white;
+
+	font-family: $font_all;
+	font-size: 62.5%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/********** THEMES **********/
+#app {
+
+	.text,
+	input {
+		background-color: inherit;
+		color: $color_gray_10;
+	}
+
+	.border-thin {
+		border: 0.1rem solid black;
+	}
+
+	.hover-shadow:hover,
+	.focus-shadow:focus {
+		box-shadow: 0 0 1rem $color_gray_10;
+	}
+}
+
+#app.dark {
+	background-color: $color_gray_10;
+	color: $color_gray_95;
+
+	.text {
+		color: $color_gray_95;
+	}
+}
