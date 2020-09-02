@@ -12,7 +12,7 @@ namespace BagherMusic.Models
 			Id = id;
 		}
 
-		public string Id
+		public new string Id
 		{
 			get
 			{

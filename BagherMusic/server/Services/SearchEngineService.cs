@@ -37,7 +37,7 @@ namespace BagherMusic.Services
 
 		private void RunService()
 		{
-			Console.WriteLine("Attempting to run service...");
+			Console.WriteLine("Attempting to run search service...");
 			ElasticClientFactory.CreateInitialClient(_config["SearchService:ElasticServerUri"]);
 			client = ElasticClientFactory.GetInstance();
 			ResultCountPerPage = Int32.Parse(_config["SearchService:SearchOptions:ResultCountPerPage"]);
@@ -46,7 +46,7 @@ namespace BagherMusic.Services
 			IndexNames[typeof(Artist)] = _config["SearchService:SearchOptions:IndexNames:Artist"];
 			SearchFields[typeof(Music)] = JsonSerializer.Deserialize<string[]>(_config["SearchService:SearchOptions:SearchFields:Music"]);
 			SearchFields[typeof(Artist)] = JsonSerializer.Deserialize<string[]>(_config["SearchService:SearchOptions:SearchFields:Artist"]);
-			Console.WriteLine("[SUCCESS] Run service");
+			Console.WriteLine("[SUCCESS] Run search service");
 			running = true;
 		}
 
@@ -59,7 +59,7 @@ namespace BagherMusic.Services
 
 			var queryContainer = new MatchQuery
 			{
-				Field = "id",
+				Field = "_id",
 					Query = id.ToString()
 			};
 			var response = client.Search<G>(s => s

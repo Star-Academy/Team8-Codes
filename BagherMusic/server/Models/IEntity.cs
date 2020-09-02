@@ -1,10 +1,12 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace BagherMusic.Models
 {
 	public abstract class IEntity<T> : IComparable where T : IComparable
 	{
-		T Id { get; set; }
+		[JsonPropertyName("id")]
+		public T Id { get; set; }
 
 		public override bool Equals(object obj)
 		{

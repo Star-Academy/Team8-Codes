@@ -1,12 +1,10 @@
+using System.Text.Json.Serialization;
+
 namespace BagherMusic.Models
 {
 	public class Artist : IEntity<int>
 	{
-		public Artist(int id, string name)
-		{
-			Id = id;
-			Name = name;
-		}
+		public Artist() {}
 
 		public Artist(int id, string name, string thumbnailUrl, string imageUrl, string twitterName, string instagramName)
 		{
@@ -24,15 +22,21 @@ namespace BagherMusic.Models
 		}
 
 		// General
-		public int Id { get; set; }
+		[JsonPropertyName("name")]
 		public string Name { get; set; }
 
 		// Images
+		[JsonPropertyName("thumbnailUrl")]
 		public string ThumbnailUrl { get; set; }
+
+		[JsonPropertyName("imageUrl")]
 		public string ImageUrl { get; set; }
 
 		// External Links
+		[JsonPropertyName("twitterName")]
 		public string TwitterName { get; set; }
+
+		[JsonPropertyName("instagramName")]
 		public string InstagramName { get; set; }
 	}
 }
