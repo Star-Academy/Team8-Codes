@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BagherMusic.Core.Structures
 {
-	public class ResultSet<T> : IEnumerable<T>
+	public class ResultSet<T>
 	{
 		public ResultSet(double delay, int count, HashSet<T> hits)
 		{
@@ -17,19 +17,9 @@ namespace BagherMusic.Core.Structures
 		public int Count { get; set; }
 		public HashSet<T> Hits { get; set; }
 
-		public IEnumerator<T> GetEnumerator()
-		{
-			return Hits.GetEnumerator();
-		}
-
 		public override string ToString()
 		{
-			return $"Delay: {Delay}; Count: {Count}; HitsCount: {Hits.Count}";
-		}
-
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return Hits.GetEnumerator();
+			return $"ResultSet(Delay: {Delay}, Count: {Count}, HitsCount: {Hits.Count})";
 		}
 	}
 }

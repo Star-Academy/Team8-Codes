@@ -1,0 +1,7 @@
+<div class="wrapper">
+	<a [routerLink]="['/']" class="logo"><img src="../../../assets/svg/Logo.svg" alt="bagher-music-logo"></a>
+	<form class="search-box border-thin focus-shadow" (ngSubmit)="search($event)">
+		<fa-icon [icon]="faSearch"></fa-icon>
+		<input type="text">
+	</form>
+</div>
