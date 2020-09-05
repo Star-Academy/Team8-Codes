@@ -2,6 +2,7 @@
 using System;
 
 // Microsoft
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 // Internal
@@ -10,6 +11,7 @@ using BagherMusic.Services;
 
 namespace BagherMusic.Controllers
 {
+	[EnableCors("ImportOrigins")]
 	[ApiController]
 	[Route("api/[controller]")]
 	public class ImportController : ControllerBase

@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faMusic } from '@fortawesome/free-solid-svg-icons';
+import { _ParseAST } from '@angular/compiler';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+
+import { SearchService } from '../../services/search.service';
 
 @Component({
 	selector: 'app-landing',
@@ -9,12 +15,36 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 })
 export class LandingComponent implements OnInit {
 	faSearch = faSearch;
+	faMusic = faMusic;
 
-	constructor() {}
+	@ViewChild('searchBox') searchBoxElement: ElementRef;
+	@ViewChild('searchInput') searchInputElement: ElementRef;
+	searchIconClass = 'text-fade';
+
+	constructor(private router: Router, private searchService: SearchService) {}
 
 	ngOnInit(): void {}
 
-	search(e) {
-		console.log('Search ... ');
+	focusedOnInput(e) {
+		this.searchBoxElement.nativeElement.classList.add('shadow-gentle');
+		this.searchIconClass = 'text-bright';
+	}
+
+	blurredInput(e) {
+		this.searchBoxElement.nativeElement.classList.remove('shadow-gentle');
+
+		if (!this.searchInputElement.nativeElement.value)
+			this.searchIconClass = 'text-fade';
+	}
+
+	searchListener(e) {
+		e.preventDefault();
+
+		const query = this.searchInputElement.nativeElement.value;
+
+		if (!query) return;
+
+		this.searchService.setQuery(query);
+		this.router.navigate([ 'search-results' ]);
 	}
 }

@@ -48,20 +48,52 @@ body {
 
 /********** THEMES **********/
 #app {
-
-	.text,
 	input {
-		background-color: inherit;
 		color: $color_gray_10;
 	}
 
-	.border-thin {
-		border: 0.1rem solid black;
+	.text {
+		color: $color_gray_10;
+
+		&-bright {
+			color: $color_gray_50;
+		}
+
+		&-fade {
+			color: $color_gray_75;
+		}
+
+		&-primary {
+			color: $color_blue_cornflower;
+		}
 	}
 
-	.hover-shadow:hover,
-	.focus-shadow:focus {
-		box-shadow: 0 0 1rem $color_gray_10;
+	.border {
+		&-thin {
+			border: 0.1rem solid $shade_gray_90;
+		}
+	}
+
+	.shadow {
+		&-gentle {
+			box-shadow: 0 0 5rem 0.1rem $shade_gray_90;
+		}
+	}
+
+	.hover {
+		&-text-fade:hover {
+			color: $color_gray_10;
+		}
+
+		&-shadow:hover {
+			box-shadow: 0 0 1rem $color_gray_10;
+		}
+	}
+
+	.focus {
+		&-shadow:focus {
+			box-shadow: 0 0 1rem $color_gray_10;
+		}
 	}
 }
 
