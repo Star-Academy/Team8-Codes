@@ -8,9 +8,9 @@ import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SearchService } from 'src/app/services/search.service';
-import { Music } from 'src/app/models/Music';
-import { Artist } from 'src/app/models/Artist';
+import { SearchService } from '../../services/search.service';
+import { Music } from '../../models/Music';
+import { Artist } from '../../models/Artist';
 
 @Component({
 	selector: 'app-music',
