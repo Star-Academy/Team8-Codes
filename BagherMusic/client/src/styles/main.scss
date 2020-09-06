@@ -36,11 +36,6 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-html,
-body {
-	height: 100%;
-}
-
 body {
 	margin: 0;
 	font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -63,6 +58,10 @@ body {
 			color: $color_gray_75;
 		}
 
+		&-pure-opposite {
+			color: $color_white;
+		}
+
 		&-primary {
 			color: $color_blue_cornflower;
 		}
@@ -77,6 +76,10 @@ body {
 	.shadow {
 		&-gentle {
 			box-shadow: 0 0 5rem 0.1rem $shade_gray_90;
+		}
+
+		&-narrow {
+			box-shadow: 0 0.3rem 1rem 0.1rem $shade_gray_90;
 		}
 	}
 

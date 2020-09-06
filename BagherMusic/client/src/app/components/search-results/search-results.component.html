@@ -1,2 +1,51 @@
-<p>{{artists}}</p>
-<p>{{musics}}</p>
+<div class="wrapper">
+	<header class="shadow-narrow">
+		<a routerLink='/' class="logo"><img src="../../../assets/svg/Logo.svg" alt="bagher-music-logo"></a>
+		<form #searchBox class="search-box border-thin focus-shadow" (submit)="searchListener($event)">
+			<fa-icon class={{searchIconClass}} [icon]="faSearch" (click)="searchListener($event)"></fa-icon>
+			<input #searchInput class="text-bright" type="text" (focus)="focusedOnInput($event)"
+				(blur)="blurredInput($event)" required>
+			<fa-icon class="text-primary" [icon]="faMusic"></fa-icon>
+		</form>
+	</header>
+
+	<div class="artists-wrapper">
+		<span class="artists-title text-fade">Artists</span>
+		<div #artistsScrollLeft class="scroll scroll-left hide" (click)="scrollLeft($event, 'artists')">
+			<fa-icon class="text" [icon]="faChevronLeft"></fa-icon>
+		</div>
+		<div #artistsContainer class="artists-container shadow-narrow">
+			<div class="card" *ngFor="let artist of artists" (mouseup)="clickedOnCard($event)">
+				<img src={{artist.imageUrl}} alt="Profile Picture" ondragstart="return false;">
+				<span>{{artist.name}}</span>
+			</div>
+		</div>
+		<div class="scroll scroll-right" (click)="scrollRight($event, 'artists')">
+			<fa-icon class="text" [icon]="faChevronRight"></fa-icon>
+		</div>
+	</div>
+
+
+	<div class="musics-wrapper">
+		<span class="musics-title text-fade">Musics</span>
+		<div #musicsScrollLeft class="scroll scroll-left hide" (click)="scrollLeft($event, 'musics')">
+			<fa-icon class="text" [icon]="faChevronLeft"></fa-icon>
+		</div>
+		<div #musicsContainer class="musics-container">
+			<div class="card" *ngFor="let music of musics" (mouseup)="clickedOnCard($event)"
+				(mouseenter)="mouseEnteredCard($event)" (mouseleave)="mouseLeftCard($event)">
+				<div class="overlay">
+					<p class="title">{{music.title}}</p>
+					<div class="description">
+						<p class="release-date">{{music.releaseDate}}</p>
+						<p class="artist">{{music.primaryArtistName}}</p>
+					</div>
+				</div>
+				<img src={{music.coverThumbnailUrl}} alt="Cover Art" ondragstart="return false;">
+			</div>
+		</div>
+		<div class="scroll scroll-right" (click)="scrollRight($event, 'musics')">
+			<fa-icon class="text" [icon]="faChevronRight"></fa-icon>
+		</div>
+	</div>
+</div>

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 	providedIn: 'root'
 })
 export class SearchService {
-	private query: string;
+	private query: string = 'kanye';
 
 	constructor(private http: HttpClient) {}
 
@@ -13,9 +13,17 @@ export class SearchService {
 		this.query = q;
 	}
 
-	getSearchResultsForMusic() {
+	getSearchResultsForArtists(pageIndex: number) {
 		return this.http.get(
-			'http://localhost:5000/api/search/music?query=kanye west&pageIndex=0'
+			`http://localhost:5000/api/search/artist?query=
+			${this.query}&pageIndex=${pageIndex}`
+		);
+	}
+
+	getSearchResultsForMusics(pageIndex: number) {
+		return this.http.get(
+			`http://localhost:5000/api/search/music?query=
+			${this.query}&pageIndex=${pageIndex}`
 		);
 	}
 }

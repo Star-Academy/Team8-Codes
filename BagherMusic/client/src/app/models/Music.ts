@@ -1,15 +1,15 @@
 export interface Music {
 	id?: number;
 	title?: string;
-	ReleaseDate?: string;
-	PrimaryArtistId?: number;
-	PrimaryArtistName?: string;
-	FeaturedArtistIds?: Array<number>;
-	FeaturedArtistNames?: Array<string>;
-	CoverThumbnailUrl?: string;
-	CoverImageUrl?: string;
-	SpotifyUrl?: string;
-	YoutubeUrl?: string;
-	LyricsUrl?: string;
-	Lyrics?: string;
+	releaseDate?: string;
+	primaryArtistId?: number;
+	primaryArtistName?: string;
+	featuredArtistIds?: Array<number>;
+	featuredArtistNames?: Array<string>;
+	coverThumbnailUrl?: string;
+	coverImageUrl?: string;
+	spotifyUrl?: string;
+	youtubeUrl?: string;
+	lyricsUrl?: string;
+	lyrics?: string;
 }

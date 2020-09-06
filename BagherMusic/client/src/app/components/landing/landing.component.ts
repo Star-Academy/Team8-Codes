@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { _ParseAST } from '@angular/compiler';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
-import { _ParseAST } from '@angular/compiler';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 import { SearchService } from '../../services/search.service';
 
