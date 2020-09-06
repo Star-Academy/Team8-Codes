@@ -80,6 +80,14 @@ body {
 
 		&-narrow {
 			box-shadow: 0 0.3rem 1rem 0.1rem $shade_gray_90;
+
+			&-reverse {
+				box-shadow: 0 -0.3rem 1rem 0.1rem $shade_gray_90;
+			}
+		}
+
+		&-border {
+			box-shadow: 0 0 1rem 0.1rem $shade_gray_70;
 		}
 	}
 

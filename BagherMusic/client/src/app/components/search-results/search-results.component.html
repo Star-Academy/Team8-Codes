@@ -15,7 +15,7 @@
 			<fa-icon class="text" [icon]="faChevronLeft"></fa-icon>
 		</div>
 		<div #artistsContainer class="artists-container shadow-narrow">
-			<div class="card" *ngFor="let artist of artists" (mouseup)="clickedOnCard($event)">
+			<div class="card" *ngFor="let artist of artists">
 				<img src={{artist.imageUrl}} alt="Profile Picture" ondragstart="return false;">
 				<span>{{artist.name}}</span>
 			</div>
@@ -32,7 +32,7 @@
 			<fa-icon class="text" [icon]="faChevronLeft"></fa-icon>
 		</div>
 		<div #musicsContainer class="musics-container">
-			<div class="card" *ngFor="let music of musics" (mouseup)="clickedOnCard($event)"
+			<div class="card" *ngFor="let music of musics" (mouseup)="clickedOnMusicCard($event, music.id)"
 				(mouseenter)="mouseEnteredCard($event)" (mouseleave)="mouseLeftCard($event)">
 				<div class="overlay">
 					<p class="title">{{music.title}}</p>

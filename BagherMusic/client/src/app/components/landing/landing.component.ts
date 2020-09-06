@@ -5,8 +5,6 @@ import { _ParseAST } from '@angular/compiler';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
 
-import { SearchService } from '../../services/search.service';
-
 @Component({
 	selector: 'app-landing',
 	templateUrl: './landing.component.html',
@@ -20,7 +18,7 @@ export class LandingComponent implements OnInit {
 	@ViewChild('searchInput') searchInputElement: ElementRef;
 	searchIconClass = 'text-fade';
 
-	constructor(private router: Router, private searchService: SearchService) {}
+	constructor(private router: Router) {}
 
 	ngOnInit(): void {}
 
@@ -43,7 +41,6 @@ export class LandingComponent implements OnInit {
 
 		if (!query) return;
 
-		this.searchService.setQuery(query);
-		this.router.navigate([ 'search-results' ]);
+		this.router.navigate([ 'search-results', query ]);
 	}
 }

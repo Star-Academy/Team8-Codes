@@ -7,6 +7,7 @@ $color_blue_alice: #f0faff;
 $color_blue_dodger: #e6eeff;
 $color_blue_green: #00ffff;
 $color_green_lime: #78fee0;
+$color_green_emerald: #44D96C;
 $color_green_caribbean: #3b9a9c;
 $color_green_japanese_laurel: #34893a;
 $color_yellow_cape_honey: #fef4a9;
@@ -25,6 +26,7 @@ $color_black: #000000;
 
 /********** SHADES **********/
 $shade_gray_90: transparentize($color_gray_10, 0.9);
+$shade_gray_70: transparentize($color_gray_10, 0.7);
 $shade_gray_50: transparentize($color_gray_10, 0.5);
 $shade_gray_30: transparentize($color_gray_10, 0.3);
 $shade_gray_10: transparentize($color_gray_10, 0.1);

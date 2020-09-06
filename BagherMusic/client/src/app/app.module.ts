@@ -12,9 +12,10 @@ import { AppComponent } from './app.component';
 
 import { LandingComponent } from './components/landing/landing.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { MusicComponent } from './pages/music/music.component';
 
 @NgModule({
-	declarations: [ AppComponent, LandingComponent, SearchResultsComponent ],
+	declarations: [ AppComponent, LandingComponent, SearchResultsComponent, MusicComponent ],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,

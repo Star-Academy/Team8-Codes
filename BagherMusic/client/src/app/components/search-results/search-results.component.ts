@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
@@ -18,6 +18,8 @@ import { SearchService } from '../../services/search.service';
 	styleUrls: [ './search-results.component.scss' ]
 })
 export class SearchResultsComponent implements OnInit {
+	query: string;
+
 	faSearch = faSearch;
 	faMusic = faMusic;
 	faChevronLeft = faChevronLeft;
@@ -37,10 +39,17 @@ export class SearchResultsComponent implements OnInit {
 	@ViewChild('musicsScrollLeft') musicsScrollLeftElement: ElementRef;
 	searchIconClass = 'text-fade';
 
-	constructor(private router: Router, private searchService: SearchService) {}
+	constructor(
+		private router: Router,
+		private route: ActivatedRoute,
+		private searchService: SearchService
+	) {}
 
 	ngOnInit(): void {
-		this.init();
+		this.route.paramMap.subscribe((params) => {
+			this.query = params.get('query');
+			this.init();
+		});
 	}
 
 	init() {
@@ -56,11 +65,11 @@ export class SearchResultsComponent implements OnInit {
 
 	loadMusics() {
 		this.searchService
-			.getSearchResultsForMusics(this.artistsPageIndex)
+			.getSearchResultsForMusics(this.query, this.musicsPageIndex)
 			.subscribe(
 				(res: ResultSet<Music>) => {
 					this.musics = [ ...this.musics, ...res.hits ];
-					this.artistsPageIndex++;
+					this.musicsPageIndex++;
 				},
 				(err) => console.log(err)
 			);
@@ -68,11 +77,11 @@ export class SearchResultsComponent implements OnInit {
 
 	loadArtists() {
 		this.searchService
-			.getSearchResultsForArtists(this.musicsPageIndex)
+			.getSearchResultsForArtists(this.query, this.artistsPageIndex)
 			.subscribe(
 				(res: ResultSet<Artist>) => {
 					this.artists = [ ...this.artists, ...res.hits ];
-					this.musicsPageIndex++;
+					this.artistsPageIndex++;
 				},
 				(err) => console.log(err)
 			);
@@ -97,12 +106,11 @@ export class SearchResultsComponent implements OnInit {
 
 		if (!query) return;
 
-		this.searchService.setQuery(query);
-		this.init();
+		this.router.navigate([ 'search-results', query ]);
 	}
 
-	clickedOnCard = (e) => {
-		console.log('Moving to another page ...');
+	clickedOnMusicCard = (e, id) => {
+		this.router.navigate([ 'music', id ]);
 	};
 
 	mouseEnteredCard = (e) => {
@@ -114,14 +122,14 @@ export class SearchResultsComponent implements OnInit {
 	};
 
 	scrollLeft = (e, container) => {
-		if (container == 'musics') {
+		if (container === 'musics') {
 			this.musicsContainerElement.nativeElement.scrollLeft -= 330;
 
 			if (this.musicsContainerElement.nativeElement.scrollLeft <= 0)
 				this.musicsScrollLeftElement.nativeElement.classList.add(
 					'hide'
 				);
-		} else if (container == 'artists') {
+		} else if (container === 'artists') {
 			this.artistsContainerElement.nativeElement.scrollLeft -= 330;
 
 			if (this.artistsContainerElement.nativeElement.scrollLeft <= 0)
@@ -132,29 +140,21 @@ export class SearchResultsComponent implements OnInit {
 	};
 
 	scrollRight = (e, container) => {
-		if (container == 'musics') {
-			const initialPosition = this.musicsContainerElement.nativeElement
-				.scrollLeft;
+		if (container === 'musics') {
 			this.musicsContainerElement.nativeElement.scrollLeft += 330;
+			this.musicsScrollLeftElement.nativeElement.classList.remove('hide');
 
-			if (
-				this.musicsContainerElement.nativeElement.scrollLeft !==
-				initialPosition
-			)
-				this.musicsScrollLeftElement.nativeElement.classList.remove(
-					'hide'
-				);
-			else this.loadMusics();
-		} else if (container == 'artists') {
-			const initialPosition = this.musicsContainerElement.nativeElement
-				.scrollLeft;
+			console.log(this.musics.length);
+			console.log(this.musicsContainerElement.nativeElement.scrollRight);
+			console.log(this.musicsContainerElement);
 
+			if (this.musicsContainerElement.nativeElement.scrollRight < 330) {
+				this.loadMusics();
+			}
+		} else if (container === 'artists') {
 			this.artistsContainerElement.nativeElement.scrollLeft += 330;
 
-			if (
-				this.musicsContainerElement.nativeElement.scrollLeft !==
-				initialPosition
-			)
+			if (this.artistsContainerElement.nativeElement.scrollRight < 330)
 				this.artistsScrollLeftElement.nativeElement.classList.remove(
 					'hide'
 				);
