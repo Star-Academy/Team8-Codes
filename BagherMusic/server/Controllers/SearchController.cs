@@ -3,20 +3,23 @@ using System;
 using System.Diagnostics;
 
 // Microsoft
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 // Internal
-using System.Text.Json;
-
 using BagherMusic.Core.QuerySystem;
 using BagherMusic.Core.Structures;
 using BagherMusic.Models;
 using BagherMusic.Services;
 
+using Microsoft.AspNetCore.Cors;
+
 namespace BagherMusic.Controllers
 {
-	[ApiController]
+	// [EnableCors("BagherMusicSearch")]
+	[EnableCors("SearchOrigins")]
 	[Route("api/[controller]")]
+	[ApiController]
 	public class SearchController : ControllerBase
 	{
 		private readonly ISearchEngineService searchService;
