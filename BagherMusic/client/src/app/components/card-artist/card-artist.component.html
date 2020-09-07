@@ -1,4 +1,5 @@
-<div class="card" (mouseup)="clickedOnCard($event)">
+<a class="card" [href]="'/artist/'+artist.id" (mouseenter)="mouseEnteredCard($event)"
+	(mouseleave)="mouseLeftCard($event)">
 	<img src={{artist.imageUrl}} alt="Profile Picture" ondragstart="return false;">
-	<span>{{artist.name}}</span>
-</div>
+	<span class="text">{{artist.name}}</span>
+</a>

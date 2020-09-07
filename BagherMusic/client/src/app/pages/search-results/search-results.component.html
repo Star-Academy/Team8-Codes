@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<app-card-container #musicsContainer [label]="'Artists'" [height]="'24rem'" (getCards)="getArtistCards($event)"
+<app-card-container #musicsContainer [label]="'Artists'" [height]="'28rem'" (getCards)="getArtistCards($event)"
 	(scrolledToEnd)="loadArtists()">
 	<app-card-artist *ngFor="let artist of artists" [artist]="artist"></app-card-artist>
 </app-card-container>

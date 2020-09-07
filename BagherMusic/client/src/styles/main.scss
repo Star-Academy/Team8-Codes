@@ -38,11 +38,13 @@ body {
 	overflow: overlay;
 }
 
+a {
+	text-decoration: none;
+}
+
 *::-webkit-scrollbar {
 	width: 1rem;
 	height: 1rem;
-
-	left: -1rem;
 }
 
 *::-webkit-scrollbar-track {
@@ -87,6 +89,8 @@ body {
 
 /********** THEMES **********/
 #app {
+	color: $color_gray_10;
+
 	input {
 		color: $color_gray_10;
 	}

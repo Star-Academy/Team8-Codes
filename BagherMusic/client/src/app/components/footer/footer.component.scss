@@ -1,0 +1,52 @@
+footer {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	column-gap: 10rem;
+	justify-content: center;
+
+	max-width: 100rem;
+
+	margin: 2rem auto 0;
+	padding: 2rem;
+
+	.title {
+		font-size: 2.4rem;
+		font-weight: 500;
+
+		text-transform: uppercase;
+	}
+
+	.subtitle {
+		margin-top: 1rem;
+
+		font-size: 1.8rem;
+		line-height: 150%;
+
+		i,
+		a {
+			font-weight: 500;
+		}
+
+		ul {
+			margin-bottom: 1rem;
+
+			list-style: none;
+
+			span {
+				font-weight: 500;
+			}
+
+			li {
+				text-indent: 2rem;
+			}
+		}
+	}
+
+	p {
+		text-align: justify;
+	}
+
+	.about {}
+
+	.key-features {}
+}

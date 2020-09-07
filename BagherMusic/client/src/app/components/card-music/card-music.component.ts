@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Music } from 'src/app/models/Music';
-import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-card-music',
@@ -10,7 +9,7 @@ import { Router } from '@angular/router';
 export class CardMusicComponent implements OnInit {
 	@Input() music: Music;
 
-	constructor(private router: Router) {}
+	constructor() {}
 
 	ngOnInit(): void {}
 
@@ -20,9 +19,5 @@ export class CardMusicComponent implements OnInit {
 
 	mouseLeftCard = (e) => {
 		e.target.childNodes[0].classList.remove('active');
-	};
-
-	clickedOnCard = (e) => {
-		this.router.navigate([ 'music', this.music.id ]);
 	};
 }

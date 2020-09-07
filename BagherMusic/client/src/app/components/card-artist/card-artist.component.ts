@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { Artist } from 'src/app/models/Artist';
 
 @Component({
@@ -10,11 +9,15 @@ import { Artist } from 'src/app/models/Artist';
 export class CardArtistComponent implements OnInit {
 	@Input() artist: Artist;
 
-	constructor(private router: Router) {}
+	constructor() {}
 
 	ngOnInit(): void {}
 
-	clickedOnCard = (e) => {
-		this.router.navigate([ 'artist', this.artist.id ]);
+	mouseEnteredCard = (e) => {
+		e.target.classList.add('shadow-narrow');
+	};
+
+	mouseLeftCard = (e) => {
+		e.target.classList.remove('shadow-narrow');
 	};
 }

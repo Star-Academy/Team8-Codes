@@ -1,4 +1,4 @@
-<div class="card" (mouseup)="clickedOnCard($event)" (mouseenter)="mouseEnteredCard($event)"
+<a class="card" [href]="'/music/'+music.id" (mouseenter)="mouseEnteredCard($event)"
 	(mouseleave)="mouseLeftCard($event)">
 	<div class="overlay">
 		<p class="title">{{music.title}}</p>
@@ -8,4 +8,4 @@
 		</div>
 	</div>
 	<img src={{music.coverThumbnailUrl}} alt="Cover Art" ondragstart="return false;">
-</div>
+</a>
