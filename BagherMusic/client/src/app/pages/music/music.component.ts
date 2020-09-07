@@ -14,7 +14,7 @@ import { Artist } from '../../models/Artist';
 	styleUrls: [ './music.component.scss' ]
 })
 export class MusicComponent implements OnInit {
-	private id;
+	id: number;
 	music: Music;
 	primaryArtist: Artist;
 	featuredArtists: Array<Artist>;
@@ -27,7 +27,7 @@ export class MusicComponent implements OnInit {
 		private searchService: SearchService
 	) {
 		this.route.paramMap.subscribe((params) => {
-			this.id = params.get('id');
+			this.id = +params.get('id');
 			this.init();
 		});
 	}

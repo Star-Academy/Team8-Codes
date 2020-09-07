@@ -8,23 +8,18 @@
 		<div class="right">
 			<div class="top">
 				<span class="title">{{music.title}}</span>
-				<a [href]="music.spotifyUrl" target="_blank">
+				<a *ngIf="music.spotifyUrl" [href]="music.spotifyUrl" target="_blank">
 					<fa-icon class="spotify" [icon]="faSpotify"></fa-icon>
 				</a>
-				<a [href]="music.youtubeUrl" target="_blank">
+				<a *ngIf="music.spotifyUrl" [href]="music.youtubeUrl" target="_blank">
 					<fa-icon class="youtube" [icon]="faYoutube"></fa-icon>
 				</a>
 			</div>
 			<div class="release-date">{{music.releaseDate}}</div>
 			<div class="artists">
-				<div class="primary">
-					<img src="{{primaryArtist.imageUrl}}" alt="Primary artist profile picture">
-					<span> {{primaryArtist.name}}</span>
-				</div>
-
-				<div class="featured" *ngFor="let artist of featuredArtists">
-					<img src="{{artist.imageUrl}}" alt="Featured artist profile picture">
-					<span> {{artist.name}}</span>
+				<div class="artist" *ngFor="let artist of featuredArtists.concat(primaryArtist)">
+					<img src="{{artist.imageUrl}}" alt="Artist profile picture">
+					<span>{{artist.name}}</span>
 				</div>
 			</div>
 		</div>
