@@ -1,9 +1,13 @@
 <app-header></app-header>
 
-<app-card-container [label]="'Artists'" [height]="'40rem'">
+<app-card-container #musicsContainer [label]="'Artists'" [height]="'24rem'" (getCards)="getArtistCards($event)"
+	(scrolledToEnd)="loadArtists()">
 	<app-card-artist *ngFor="let artist of artists" [artist]="artist"></app-card-artist>
 </app-card-container>
 
-<app-card-container [label]="'Musics'" [height]="'80rem'">
+<app-card-container #artistsContainer [label]="'Musics'" [height]="'70rem'" (getCards)="getMusicCards($event)"
+	(scrolledToEnd)="loadMusics()">
 	<app-card-music *ngFor="let music of musics" [music]="music"></app-card-music>
 </app-card-container>
+
+<app-footer></app-footer>

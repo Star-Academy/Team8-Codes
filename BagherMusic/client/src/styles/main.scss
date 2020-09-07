@@ -1,20 +1,20 @@
 @import "./config";
 
-/********** REMOTE FONTS **********/
+/************ REMOTE FONTS ************/
 
 // Roboto
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-/********** FONTS **********/
+/**************** FONTS ***************/
 
 $font-roboto: "Roboto";
 $font-default: sans-serif;
 $font-all: $font-roboto,
 $font-default;
 
-/********** FONT FACES **********/
+/************* FONT FACES *************/
 
-/********** RESET **********/
+/**************** RESET ***************/
 
 * {
 	box-sizing: border-box;
@@ -28,8 +28,6 @@ $font-default;
 }
 
 html {
-	// background-color: $color_white;
-
 	font-family: $font_all;
 	font-size: 62.5%;
 	-webkit-font-smoothing: antialiased;
@@ -37,8 +35,54 @@ html {
 }
 
 body {
-	margin: 0;
-	font-family: Roboto, "Helvetica Neue", sans-serif;
+	overflow: overlay;
+}
+
+*::-webkit-scrollbar {
+	width: 1rem;
+	height: 1rem;
+
+	left: -1rem;
+}
+
+*::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+	background: $color_gray_75;
+
+	border: none;
+	border-radius: 1rem;
+}
+
+.scrollTop {
+	background-color: $color_black !important;
+	color: $color_white !important;
+
+	position: fixed;
+
+	bottom: 2rem;
+	right: 2rem;
+
+	z-index: 1000;
+
+	align-items: center;
+	justify-content: center;
+
+	border-radius: 100%;
+
+	opacity: 0.5;
+
+	cursor: pointer;
+
+	animation: fadeIn 0.3s;
+}
+
+.scrollTop:hover {
+	background-color: $color_orange_supernova !important;
+
+	opacity: 1;
 }
 
 /********** THEMES **********/

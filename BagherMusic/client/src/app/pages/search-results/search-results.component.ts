@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -27,13 +27,10 @@ export class SearchResultsComponent implements OnInit {
 	artistsPageIndex: number;
 	musicsPageIndex: number;
 
-	@ViewChild('artistsContainer') artistsContainerElement: ElementRef;
-	@ViewChild('musicsContainer') musicsContainerElement: ElementRef;
-	@ViewChild('artistsScrollLeft') artistsScrollLeftElement: ElementRef;
-	@ViewChild('musicsScrollLeft') musicsScrollLeftElement: ElementRef;
+	artistsCompletelyLoaded: boolean;
+	musicsCompletelyLoaded: boolean;
 
 	constructor(
-		private router: Router,
 		private route: ActivatedRoute,
 		private searchService: SearchService
 	) {}
@@ -46,6 +43,9 @@ export class SearchResultsComponent implements OnInit {
 	}
 
 	init() {
+		this.artistsCompletelyLoaded = false;
+		this.musicsCompletelyLoaded = false;
+
 		this.artistsPageIndex = 0;
 		this.musicsPageIndex = 0;
 
@@ -57,26 +57,59 @@ export class SearchResultsComponent implements OnInit {
 	}
 
 	loadMusics() {
-		this.searchService
-			.getSearchResultsForMusics(this.query, this.musicsPageIndex)
-			.subscribe(
-				(res: ResultSet<Music>) => {
-					this.musics = [ ...this.musics, ...res.hits ];
-					this.musicsPageIndex++;
-				},
-				(err) => console.log(err)
-			);
+		if (!this.musicsCompletelyLoaded)
+			this.searchService
+				.getSearchResultsForMusics(this.query, this.musicsPageIndex)
+				.subscribe(
+					(res: ResultSet<Music>) => {
+						if (res.count > 0) {
+							this.musics = [ ...this.musics, ...res.hits ];
+							this.musicsPageIndex++;
+						} else {
+							this.musicsCompletelyLoaded = true;
+						}
+					},
+					(err) => console.log(err)
+				);
 	}
 
 	loadArtists() {
-		this.searchService
-			.getSearchResultsForArtists(this.query, this.artistsPageIndex)
-			.subscribe(
-				(res: ResultSet<Artist>) => {
-					this.artists = [ ...this.artists, ...res.hits ];
-					this.artistsPageIndex++;
-				},
-				(err) => console.log(err)
-			);
+		if (!this.artistsCompletelyLoaded)
+			this.searchService
+				.getSearchResultsForArtists(this.query, this.artistsPageIndex)
+				.subscribe(
+					(res: ResultSet<Artist>) => {
+						if (res.count > 0) {
+							this.artists = [ ...this.artists, ...res.hits ];
+							this.artistsPageIndex++;
+						} else {
+							this.artistsCompletelyLoaded = true;
+						}
+					},
+					(err) => console.log(err)
+				);
+	}
+
+	getArtistCards(e) {
+		const interval = setInterval(() => {
+			if (!this.artistsCompletelyLoaded && !this.overflowing(e.cards))
+				this.loadArtists();
+			else clearInterval(interval);
+		}, 1000);
+	}
+
+	getMusicCards(e) {
+		const interval = setInterval(() => {
+			if (!this.musicsCompletelyLoaded && !this.overflowing(e.cards))
+				this.loadMusics();
+			else clearInterval(interval);
+		}, 1000);
+	}
+
+	overflowing(element: Element): boolean {
+		return (
+			element.clientWidth < element.scrollWidth ||
+			element.clientHeight < element.scrollHeight
+		);
 	}
 }

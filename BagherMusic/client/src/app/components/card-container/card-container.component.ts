@@ -1,59 +1,40 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	Input,
+	Output,
+	EventEmitter,
+	ViewChild,
+	ElementRef,
+	AfterViewInit
+} from '@angular/core';
 
 @Component({
 	selector: 'app-card-container',
 	templateUrl: './card-container.component.html',
 	styleUrls: [ './card-container.component.scss' ]
 })
-export class CardContainerComponent implements OnInit {
+export class CardContainerComponent implements OnInit, AfterViewInit {
 	@Input() label: string;
 	@Input() height: string;
-	@Input() onEndAction: CallableFunction;
 
-	constructor() {
-		// this.onEndAction();
-	}
+	@Output() getCards = new EventEmitter();
+	@Output() scrolledToEnd = new EventEmitter();
+
+	@ViewChild('cards') cardsElement: ElementRef;
+
+	constructor() {}
 
 	ngOnInit(): void {}
 
-	// scrollLeft = (e, container) => {
-	// 	if (container === 'musics') {
-	// 		this.musicsContainerElement.nativeElement.scrollLeft -= 330;
+	ngAfterViewInit(): void {
+		this.getCards.emit({ cards: this.cardsElement.nativeElement });
+	}
 
-	// 		if (this.musicsContainerElement.nativeElement.scrollLeft <= 0)
-	// 			this.musicsScrollLeftElement.nativeElement.classList.add(
-	// 				'hide'
-	// 			);
-	// 	} else if (container === 'artists') {
-	// 		this.artistsContainerElement.nativeElement.scrollLeft -= 330;
+	scrollHandler(e: Event) {
+		const element = e.target as Element;
 
-	// 		if (this.artistsContainerElement.nativeElement.scrollLeft <= 0)
-	// 			this.artistsScrollLeftElement.nativeElement.classList.add(
-	// 				'hide'
-	// 			);
-	// 	}
-	// };
-
-	// scrollRight = (e, container) => {
-	// 	if (container === 'musics') {
-	// 		this.musicsContainerElement.nativeElement.scrollLeft += 330;
-	// 		this.musicsScrollLeftElement.nativeElement.classList.remove('hide');
-
-	// 		console.log(this.musics.length);
-	// 		console.log(this.musicsContainerElement.nativeElement.scrollRight);
-	// 		console.log(this.musicsContainerElement);
-
-	// 		if (this.musicsContainerElement.nativeElement.scrollRight < 330) {
-	// 			this.loadMusics();
-	// 		}
-	// 	} else if (container === 'artists') {
-	// 		this.artistsContainerElement.nativeElement.scrollLeft += 330;
-
-	// 		if (this.artistsContainerElement.nativeElement.scrollRight < 330)
-	// 			this.artistsScrollLeftElement.nativeElement.classList.remove(
-	// 				'hide'
-	// 			);
-	// 		else this.loadArtists();
-	// 	}
-	// };
+		if (element.scrollWidth - element.scrollLeft === element.clientWidth)
+			this.scrolledToEnd.emit();
+	}
 }

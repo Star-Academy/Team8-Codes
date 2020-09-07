@@ -22,7 +22,9 @@ export class SearchBoxComponent implements OnInit {
 
 	constructor(private router: Router) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+	}
 
 	focusedOnInput(e) {
 		this.searchBoxElement.nativeElement.classList.add('shadow-gentle');

@@ -1,10 +1,4 @@
 <span class="label text-fade">{{label}}</span>
-<!-- <div #artistsScrollLeft class="scroll scroll-left hide" (click)="scrollLeft($event, 'artists')">
-	<fa-icon class="text" [icon]="faChevronLeft"></fa-icon>
-</div> -->
-<div class="cards shadow-narrow" [ngStyle]="{'height':height}">
+<div #cards class="cards shadow-narrow" [ngStyle]="{'height':height}" (scroll)="scrollHandler($event)">
 	<ng-content></ng-content>
 </div>
-<!-- <div class="scroll scroll-right" (click)="scrollRight($event, 'artists')">
-	<fa-icon class="text" [icon]="faChevronRight"></fa-icon>
-</div> -->
