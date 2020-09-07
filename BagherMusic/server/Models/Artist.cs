@@ -8,15 +8,25 @@ namespace BagherMusic.Models
 
 		public Artist(int id, string name, string thumbnailUrl, string imageUrl, string twitterName, string instagramName)
 		{
-			// General
+			InitializeMetaData(id, name);
+			InitializeImages(thumbnailUrl, imageUrl);
+			InitializeExternalLinks(twitterName, instagramName);
+		}
+
+		private void InitializeMetaData(int id, string name)
+		{
 			Id = id;
 			Name = name;
+		}
 
-			// Images
+		private void InitializeImages(string thumbnailUrl, string imageUrl)
+		{
 			ThumbnailUrl = thumbnailUrl;
 			ImageUrl = imageUrl;
+		}
 
-			// External Links
+		private void InitializeExternalLinks(string twitterName, string instagramName)
+		{
 			TwitterName = twitterName;
 			InstagramName = instagramName;
 		}

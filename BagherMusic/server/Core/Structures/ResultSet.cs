@@ -13,9 +13,9 @@ namespace BagherMusic.Core.Structures
 			Hits = hits;
 		}
 
-		public double Delay { get; set; }
-		public int Count { get; set; }
-		public HashSet<T> Hits { get; set; }
+		public double Delay { get; }
+		public int Count { get; }
+		public HashSet<T> Hits { get; }
 
 		public override string ToString()
 		{

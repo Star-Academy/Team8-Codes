@@ -1,6 +1,3 @@
-// Standard Library
-using System;
-
 namespace BagherMusic.Models
 {
 	public class Token : IEntity<string>

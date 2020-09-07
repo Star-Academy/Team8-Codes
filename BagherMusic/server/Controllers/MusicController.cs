@@ -16,28 +16,23 @@ namespace BagherMusic.Controllers
 	[Route("api/[controller]")]
 	public class MusicController : ControllerBase
 	{
-		private readonly ISearchEngineService searchService;
+		private readonly IElasticService<int, Music> musicService;
 
-		public MusicController(ISearchEngineService searchService)
+		public MusicController(IElasticService<int, Music> musicService)
 		{
-			this.searchService = searchService;
+			this.musicService = musicService;
 		}
 
-		/*
-			api/music/{id}
-		*/
 		[HttpGet("{id}")]
 		public IActionResult GetMusic(int id)
 		{
 			try
 			{
-				return Ok(searchService.GetEntity<int, Music>(id));
+				return Ok(musicService.GetEntity(id));
 			}
 			catch (Exception e)
 			{
-				return new ObjectResult(
-					new { message = e.Message, StatusCode = 400, currentDate = DateTime.Now }
-				);
+				return BadRequest(e.Message);
 			}
 		}
 	}

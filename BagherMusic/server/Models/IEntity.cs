@@ -1,9 +1,8 @@
-using System;
 using System.Text.Json.Serialization;
 
 namespace BagherMusic.Models
 {
-	public abstract class IEntity<T> : IComparable where T : IComparable
+	public abstract class IEntity<T>
 	{
 		[JsonPropertyName("id")]
 		public T Id { get; set; }
@@ -16,13 +15,6 @@ namespace BagherMusic.Models
 		public override int GetHashCode()
 		{
 			return Id.GetHashCode();
-		}
-
-		int IComparable.CompareTo(object obj)
-		{
-			if (obj is IEntity<T> that)
-				return Id.CompareTo(that.Id);
-			throw new ArgumentException($"Object must be an Entity!");
 		}
 	}
 }

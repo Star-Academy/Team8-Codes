@@ -16,48 +16,38 @@ namespace BagherMusic.Controllers
 	[Route("api/[controller]")]
 	public class ImportController : ControllerBase
 	{
-		private readonly IImportService importService;
+		private readonly IElasticService<int, Artist> artistService;
+		private readonly IElasticService<int, Music> musicService;
 
-		public ImportController(IImportService importService)
+		public ImportController(IElasticService<int, Artist> artistService, IElasticService<int, Music> musicService)
 		{
-			this.importService = importService;
+			this.artistService = artistService;
+			this.musicService = musicService;
 		}
 
-		/*
-			api/import/music
-		*/
 		[HttpPost("music")]
 		public IActionResult PostMusics([FromBody] string resourcesPath)
 		{
-			try
-			{
-				var count = importService.Import<int, Music>(resourcesPath);
-				return Ok($"Successfully imported {count} music into the database.");
-			}
-			catch (Exception e)
-			{
-				return new ObjectResult(
-					new { message = e.Message, StatusCode = 400, currentDate = DateTime.Now }
-				);
-			}
+			return PostEntities<int, Music>(resourcesPath, musicService);
 		}
 
-		/*
-			api/import/artist
-		*/
 		[HttpPost("artist")]
 		public IActionResult PostArtists([FromBody] string resourcesPath)
 		{
+			return PostEntities<int, Artist>(resourcesPath, artistService);
+		}
+
+		private IActionResult PostEntities<T, G>(string resourcesPath, IElasticService<T, G> service)
+		where G : IEntity<T>
+		{
 			try
 			{
-				var count = importService.Import<int, Artist>(resourcesPath);
-				return Ok($"Successfully imported {count} artist into the database.");
+				var count = service.Import(resourcesPath);
+				return Ok($"Imported {count} entities");
 			}
 			catch (Exception e)
 			{
-				return new ObjectResult(
-					new { message = e.Message, StatusCode = 400, currentDate = DateTime.Now }
-				);
+				return BadRequest(e.Message);
 			}
 		}
 	}

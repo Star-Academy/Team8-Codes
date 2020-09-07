@@ -1,4 +1,5 @@
 // Internal
+using BagherMusic.Models;
 using BagherMusic.Services;
 
 // Microsoft
@@ -60,8 +61,9 @@ namespace BagherMusic
 				}
 			);
 			services.AddControllers();
-			services.AddSingleton<ISearchEngineService, SearchEngineService>();
-			services.AddSingleton<IImportService, ImportService>();
+			services.AddSingleton<IElasticClientService, ElasticClientService>();
+			services.AddSingleton<IElasticService<int, Music>, ElasticMusicService>();
+			services.AddSingleton<IElasticService<int, Artist>, ElasticArtistService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

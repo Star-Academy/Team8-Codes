@@ -9,26 +9,42 @@ namespace BagherMusic.Models
 
 		public Music(int id, string title, string releaseDate, int primaryArtistId, string primaryArtistName, List<int> featuredArtistIds, List<string> featuredArtistNames, string coverThumbnailUrl, string coverImageUrl, string spotifyUrl, string youtubeUrl, string lyricsUrl, string lyrics)
 		{
-			// General
+			InitializeMetadata(id, title, releaseDate);
+			InitializeArtists(primaryArtistId, primaryArtistName, featuredArtistIds, featuredArtistNames);
+			InitializeCoverArt(coverThumbnailUrl, coverImageUrl);
+			InitializeExternalLinks(spotifyUrl, youtubeUrl);
+			InitializeLyrics(lyricsUrl, lyrics);
+		}
+
+		private void InitializeMetadata(int id, string title, string releaseDate)
+		{
 			Id = id;
 			Title = title;
 			ReleaseDate = releaseDate;
+		}
 
-			// Artists
+		private void InitializeArtists(int primaryArtistId, string primaryArtistName, List<int> featuredArtistIds, List<string> featuredArtistNames)
+		{
 			PrimaryArtistId = primaryArtistId;
 			PrimaryArtistName = primaryArtistName;
 			FeaturedArtistIds = featuredArtistIds;
 			FeaturedArtistNames = featuredArtistNames;
+		}
 
-			// Cover Arts
+		private void InitializeCoverArt(string coverThumbnailUrl, string coverImageUrl)
+		{
 			CoverThumbnailUrl = coverThumbnailUrl;
 			CoverImageUrl = coverImageUrl;
+		}
 
-			// External Links
+		private void InitializeExternalLinks(string spotifyUrl, string youtubeUrl)
+		{
 			SpotifyUrl = spotifyUrl;
 			YoutubeUrl = youtubeUrl;
+		}
 
-			// Lyrics
+		private void InitializeLyrics(string lyricsUrl, string lyrics)
+		{
 			LyricsUrl = lyricsUrl;
 			Lyrics = lyrics;
 		}

@@ -8,10 +8,12 @@ using BagherMusic.Models;
 
 namespace BagherMusic.Services
 {
-	public interface IImportService
+	public interface IElasticService<T, G> where G : IEntity<T>
 	{
-		int Import<T, G>(string resourcesPath)
-		where T : IComparable
-		where G : IEntity<T>;
+		G GetEntity(T id);
+
+		HashSet<G> GetSearchResults(Query query, int pageIndex);
+
+		int Import(string resourcesPath);
 	}
 }
