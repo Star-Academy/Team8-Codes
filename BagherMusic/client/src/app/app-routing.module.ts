@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LandingComponent } from './components/landing/landing.component';
-import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { LandingComponent } from './pages/landing/landing.component';
+import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { MusicComponent } from './pages/music/music.component';
 import { ArtistComponent } from './pages/artist/artist.component';
 
