@@ -60,134 +60,185 @@
 	}
 
 	main {
-
 		width: 100%;
 
-		.description,
-		.lyrics {
-			display: grid;
-			grid-template-areas: "left right";
-			grid-template-columns: 1fr 2fr;
-
-			.left,
-			.right {
-				padding: 3rem;
-			}
-
-			.left {
-				grid-area: left;
-
-				justify-self: end;
-			}
-
-			.right {
-				grid-area: right;
-			}
-		}
-
 		.description {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+
 			width: 100%;
 			height: 36rem;
 
-			.left {
-				img {
-					width: 30rem;
-					height: 30rem;
+			padding: 3rem;
 
-					border-radius: 4rem;
-				}
+			img {
+				width: 21rem;
+				height: 21rem;
+
+				border-radius: 100%;
 			}
 
-			.right {
-				.top {
-					display: flex;
-					justify-content: flex-start;
-					align-items: center;
+			.name {
+				font-size: 3.6rem;
+				font-weight: 700;
 
-					.title {
-						margin-right: 2rem;
+				text-transform: uppercase;
+			}
 
-						font-size: 4.8rem;
-						font-weight: 700;
+			fa-icon {
+				&.twitter {
+					color: $color_blue_cornflower;
 
-						text-transform: uppercase;
-					}
-
-					fa-icon {
-
-						&.spotify {
-							color: $color_green_emerald;
-
-							font-size: 4rem;
-						}
-
-						&.youtube {
-							color: $color_red_flamingo;
-
-							margin-left: 1rem;
-
-							font-size: 4.8rem;
-						}
-					}
+					font-size: 4rem;
 				}
 
-				.release-date {
-					font-size: 1.8rem;
-					font-weight: 300;
-				}
+				&.instagram {
+					color: $color_red_flamingo;
 
-				.artists {
-					display: flex;
-					flex-direction: column;
-					flex-wrap: wrap;
-					align-content: flex-start;
+					margin-left: 1rem;
 
-					height: 20rem;
-
-					div {
-						display: flex;
-						justify-content: flex-start;
-						align-items: flex-start;
-
-						width: 40rem;
-
-						margin: 2rem 0 0;
-
-						img {
-							width: 4.5rem;
-							height: 4.5rem;
-
-							border-radius: 100%;
-						}
-
-						span {
-							margin-left: 2rem;
-
-							font-size: 3.6rem;
-							font-weight: 300;
-						}
-					}
+					font-size: 4.8rem;
 				}
 			}
 		}
 
-		.lyrics {
-			font-size: 2.1rem;
+		.musics {
+			display: grid;
+			grid-template-columns: auto auto auto;
+			column-gap: 3rem;
+			row-gap: 3rem;
+			justify-content: center;
 
-			.left {
-				.label {
-					font-weight: 700;
+			margin: 0 auto;
+			padding: 3rem;
+
+			.card {
+				position: relative;
+
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+
+				width: 30rem;
+				height: 30rem;
+
+				&:nth-child(3n) {
+					margin-right: 0;
 				}
-			}
 
-			.right {
-				.lyrics {
-					display: block;
+				div.overlay {
+					background: linear-gradient(0deg, $color_gray_10, $shade_gray_50, $color_gray_10);
 
-					font-weight: 700;
-					line-height: 150%;
+					display: none;
 
-					white-space: pre-wrap;
+					&.active {
+						color: $color_white;
+
+						display: block;
+
+						position: absolute;
+
+						width: 100%;
+						height: 100%;
+
+						padding: 2rem;
+
+						border-radius: 3rem;
+
+						overflow: hidden;
+
+						cursor: pointer;
+
+						p {
+							display: block;
+							text-align: center;
+						}
+
+						.title {
+							position: absolute;
+
+							left: 0;
+							top: 2rem;
+
+							width: 100%;
+							height: 40%;
+
+							margin: 0 auto;
+
+							font-size: 7ch;
+
+							text-transform: uppercase;
+
+							animation: enter-from-top 0.5s;
+							transition: all 0.5s ease-in-out;
+						}
+
+						.description {
+							position: absolute;
+
+							left: 0;
+							bottom: 2rem;
+
+							display: flex;
+							flex-direction: column;
+							justify-content: flex-end;
+
+							width: 100%;
+
+							margin: 0 auto;
+
+							animation: enter-from-bottom 0.5s;
+							transition: all 0.5s ease-in-out;
+
+							.release-date {
+								font-size: 1.4rem;
+							}
+
+							.artist {
+								font-size: 6.5ch;
+								font-weight: 300;
+							}
+						}
+
+						@keyframes enter-from-top {
+							0% {
+								top: -10rem;
+							}
+
+							100% {
+								top: 2rem;
+							}
+						}
+
+						@keyframes enter-from-bottom {
+							0% {
+								bottom: -10rem;
+							}
+
+							100% {
+								bottom: 2rem;
+							}
+						}
+					}
+				}
+
+				img {
+					width: 100%;
+					height: 100%;
+
+					border-radius: 3rem;
+				}
+
+				span {
+					margin-top: 2rem;
+
+					font-size: 1.8rem;
+					font-weight: 500;
+
+					text-align: center;
 				}
 			}
 		}

@@ -15,7 +15,7 @@
 			<fa-icon class="text" [icon]="faChevronLeft"></fa-icon>
 		</div>
 		<div #artistsContainer class="artists-container shadow-narrow">
-			<div class="card" *ngFor="let artist of artists">
+			<div class="card" *ngFor="let artist of artists" (mouseup)="clickedOnArtistCard($event, artist.id)">
 				<img src={{artist.imageUrl}} alt="Profile Picture" ondragstart="return false;">
 				<span>{{artist.name}}</span>
 			</div>

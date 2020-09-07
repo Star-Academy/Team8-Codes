@@ -53,8 +53,8 @@ export class ArtistComponent implements OnInit {
 			(res: Artist) => {
 				this.artist = res;
 
-				this.searchService.getArtistMusics(this.id).subscribe(
-					(res: Array<Artist>) => {
+				this.searchService.getMusicsByArtist(this.id).subscribe(
+					(res: Array<Music>) => {
 						this.musics = res;
 					},
 					(err) => console.log(err)
@@ -89,4 +89,16 @@ export class ArtistComponent implements OnInit {
 
 		this.router.navigate([ 'search-results', query ]);
 	}
+
+	clickedOnMusicCard = (e, id) => {
+		this.router.navigate([ 'music', id ]);
+	};
+
+	mouseEnteredCard = (e) => {
+		e.target.childNodes[0].classList.add('active');
+	};
+
+	mouseLeftCard = (e) => {
+		e.target.childNodes[0].classList.remove('active');
+	};
 }

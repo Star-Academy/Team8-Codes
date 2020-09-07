@@ -25,11 +25,11 @@ export class SearchService {
 		return this.http.get(`http://localhost:5000/api/music/${id}`);
 	}
 
-	getArtist(id: number) {
-		return this.http.get(`http://localhost:5000/api/artist/${id}`);
+	getMusicsByArtist(id: number) {
+		return this.http.get(`http://localhost:5000/api/music/by-artist/${id}`);
 	}
 
-	getArtistMusics(id: number) {
-		return this.http.get(`http://localhost:5000/api/artist/musics/${id}`);
+	getArtist(id: number) {
+		return this.http.get(`http://localhost:5000/api/artist/${id}`);
 	}
 }

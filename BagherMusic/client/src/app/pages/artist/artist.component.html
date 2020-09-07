@@ -9,39 +9,30 @@
 		</form>
 	</header>
 
-	<main *ngIf="music && primaryArtist && featuredArtists">
+	<main *ngIf="artist && musics">
 		<div class="description">
-			<div class="left">
-				<img [src]="music.coverImageUrl" alt="Cover Art">
-			</div>
-			<div class="right">
-				<div class="top">
-					<span class="title">{{music.title}}</span>
-					<a [href]="music.spotifyUrl">
-						<fa-icon class="spotify" [icon]="faSpotify"></fa-icon>
-					</a>
-					<a [href]="music.youtubeUrl">
-						<fa-icon class="youtube" [icon]="faYoutube"></fa-icon>
-					</a>
-				</div>
-				<div class="release-date">{{music.releaseDate}}</div>
-				<div class="artists">
-					<div class="primary">
-						<img src="{{primaryArtist.imageUrl}}" alt="Primary artist profile picture">
-						<span> {{primaryArtist.name}}</span>
-					</div>
-
-					<div class="featured" *ngFor="let artist of featuredArtists">
-						<img src="{{artist.imageUrl}}" alt="Featured artist profile picture">
-						<span> {{artist.name}}</span>
-					</div>
-				</div>
+			<img [src]="artist.imageUrl" alt="Artist profile picture">
+			<div class="name">{{artist.name}}</div>
+			<div class="external-links">
+				<a [href]="'https://twitter.com/'+artist.twitterName" target="_blank">
+					<fa-icon class="twitter" [icon]="faTwitter"></fa-icon>
+				</a>
+				<a [href]="'https://instagram.com/'+artist.instagramName" target="_blank">
+					<fa-icon class="instagram" [icon]="faInstagram"></fa-icon>
+				</a>
 			</div>
 		</div>
-		<div class="lyrics shadow-narrow-reverse">
-			<div class="left"><span class="label text-fade">Lyrics</span></div>
-			<div class="right">
-				<p class="lyrics text-bright">{{music.lyrics}}</p>
+		<div class="musics shadow-narrow-reverse">
+			<div class="card" *ngFor="let music of musics" (mouseup)="clickedOnMusicCard($event, music.id)"
+				(mouseenter)="mouseEnteredCard($event)" (mouseleave)="mouseLeftCard($event)">
+				<div class="overlay">
+					<p class="title">{{music.title}}</p>
+					<div class="description">
+						<p class="release-date">{{music.releaseDate}}</p>
+						<p class="artist">{{music.primaryArtistName}}</p>
+					</div>
+				</div>
+				<img src={{music.coverThumbnailUrl}} alt="Cover Art" ondragstart="return false;">
 			</div>
 		</div>
 	</main>

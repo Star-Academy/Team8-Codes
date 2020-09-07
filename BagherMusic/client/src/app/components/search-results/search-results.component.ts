@@ -113,6 +113,10 @@ export class SearchResultsComponent implements OnInit {
 		this.router.navigate([ 'music', id ]);
 	};
 
+	clickedOnArtistCard = (e, id) => {
+		this.router.navigate([ 'artist', id ]);
+	};
+
 	mouseEnteredCard = (e) => {
 		e.target.childNodes[0].classList.add('active');
 	};
