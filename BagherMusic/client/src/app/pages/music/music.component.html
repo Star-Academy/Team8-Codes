@@ -1,48 +1,38 @@
-<div class="wrapper">
-	<header class="shadow-narrow">
-		<a routerLink='/' class="logo"><img src="../../../assets/svg/Logo.svg" alt="bagher-music-logo"></a>
-		<form #searchBox class="search-box border-thin focus-shadow" (submit)="searchListener($event)">
-			<fa-icon class={{searchIconClass}} [icon]="faSearch" (click)="searchListener($event)"></fa-icon>
-			<input #searchInput class="text-bright" type="text" (focus)="focusedOnInput($event)"
-				(blur)="blurredInput($event)" required>
-			<fa-icon class="text-primary" [icon]="faMusic"></fa-icon>
-		</form>
-	</header>
+<app-header></app-header>
 
-	<main *ngIf="music && primaryArtist && featuredArtists">
-		<div class="description">
-			<div class="left">
-				<img [src]="music.coverImageUrl" alt="Cover Art">
+<main *ngIf="music && primaryArtist && featuredArtists">
+	<div class="description">
+		<div class="left">
+			<img [src]="music.coverImageUrl" alt="Cover Art">
+		</div>
+		<div class="right">
+			<div class="top">
+				<span class="title">{{music.title}}</span>
+				<a [href]="music.spotifyUrl" target="_blank">
+					<fa-icon class="spotify" [icon]="faSpotify"></fa-icon>
+				</a>
+				<a [href]="music.youtubeUrl" target="_blank">
+					<fa-icon class="youtube" [icon]="faYoutube"></fa-icon>
+				</a>
 			</div>
-			<div class="right">
-				<div class="top">
-					<span class="title">{{music.title}}</span>
-					<a [href]="music.spotifyUrl" target="_blank">
-						<fa-icon class="spotify" [icon]="faSpotify"></fa-icon>
-					</a>
-					<a [href]="music.youtubeUrl" target="_blank">
-						<fa-icon class="youtube" [icon]="faYoutube"></fa-icon>
-					</a>
+			<div class="release-date">{{music.releaseDate}}</div>
+			<div class="artists">
+				<div class="primary">
+					<img src="{{primaryArtist.imageUrl}}" alt="Primary artist profile picture">
+					<span> {{primaryArtist.name}}</span>
 				</div>
-				<div class="release-date">{{music.releaseDate}}</div>
-				<div class="artists">
-					<div class="primary">
-						<img src="{{primaryArtist.imageUrl}}" alt="Primary artist profile picture">
-						<span> {{primaryArtist.name}}</span>
-					</div>
 
-					<div class="featured" *ngFor="let artist of featuredArtists">
-						<img src="{{artist.imageUrl}}" alt="Featured artist profile picture">
-						<span> {{artist.name}}</span>
-					</div>
+				<div class="featured" *ngFor="let artist of featuredArtists">
+					<img src="{{artist.imageUrl}}" alt="Featured artist profile picture">
+					<span> {{artist.name}}</span>
 				</div>
 			</div>
 		</div>
-		<div class="lyrics shadow-narrow-reverse">
-			<div class="left"><span class="label text-fade">Lyrics</span></div>
-			<div class="right">
-				<p class="lyrics text-bright">{{music.lyrics}}</p>
-			</div>
+	</div>
+	<div class="lyrics shadow-narrow-reverse">
+		<div class="left"><span class="label text-fade">Lyrics</span></div>
+		<div class="right">
+			<p class="lyrics text-bright">{{music.lyrics}}</p>
 		</div>
-	</main>
-</div>
+	</div>
+</main>

@@ -1,9 +1,2 @@
-<div class="wrapper">
-	<a routerLink='/' class="logo"><img src="../../../assets/svg/Logo.svg" alt="bagher-music-logo"></a>
-	<form #searchBox class="search-box border-thin focus-shadow" (submit)="searchListener($event)">
-		<fa-icon class={{searchIconClass}} [icon]="faSearch" (click)="searchListener($event)"></fa-icon>
-		<input #searchInput class="text-bright" type="text" (focus)="focusedOnInput($event)"
-			(blur)="blurredInput($event)" required>
-		<fa-icon class="text-primary" [icon]="faMusic"></fa-icon>
-	</form>
-</div>
+<app-logo [height]="'10rem'"></app-logo>
+<app-search-box [width]="'80rem'" [height]="'6rem'"></app-search-box>

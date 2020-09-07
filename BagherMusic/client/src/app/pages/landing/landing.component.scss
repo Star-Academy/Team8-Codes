@@ -1,6 +1,6 @@
 @import "../../../styles/config";
 
-.wrapper {
+:host {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -11,42 +11,7 @@
 
 	margin: 0 auto;
 
-	.logo {
-		cursor: pointer;
-
-		margin: -15rem auto 3rem;
-
-		img {
-			height: 10rem;
-		}
-	}
-
-	.search-box {
-		display: grid;
-		grid-template-columns: auto 1fr auto;
-		align-items: center;
-
-		width: 80rem;
-		height: 6rem;
-
-		padding: 1rem 2.5rem;
-
-		border-radius: 3rem;
-		font-size: 2.8rem;
-
-		fa-icon:nth-child(1) {
-			cursor: pointer;
-		}
-
-		input {
-			width: 90%;
-			height: 100%;
-
-			margin: 0 2rem;
-
-			border: none;
-
-			font-size: 2.8rem;
-		}
+	app-logo {
+		margin: 0 auto 3rem;
 	}
 }

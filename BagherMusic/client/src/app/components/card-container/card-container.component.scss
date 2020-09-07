@@ -1,0 +1,32 @@
+:host {
+	position: relative;
+
+	.label {
+		position: absolute;
+
+		left: 4rem;
+		top: 4rem;
+
+		z-index: 3;
+
+		font-size: 2.1rem;
+	}
+
+	.cards {
+		position: relative;
+
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		align-items: baseline;
+
+		padding: 6rem 10rem 3rem;
+
+		overflow-x: scroll;
+
+		// &::-webkit-scrollbar {
+		// 	width: 0 !important;
+		// }
+	}
+}

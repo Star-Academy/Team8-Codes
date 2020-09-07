@@ -1,0 +1,129 @@
+@import "../../../styles/config";
+
+.card {
+	flex: 0 0 auto;
+
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	width: 30rem;
+	height: 30rem;
+
+	margin: 3rem 3rem 0 0;
+
+	div.overlay {
+		background: $linear-gradient-100-50-100;
+
+		display: none;
+
+		&.active {
+			color: $color_white;
+
+			display: block;
+
+			position: absolute;
+
+			width: 100%;
+			height: 100%;
+
+			padding: 2rem;
+
+			border-radius: 3rem;
+
+			overflow: hidden;
+
+			cursor: pointer;
+
+			p {
+				display: block;
+				text-align: center;
+			}
+
+			.title {
+				position: absolute;
+
+				left: 0;
+				top: 2rem;
+
+				width: 100%;
+				height: 40%;
+
+				margin: 0 auto;
+
+				font-size: 7ch;
+
+				text-transform: uppercase;
+
+				animation: enter-from-top 0.5s;
+				transition: all 0.5s ease-in-out;
+			}
+
+			.description {
+				position: absolute;
+
+				left: 0;
+				bottom: 2rem;
+
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+
+				width: 100%;
+
+				margin: 0 auto;
+
+				animation: enter-from-bottom 0.5s;
+				transition: all 0.5s ease-in-out;
+
+				.release-date {
+					font-size: 1.4rem;
+				}
+
+				.artist {
+					font-size: 6.5ch;
+					font-weight: 300;
+				}
+			}
+
+			@keyframes enter-from-top {
+				0% {
+					top: -10rem;
+				}
+
+				100% {
+					top: 2rem;
+				}
+			}
+
+			@keyframes enter-from-bottom {
+				0% {
+					bottom: -10rem;
+				}
+
+				100% {
+					bottom: 2rem;
+				}
+			}
+		}
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+
+		border-radius: 3rem;
+	}
+
+	span {
+		margin-top: 2rem;
+
+		font-size: 1.8rem;
+		font-weight: 500;
+
+		text-align: center;
+	}
+}

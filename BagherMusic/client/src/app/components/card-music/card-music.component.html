@@ -1,0 +1,11 @@
+<div class="card" (mouseup)="clickedOnCard($event)" (mouseenter)="mouseEnteredCard($event)"
+	(mouseleave)="mouseLeftCard($event)">
+	<div class="overlay">
+		<p class="title">{{music.title}}</p>
+		<div class="description">
+			<p class="release-date">{{music.releaseDate}}</p>
+			<p class="artist">{{music.primaryArtistName}}</p>
+		</div>
+	</div>
+	<img src={{music.coverThumbnailUrl}} alt="Cover Art" ondragstart="return false;">
+</div>

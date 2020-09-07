@@ -1,0 +1,7 @@
+<form #searchBox class="search-box border-thin focus-shadow" [ngStyle]="{'width': width,'height': height}"
+	(submit)="searchListener($event)">
+	<fa-icon class={{searchIconClass}} [icon]="faSearch" (click)="searchListener($event)"></fa-icon>
+	<input #searchInput class="text-bright" type="text" (focus)="focusedOnInput($event)" (blur)="blurredInput($event)"
+		required>
+	<fa-icon class="text-primary" [icon]="faMusic"></fa-icon>
+</form>

@@ -14,6 +14,13 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { MusicComponent } from './pages/music/music.component';
 import { ArtistComponent } from './pages/artist/artist.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { LogoComponent } from './components/logo/logo.component';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
+import { CardArtistComponent } from './components/card-artist/card-artist.component';
+import { CardMusicComponent } from './components/card-music/card-music.component';
+import { CardContainerComponent } from './components/card-container/card-container.component';
 
 @NgModule({
 	declarations: [
@@ -21,7 +28,14 @@ import { ArtistComponent } from './pages/artist/artist.component';
 		LandingComponent,
 		SearchResultsComponent,
 		MusicComponent,
-		ArtistComponent
+		ArtistComponent,
+		HeaderComponent,
+		FooterComponent,
+		LogoComponent,
+		SearchBoxComponent,
+		CardArtistComponent,
+		CardMusicComponent,
+		CardContainerComponent
 	],
 	imports: [
 		BrowserModule,

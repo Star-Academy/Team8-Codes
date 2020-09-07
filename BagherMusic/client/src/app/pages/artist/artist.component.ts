@@ -1,13 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { SearchService } from '../../services/search.service';
 import { Music } from '../../models/Music';
 import { Artist } from '../../models/Artist';
@@ -18,18 +14,12 @@ import { Artist } from '../../models/Artist';
 	styleUrls: [ './artist.component.scss' ]
 })
 export class ArtistComponent implements OnInit {
-	private id;
+	id;
 	artist: Artist;
 	musics: Array<Music>;
 
-	faSearch = faSearch;
-	faMusic = faMusic;
 	faTwitter = faTwitter;
 	faInstagram = faInstagram;
-
-	@ViewChild('searchBox') searchBoxElement: ElementRef;
-	@ViewChild('searchInput') searchInputElement: ElementRef;
-	searchIconClass = 'text-fade';
 
 	constructor(
 		private router: Router,
@@ -62,32 +52,6 @@ export class ArtistComponent implements OnInit {
 			},
 			(err) => console.log(err)
 		);
-	}
-
-	focusedOnInput(e) {
-		this.searchBoxElement.nativeElement.classList.add('shadow-gentle');
-		this.searchIconClass = 'text-bright';
-	}
-
-	blurredInput(e) {
-		this.searchBoxElement.nativeElement.classList.remove('shadow-gentle');
-
-		if (!this.searchInputElement.nativeElement.value)
-			this.searchIconClass = 'text-fade';
-	}
-
-	searchListener(e) {
-		e.preventDefault();
-
-		const query = this.searchInputElement.nativeElement.value;
-
-		console.log(`query: ${query}`);
-
-		if (!query) return;
-
-		console.log('navigating ...');
-
-		this.router.navigate([ 'search-results', query ]);
 	}
 
 	clickedOnMusicCard = (e, id) => {
