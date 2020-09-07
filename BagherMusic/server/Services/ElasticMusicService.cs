@@ -1,11 +1,12 @@
+// Standard
 using System;
 using System.Text.Json;
 
+// Internal
 using BagherMusic.Models;
 
+// Microsoft
 using Microsoft.Extensions.Configuration;
-
-using Nest;
 
 namespace BagherMusic.Services
 {
@@ -17,6 +18,7 @@ namespace BagherMusic.Services
 
 			indexName = config["ElasticService:Options:IndexNames:Music"];
 			searchFields = JsonSerializer.Deserialize<string[]>(config["ElasticService:Options:SearchFields:Music"]);
+			foreignFields = JsonSerializer.Deserialize<string[]>(config["ElasticService:Options:ForeignFields:Music"]);
 
 			Console.WriteLine("[SUCCESS] Run music service");
 		}

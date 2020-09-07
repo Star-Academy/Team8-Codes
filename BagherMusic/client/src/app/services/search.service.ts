@@ -28,4 +28,8 @@ export class SearchService {
 	getArtist(id: number) {
 		return this.http.get(`http://localhost:5000/api/artist/${id}`);
 	}
+
+	getArtistMusics(id: number) {
+		return this.http.get(`http://localhost:5000/api/artist/musics/${id}`);
+	}
 }

@@ -35,5 +35,18 @@ namespace BagherMusic.Controllers
 				return BadRequest(e.Message);
 			}
 		}
+
+		[HttpGet("by-artist/{id}")]
+		public IActionResult GetMusicsByArtist(int id)
+		{
+			try
+			{
+				return Ok(musicService.GetEntities(id));
+			}
+			catch (Exception e)
+			{
+				return BadRequest(e.Message);
+			}
+		}
 	}
 }

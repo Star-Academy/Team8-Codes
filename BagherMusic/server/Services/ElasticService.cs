@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 
 // Internal
 using BagherMusic.Core.Elastic;
@@ -27,6 +26,7 @@ namespace BagherMusic.Services
 
 		protected string indexName;
 		protected string[] searchFields;
+		protected string[] foreignFields;
 
 		public ElasticService(IConfiguration config, IElasticClientService clientService)
 		{
@@ -44,26 +44,54 @@ namespace BagherMusic.Services
 
 		public G GetEntity(T id)
 		{
-			var queryContainer = new MatchQuery
-			{
-				Field = "_id",
-					Query = id.ToString()
-			};
+			var queryContainer = BuildMatchQueryContainer(id.ToString(), "_id");
 			var response = client.Search<G>(s => s
 				.Index(indexName)
 				.Query(q => queryContainer)
 				.Size(1)
 			);
 			Validator.Validate(response);
+
 			return response.Documents.ToList<G>() [0];
+		}
+
+		public HashSet<G> GetEntities(Object foreignKey)
+		{
+			var queryContainer = BuildMustQueryContainer(new Query(foreignKey.ToString()), foreignFields);
+			var response = Search(queryContainer, 0, 10_000);
+
+			return response.Documents.ToList<G>().ToHashSet();
 		}
 
 		public HashSet<G> GetSearchResults(Query query, int pageIndex)
 		{
 			var queryContainer = BuildSearchQueryContainer(query, searchFields);
 			var response = Search(queryContainer, pageIndex);
-			Validator.Validate(response);
+
 			return response.Documents.ToList<G>().ToHashSet();
+		}
+
+		private QueryContainer BuildMatchQueryContainer(string query, string field)
+		{
+			return new MatchQuery
+			{
+				Field = field,
+					Query = query
+			};
+		}
+
+		private QueryContainer BuildMustQueryContainer(Query query, string[] fields)
+		{
+			return new BoolQuery
+			{
+				Must = query.Ands.Tokens.Select(
+					token => (QueryContainer) new MultiMatchQuery
+					{
+						Fields = fields,
+							Query = token.Id
+					}
+				)
+			};
 		}
 
 		private QueryContainer BuildSearchQueryContainer(Query query, string[] fields)
@@ -97,14 +125,22 @@ namespace BagherMusic.Services
 			};
 		}
 
-		private ISearchResponse<G> Search(QueryContainer queryContainer, int pageIndex)
+		private ISearchResponse<G> Search(QueryContainer queryContainer, int from, int size)
 		{
-			return client.Search<G>(s => s
+			var response = client.Search<G>(s => s
 				.Index(indexName)
 				.Query(q => queryContainer)
-				.Size(resultCountPerPage)
-				.From(pageIndex * resultCountPerPage)
+				.From(from)
+				.Size(size)
 			);
+			Validator.Validate(response);
+
+			return response;
+		}
+
+		private ISearchResponse<G> Search(QueryContainer queryContainer, int pageIndex)
+		{
+			return Search(queryContainer, pageIndex * resultCountPerPage, resultCountPerPage);
 		}
 
 		public int Import(string resourcesPath)

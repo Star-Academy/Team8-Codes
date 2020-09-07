@@ -1,11 +1,12 @@
+// Standard
 using System;
 using System.Text.Json;
 
+// Internal
 using BagherMusic.Models;
 
+// Microsoft
 using Microsoft.Extensions.Configuration;
-
-using Nest;
 
 namespace BagherMusic.Services
 {
