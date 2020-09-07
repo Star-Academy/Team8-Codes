@@ -1,0 +1,40 @@
+@import "../styles/config";
+
+#app {
+	position: relative;
+
+	.scroll-to-top {
+		background-color: $color_black !important;
+		color: $color_white !important;
+
+		position: fixed;
+
+		bottom: 2rem;
+		right: 2rem;
+
+		width: 6rem;
+		height: 6rem;
+
+		z-index: 1000;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		border-radius: 100%;
+
+		font-size: 4rem;
+
+		opacity: 0.5;
+
+		cursor: pointer;
+
+		animation: animation-fade-in 0.3s;
+
+		&:hover {
+			background-color: $color_orange_supernova !important;
+
+			opacity: 1;
+		}
+	}
+}

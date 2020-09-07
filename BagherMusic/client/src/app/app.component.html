@@ -1,3 +1,6 @@
 <div id="app" class="">
+	<span *ngIf="showScroll" class="scroll-to-top">
+		<fa-icon [icon]="faChevronUp" (click)="scrollTop($event)"></fa-icon>
+	</span>
 	<router-outlet></router-outlet>
 </div>

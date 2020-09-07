@@ -17,10 +17,11 @@
 			</div>
 			<div class="release-date">{{music.releaseDate}}</div>
 			<div class="artists">
-				<div class="artist" *ngFor="let artist of featuredArtists.concat(primaryArtist)">
+				<a class="artist" *ngFor="let artist of featuredArtists.concat(primaryArtist)"
+					[href]="'/artist/'+ artist.id">
 					<img src="{{artist.imageUrl}}" alt="Artist profile picture">
-					<span>{{artist.name}}</span>
-				</div>
+					<span class="text">{{artist.name}}</span>
+				</a>
 			</div>
 		</div>
 	</div>

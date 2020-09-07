@@ -1,4 +1,4 @@
-/********** COLORS **********/
+/*************** COLORS ***************/
 $color_magenta: #ff0080;
 $color_pink: #fac0e1;
 $color_blue_cornflower: #6495ed;
@@ -6,7 +6,7 @@ $color_blue_alice: #f0faff;
 $color_blue_dodger: #e6eeff;
 $color_blue_green: #00ffff;
 $color_green_lime: #78fee0;
-$color_green_emerald: #44D96C;
+$color_green_emerald: #44d96c;
 $color_green_caribbean: #3b9a9c;
 $color_green_japanese_laurel: #34893a;
 $color_yellow_cape_honey: #fef4a9;
@@ -23,12 +23,26 @@ $color_gray_30: #4d4d4d;
 $color_gray_10: #1a1a1a;
 $color_black: #000000;
 
-/********** SHADES **********/
+/*************** SHADES ***************/
 $shade_gray_90: transparentize($color_gray_10, 0.9);
 $shade_gray_70: transparentize($color_gray_10, 0.7);
 $shade_gray_50: transparentize($color_gray_10, 0.5);
 $shade_gray_30: transparentize($color_gray_10, 0.3);
 $shade_gray_10: transparentize($color_gray_10, 0.1);
 
-/********** GRADIENTS **********/
-$linear-gradient-100-50-100 :linear-gradient(0deg, $color_gray_10, $shade_gray_50, $color_gray_10)
+/************** GRADIENTS *************/
+$linear-gradient-100-50-100: linear-gradient(0deg,
+	$color_gray_10,
+	$shade_gray_50,
+	$color_gray_10);
+
+/************* ANIMATIONS *************/
+@keyframes animation-fade-in {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 0.5;
+	}
+}

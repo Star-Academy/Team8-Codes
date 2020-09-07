@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-
 import { ResultSet } from '../../models/ResultSet';
 import { Music } from '../../models/Music';
 import { Artist } from '../../models/Artist';
@@ -17,9 +14,6 @@ import { SearchService } from '../../services/search.service';
 })
 export class SearchResultsComponent implements OnInit {
 	query: string;
-
-	faChevronLeft = faChevronLeft;
-	faChevronRight = faChevronRight;
 
 	artists: Array<Artist>;
 	musics: Array<Music>;
