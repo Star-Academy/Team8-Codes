@@ -66,6 +66,11 @@ a {
 		color: $color_gray_10;
 	}
 
+	#snackbar {
+		background-color: $color_gray_30;
+		color: $color_gray_95;
+	}
+
 	.text {
 		color: $color_gray_10;
 
@@ -83,6 +88,13 @@ a {
 
 		&-primary {
 			color: $color_blue_cornflower;
+		}
+	}
+
+	.button {
+		&-fade {
+			background-color: $color_gray_75;
+			color: $color_gray_95;
 		}
 	}
 

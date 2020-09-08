@@ -21,6 +21,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
 import { CardArtistComponent } from './components/card-artist/card-artist.component';
 import { CardMusicComponent } from './components/card-music/card-music.component';
 import { CardContainerComponent } from './components/card-container/card-container.component';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 @NgModule({
 	declarations: [
@@ -35,7 +36,8 @@ import { CardContainerComponent } from './components/card-container/card-contain
 		SearchBoxComponent,
 		CardArtistComponent,
 		CardMusicComponent,
-		CardContainerComponent
+		CardContainerComponent,
+		SnackbarComponent
 	],
 	imports: [
 		BrowserModule,

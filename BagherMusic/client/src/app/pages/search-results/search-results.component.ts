@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
+import { SnackbarComponent } from '../../components/snackbar/snackbar.component';
 
 import { ResultSet } from '../../models/ResultSet';
 import { Music } from '../../models/Music';
@@ -13,6 +15,8 @@ import { SearchService } from '../../services/search.service';
 	styleUrls: [ './search-results.component.scss' ]
 })
 export class SearchResultsComponent implements OnInit {
+	@ViewChild('snackbar') snackbar: SnackbarComponent;
+
 	query: string;
 
 	artists: Array<Artist>;

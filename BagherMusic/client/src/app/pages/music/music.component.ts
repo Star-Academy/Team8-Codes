@@ -16,6 +16,8 @@ import { Artist } from '../../models/Artist';
 	styleUrls: [ './music.component.scss' ]
 })
 export class MusicComponent implements OnInit {
+	@ViewChild('lyricsParagraph') lyricsParagraph: ElementRef;
+
 	id: number;
 	music: Music;
 	primaryArtist: Artist;
@@ -73,5 +75,23 @@ export class MusicComponent implements OnInit {
 
 	toggleLyricsFoldingStatus(e) {
 		this.showLyrics = !this.showLyrics;
+	}
+
+	copyLyrics(e) {
+		const lyrics = this.lyricsParagraph.nativeElement.innerText;
+
+		const temp = document.createElement('textarea');
+		document.body.appendChild(temp);
+
+		temp.value = lyrics;
+		temp.select();
+		document.execCommand('copy');
+
+		document.body.removeChild(temp);
+
+		e.target.innerText = 'Copied!';
+		setTimeout(() => {
+			e.target.innerText = 'Copy';
+		}, 2000);
 	}
 }

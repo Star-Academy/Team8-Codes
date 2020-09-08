@@ -5,7 +5,7 @@
 		<div class="left">
 			<img [src]="music.coverImageUrl" alt="Cover Art">
 		</div>
-		<div class="right">
+		<div class="middle">
 			<div class="top">
 				<span class="title">{{music.title}}</span>
 				<a *ngIf="music.spotifyUrl" [href]="music.spotifyUrl" target="_blank">
@@ -30,9 +30,12 @@
 			<fa-icon [icon]="showLyrics? faCaretDown : faCaretRight"></fa-icon>
 			<span class="label"> Lyrics</span>
 		</div>
-		<div class="right text">
-			<p *ngIf="showLyrics" class="lyrics hide">{{music.lyrics}}</p>
-			<span *ngIf="!showLyrics" class=""><br></span>
+		<div class="middle text">
+			<span *ngIf="!showLyrics" class="spoiler"></span>
+			<p #lyricsParagraph *ngIf="showLyrics" class="lyrics hide">{{music.lyrics}}</p>
+		</div>
+		<div class="right">
+			<span *ngIf="showLyrics" class="copy button-fade" (click)="copyLyrics($event)">Copy</span>
 		</div>
 	</div>
 </main>
