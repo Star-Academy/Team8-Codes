@@ -8,13 +8,12 @@ import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 	styleUrls: [ './app.component.scss' ]
 })
 export class AppComponent {
-	showScroll: boolean = false;
-
 	faChevronUp = faChevronUp;
 
-	constructor() {
-		// window.addEventListener('scroll', this.checkScrollTop);
-	}
+	showScroll: boolean = false;
+	theme: string = 'dark';
+
+	constructor() {}
 
 	@HostListener('window:scroll', [ '$event' ])
 	checkScrollTop(e) {
@@ -27,5 +26,9 @@ export class AppComponent {
 
 	scrollTop(e) {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}
+
+	toggleTheme(e) {
+		this.theme = this.theme === 'light' ? 'dark' : 'light';
 	}
 }

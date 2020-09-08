@@ -37,4 +37,14 @@
 			opacity: 1;
 		}
 	}
+
+	app-theme-status {
+		position: absolute;
+		top: 3.5rem;
+		right: 3rem;
+
+		font-size: 2.8rem;
+
+		cursor: pointer;
+	}
 }

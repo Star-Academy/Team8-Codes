@@ -22,6 +22,7 @@ import { CardArtistComponent } from './components/card-artist/card-artist.compon
 import { CardMusicComponent } from './components/card-music/card-music.component';
 import { CardContainerComponent } from './components/card-container/card-container.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { ThemeStatusComponent } from './components/theme-status/theme-status.component';
 
 @NgModule({
 	declarations: [
@@ -37,7 +38,8 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
 		CardArtistComponent,
 		CardMusicComponent,
 		CardContainerComponent,
-		SnackbarComponent
+		SnackbarComponent,
+		ThemeStatusComponent
 	],
 	imports: [
 		BrowserModule,
