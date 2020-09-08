@@ -72,8 +72,6 @@
 		app-logo ::ng-deep {
 			justify-self: center;
 
-			// margin-bottom: -3rem;
-
 			img {
 				height: 4rem;
 			}
@@ -81,7 +79,6 @@
 
 		app-search-box ::ng-deep {
 			margin-left: unset;
-			// margin-bottom: 3rem;
 
 			.search-box {
 				width: 40rem;
