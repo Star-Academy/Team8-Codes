@@ -1,4 +1,4 @@
 <span class="label text-fade">{{label}}</span>
-<div #cards class="cards shadow-narrow" [ngStyle]="{'height':height}" (scroll)="scrollHandler($event)">
+<div #cards [class]="'cards shadow-narrow ' + label" (scroll)="scrollHandler($event)">
 	<ng-content></ng-content>
 </div>

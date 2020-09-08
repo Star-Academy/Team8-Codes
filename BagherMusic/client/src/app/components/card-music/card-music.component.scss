@@ -117,13 +117,98 @@
 
 		border-radius: 3rem;
 	}
+}
 
-	span {
-		margin-top: 2rem;
+@media all and (max-width: 1200px) {
+	.card {
+		width: 20rem;
+		height: 20rem;
 
-		font-size: 1.8rem;
-		font-weight: 500;
+		margin: 2rem;
 
-		text-align: center;
+		div.overlay {
+			&.active {
+				padding: 1rem;
+
+				border-radius: 2rem;
+
+				.title {
+					left: 0;
+					top: 2rem;
+
+					width: 100%;
+					height: 40%;
+
+					font-size: 4ch;
+				}
+
+				.description {
+					left: 0;
+					bottom: 2rem;
+
+					width: 100%;
+
+					.release-date {
+						font-size: 1.2rem;
+					}
+
+					.artist {
+						font-size: 4ch;
+						font-weight: 300;
+					}
+				}
+			}
+		}
+
+		img {
+			border-radius: 2rem;
+		}
+	}
+}
+
+@media all and (max-width: 800px) {
+	.card {
+		width: 14rem;
+		height: 14rem;
+
+		margin: 1rem;
+
+		div.overlay {
+			&.active {
+				padding: 0.5rem;
+
+				border-radius: 1rem;
+
+				.title {
+					left: 0;
+					top: 2rem;
+
+					width: 100%;
+					height: 40%;
+
+					font-size: 3ch;
+				}
+
+				.description {
+					left: 0;
+					bottom: 2rem;
+
+					width: 100%;
+
+					.release-date {
+						font-size: 1.0rem;
+					}
+
+					.artist {
+						font-size: 3ch;
+						font-weight: 300;
+					}
+				}
+			}
+		}
+
+		img {
+			border-radius: 1rem;
+		}
 	}
 }

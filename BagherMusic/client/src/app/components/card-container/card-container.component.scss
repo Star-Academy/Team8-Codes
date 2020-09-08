@@ -23,9 +23,39 @@
 		align-content: flex-start;
 		align-items: baseline;
 
+		height: 28rem;
+
 		padding: 8rem 10rem 3rem;
 
 		overflow-x: overlay;
 		overflow-y: hidden;
+
+		&.Musics {
+			height: 70rem;
+		}
+	}
+}
+
+@media all and (max-width: 1200px) {
+	:host {
+		.label {
+			left: 4rem;
+			top: 4rem;
+
+			font-size: 2.1rem;
+		}
+
+		.cards {
+			height: 20rem;
+
+			padding: 6rem 8rem 2rem;
+
+			overflow-x: overlay;
+			overflow-y: hidden;
+
+			&.Musics {
+				height: 48rem;
+			}
+		}
 	}
 }
