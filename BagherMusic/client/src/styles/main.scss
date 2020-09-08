@@ -93,32 +93,37 @@ a {
 
 	.button {
 		&-fade {
-			background-color: $color_gray_75;
-			color: $color_gray_95;
+			background-color: $color_gray_90;
+			color: $color_gray_75;
+
+			&:hover {
+				background-color: $color_gray_75;
+				color: $color_gray_95;
+			}
 		}
 	}
 
 	.border {
 		&-thin {
-			border: 0.1rem solid $shade_gray_90;
+			border: 0.1rem solid $shade_dark_gray_90;
 		}
 	}
 
 	.shadow {
 		&-gentle {
-			box-shadow: 0 0 5rem 0.1rem $shade_gray_90;
+			box-shadow: 0 0 5rem 0.1rem $shade_dark_gray_90;
 		}
 
 		&-narrow {
-			box-shadow: 0 0.3rem 1rem 0.1rem $shade_gray_90;
+			box-shadow: 0 0.3rem 1rem 0.1rem $shade_dark_gray_90;
 
 			&-reverse {
-				box-shadow: 0 -0.3rem 1rem 0.1rem $shade_gray_90;
+				box-shadow: 0 -0.3rem 1rem 0.1rem $shade_dark_gray_90;
 			}
 		}
 
 		&-border {
-			box-shadow: 0 0 1rem 0.1rem $shade_gray_70;
+			box-shadow: 0 0 1rem 0.1rem $shade_dark_gray_70;
 		}
 	}
 
@@ -143,7 +148,85 @@ a {
 	background-color: $color_gray_10;
 	color: $color_gray_95;
 
+	input {
+		background-color: $color_gray_10;
+		color: $color_gray_95;
+	}
+
+	#snackbar {
+		background-color: $color_gray_90;
+		color: $color_gray_30;
+	}
+
 	.text {
 		color: $color_gray_95;
+
+		&-bright {
+			color: $color_gray_75;
+		}
+
+		&-fade {
+			color: $color_gray_50;
+		}
+
+		&-pure-opposite {
+			color: $color_gray_10;
+		}
+
+		&-primary {
+			color: $color_blue_cornflower;
+		}
+	}
+
+	.button {
+		&-fade {
+			background-color: $color_gray_30;
+			color: $color_gray_50;
+
+			&:hover {
+				background-color: $color_gray_50;
+				color: $color_gray_75;
+			}
+		}
+	}
+
+	.border {
+		&-thin {
+			border: 0.1rem solid $shade_light_gray_90;
+		}
+	}
+
+	.shadow {
+		&-gentle {
+			box-shadow: 0 0 5rem 0.1rem $shade_light_gray_90;
+		}
+
+		&-narrow {
+			box-shadow: 0 0.3rem 1rem 0.1rem $shade_light_gray_90;
+
+			&-reverse {
+				box-shadow: 0 -0.3rem 1rem 0.1rem $shade_light_gray_90;
+			}
+		}
+
+		&-border {
+			box-shadow: 0 0 1rem 0.1rem $shade_light_gray_70;
+		}
+	}
+
+	.hover {
+		&-text-fade:hover {
+			color: $color_gray_95;
+		}
+
+		&-shadow:hover {
+			box-shadow: 0 0 1rem $color_gray_95;
+		}
+	}
+
+	.focus {
+		&-shadow:focus {
+			box-shadow: 0 0 1rem $color_gray_95;
+		}
 	}
 }

@@ -24,16 +24,22 @@ $color_gray_10: #1a1a1a;
 $color_black: #000000;
 
 /*************** SHADES ***************/
-$shade_gray_90: transparentize($color_gray_10, 0.9);
-$shade_gray_70: transparentize($color_gray_10, 0.7);
-$shade_gray_50: transparentize($color_gray_10, 0.5);
-$shade_gray_30: transparentize($color_gray_10, 0.3);
-$shade_gray_10: transparentize($color_gray_10, 0.1);
+$shade_dark_gray_90: transparentize($color_gray_10, 0.9);
+$shade_dark_gray_70: transparentize($color_gray_10, 0.7);
+$shade_dark_gray_50: transparentize($color_gray_10, 0.5);
+$shade_dark_gray_30: transparentize($color_gray_10, 0.3);
+$shade_dark_gray_10: transparentize($color_gray_10, 0.1);
+
+$shade_light_gray_90: transparentize($color_gray_95, 0.9);
+$shade_light_gray_70: transparentize($color_gray_95, 0.7);
+$shade_light_gray_50: transparentize($color_gray_95, 0.5);
+$shade_light_gray_30: transparentize($color_gray_95, 0.3);
+$shade_light_gray_10: transparentize($color_gray_95, 0.1);
 
 /************** GRADIENTS *************/
 $linear-gradient-100-50-100: linear-gradient(0deg,
 	$color_gray_10,
-	$shade_gray_50,
+	$shade_dark_gray_50,
 	$color_gray_10);
 
 /************* ANIMATIONS *************/

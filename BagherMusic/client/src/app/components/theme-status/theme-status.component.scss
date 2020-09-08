@@ -2,8 +2,16 @@
 
 .light {
 	color: $color_orange_supernova;
+
+	&:hover {
+		color: $color_gray_75;
+	}
 }
 
 .dark {
 	color: $color_gray_75;
+
+	&:hover {
+		color: $color_orange_supernova;
+	}
 }

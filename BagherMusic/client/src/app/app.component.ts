@@ -11,9 +11,18 @@ export class AppComponent {
 	faChevronUp = faChevronUp;
 
 	showScroll: boolean = false;
-	theme: string = 'dark';
+	theme: string = 'light';
 
-	constructor() {}
+	constructor() {
+		const previousTheme = localStorage.getItem('theme');
+
+		if (
+			previousTheme &&
+			(previousTheme === 'light' || previousTheme === 'dark')
+		)
+			this.theme = previousTheme;
+		else localStorage.setItem('theme', this.theme);
+	}
 
 	@HostListener('window:scroll', [ '$event' ])
 	checkScrollTop(e) {
@@ -30,5 +39,6 @@ export class AppComponent {
 
 	toggleTheme(e) {
 		this.theme = this.theme === 'light' ? 'dark' : 'light';
+		localStorage.setItem('theme', this.theme);
 	}
 }
