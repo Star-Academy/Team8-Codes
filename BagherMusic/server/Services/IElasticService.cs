@@ -11,6 +11,9 @@ namespace BagherMusic.Services
 	public interface IElasticService<T, G> where G : IEntity<T>
 	{
 		G GetEntity(T id);
+
+		G GetRandomEntity();
+
 		HashSet<G> GetEntities(Object foreignKey);
 
 		HashSet<G> GetSearchResults(Query query, int pageIndex);

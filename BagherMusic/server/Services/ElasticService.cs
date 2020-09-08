@@ -35,13 +35,6 @@ namespace BagherMusic.Services
 			acceptableFuzziness = Int32.Parse(config["ElasticService:Options:AcceptableFuzziness"]);
 		}
 
-		private void CreateInitialClient(string elasticUri)
-		{
-			var uri = new Uri(elasticUri);
-			var connectionSettings = new ConnectionSettings(uri);
-			client = new ElasticClient(connectionSettings);
-		}
-
 		public G GetEntity(T id)
 		{
 			var queryContainer = BuildMatchQueryContainer(id.ToString(), "_id");
@@ -59,8 +52,22 @@ namespace BagherMusic.Services
 		{
 			var queryContainer = BuildMustQueryContainer(new Query(foreignKey.ToString()), foreignFields);
 			var response = Search(queryContainer, 0, 10_000);
+			Validator.Validate(response);
 
 			return response.Documents.ToList<G>().ToHashSet();
+		}
+
+		public G GetRandomEntity()
+		{
+			var queryContainer = BuildRandomQueryContainer();
+			var response = client.Search<G>(s => s
+				.Index(indexName)
+				.Query(q => queryContainer)
+				.Size(1)
+			);
+			Validator.Validate(response);
+
+			return response.Documents.ToList<G>() [0];
 		}
 
 		public HashSet<G> GetSearchResults(Query query, int pageIndex)
@@ -122,6 +129,21 @@ namespace BagherMusic.Services
 								Fuzziness = Fuzziness.EditDistance(acceptableFuzziness)
 						}
 					)
+			};
+		}
+
+		private QueryContainer BuildRandomQueryContainer()
+		{
+			return new FunctionScoreQuery
+			{
+				Query = new MatchAllQuery(),
+					Functions = new List<IScoreFunction>
+					{
+						new RandomScoreFunction
+						{
+							Seed = new Random().Next()
+						}
+					}
 			};
 		}
 

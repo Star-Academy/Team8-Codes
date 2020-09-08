@@ -1,6 +1,7 @@
 :host {
 	display: grid;
 	grid-template-columns: 15rem auto;
+	align-items: center;
 
 	width: 100%;
 	height: 10.5rem;
@@ -8,13 +9,88 @@
 	margin: 0 auto;
 	padding: 3rem;
 
-	app-logo {
+	app-logo ::ng-deep {
 		justify-self: start;
+
+		img {
+			height: 4.5rem;
+		}
 	}
 
-	app-search-box {
+	app-search-box ::ng-deep {
 		justify-self: center;
 
-		margin-left: -20rem;
+		margin-left: -15rem;
+
+		.search-box {
+			width: 80rem;
+			height: 4.5rem;
+
+			padding: 0.5rem 1.5rem;
+
+			font-size: 1.6rem;
+		}
+	}
+}
+
+@media all and (max-width: 1600px) {
+	:host {
+		height: 9rem;
+
+		padding: 1rem 3rem;
+
+		app-logo ::ng-deep {
+			img {
+				height: 4rem;
+			}
+		}
+
+		app-search-box ::ng-deep {
+			margin-left: -13.5rem;
+
+			.search-box {
+				width: 40rem;
+				height: 4rem;
+
+				padding: 0.5rem 1.5rem;
+
+				font-size: 1.6rem;
+			}
+		}
+	}
+}
+
+@media all and (max-width: 800px) {
+	:host {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 1fr;
+		justify-content: center;
+		align-items: center;
+
+		height: 14rem;
+
+		app-logo ::ng-deep {
+			justify-self: center;
+
+			// margin-bottom: -3rem;
+
+			img {
+				height: 4rem;
+			}
+		}
+
+		app-search-box ::ng-deep {
+			margin-left: unset;
+			// margin-bottom: 3rem;
+
+			.search-box {
+				width: 40rem;
+				height: 4rem;
+
+				padding: 0.5rem 1.5rem;
+
+				font-size: 1.6rem;
+			}
+		}
 	}
 }

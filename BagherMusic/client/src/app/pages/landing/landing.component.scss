@@ -11,7 +11,43 @@
 
 	margin: 0 auto;
 
-	app-logo {
+	app-logo ::ng-deep {
 		margin: 0 auto 3rem;
+
+		img {
+			height: 10rem;
+		}
+	}
+
+	app-search-box ::ng-deep {
+		.search-box {
+			width: 80rem;
+			height: 6rem;
+
+			padding: 1rem 2.5rem;
+
+			font-size: 2.1rem;
+		}
+	}
+}
+
+@media all and (max-width: 1000px) {
+	:host {
+		app-logo ::ng-deep {
+			img {
+				height: 6rem;
+			}
+		}
+
+		app-search-box ::ng-deep {
+			.search-box {
+				width: 40rem;
+				height: 4rem;
+
+				padding: 0.5rem 1.5rem;
+
+				font-size: 1.6rem;
+			}
+		}
 	}
 }

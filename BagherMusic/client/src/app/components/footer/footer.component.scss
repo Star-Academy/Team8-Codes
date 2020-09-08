@@ -45,8 +45,38 @@ footer {
 	p {
 		text-align: justify;
 	}
+}
 
-	.about {}
+@media all and (max-width: 1200px) {
+	footer {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto;
+		row-gap: 5rem;
 
-	.key-features {}
+		max-width: 100%;
+
+		padding: 2rem 6rem;
+
+		ul.subtitle {
+			display: grid;
+			grid-template-columns: repeat(3, auto);
+		}
+	}
+}
+
+@media all and (max-width: 600px) {
+	footer {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto;
+		row-gap: 5rem;
+
+		max-width: 100%;
+
+		padding: 2rem 6rem;
+
+		ul.subtitle {
+			grid-template-columns: unset;
+			grid-template-rows: repeat(3, auto);
+		}
+	}
 }

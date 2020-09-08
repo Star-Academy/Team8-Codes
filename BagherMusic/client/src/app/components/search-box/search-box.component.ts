@@ -10,9 +10,6 @@ import { faMusic } from '@fortawesome/free-solid-svg-icons';
 	styleUrls: [ './search-box.component.scss' ]
 })
 export class SearchBoxComponent implements OnInit {
-	@Input() width;
-	@Input() height;
-
 	@ViewChild('searchBox') searchBoxElement: ElementRef;
 	@ViewChild('searchInput') searchInputElement: ElementRef;
 	searchIconClass = 'text-fade';

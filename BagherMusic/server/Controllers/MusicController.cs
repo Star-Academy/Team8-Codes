@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 // Internal
+using System.Collections.Generic;
+
 using BagherMusic.Models;
 using BagherMusic.Services;
 
@@ -26,22 +28,26 @@ namespace BagherMusic.Controllers
 		[HttpGet("{id}")]
 		public IActionResult GetMusic(int id)
 		{
-			try
-			{
-				return Ok(musicService.GetEntity(id));
-			}
-			catch (Exception e)
-			{
-				return BadRequest(e.Message);
-			}
+			return GetResult<Music>((args) => musicService.GetEntity((int) args[0]), id);
 		}
 
 		[HttpGet("by-artist/{id}")]
 		public IActionResult GetMusicsByArtist(int id)
 		{
+			return GetResult<HashSet<Music>>((args) => musicService.GetEntities(args[0]), id);
+		}
+
+		[HttpGet("lucky")]
+		public IActionResult GetRandomMusic()
+		{
+			return GetResult<Music>((args) => musicService.GetRandomEntity(), null);
+		}
+
+		private IActionResult GetResult<T>(Func<object[], T> callback, params object[] args)
+		{
 			try
 			{
-				return Ok(musicService.GetEntities(id));
+				return Ok(callback(args));
 			}
 			catch (Exception e)
 			{
