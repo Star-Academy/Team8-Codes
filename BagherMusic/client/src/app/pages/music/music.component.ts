@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 import { SearchService } from '../../services/search.service';
 import { Music } from '../../models/Music';
@@ -19,8 +21,12 @@ export class MusicComponent implements OnInit {
 	primaryArtist: Artist;
 	featuredArtists: Array<Artist>;
 
+	showLyrics: boolean = false;
+
 	faSpotify = faSpotify;
 	faYoutube = faYoutube;
+	faCaretRight = faCaretRight;
+	faCaretDown = faCaretDown;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -63,5 +69,9 @@ export class MusicComponent implements OnInit {
 			},
 			(err) => console.log(err)
 		);
+	}
+
+	toggleLyricsFoldingStatus(e) {
+		this.showLyrics = !this.showLyrics;
 	}
 }

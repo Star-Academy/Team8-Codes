@@ -26,9 +26,13 @@
 		</div>
 	</div>
 	<div class="lyrics shadow-narrow-reverse">
-		<div class="left"><span class="label text-fade">Lyrics</span></div>
-		<div class="right">
-			<p class="lyrics text-bright">{{music.lyrics}}</p>
+		<div class="left text-fade" (click)="toggleLyricsFoldingStatus($event)">
+			<fa-icon [icon]="showLyrics? faCaretDown : faCaretRight"></fa-icon>
+			<span class="label"> Lyrics</span>
+		</div>
+		<div class="right text">
+			<p *ngIf="showLyrics" class="lyrics hide">{{music.lyrics}}</p>
+			<span *ngIf="!showLyrics" class=""><br></span>
 		</div>
 	</div>
 </main>
