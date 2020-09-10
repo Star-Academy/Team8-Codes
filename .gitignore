@@ -396,3 +396,5 @@ google/main/resources/input/*
 
 # Keep these
 !**/.gitkeep
+
+BagherMusic/client
